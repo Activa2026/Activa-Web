@@ -341,9 +341,9 @@ const comunas = [
   <!-- Nosotros -->
   <section id="nosotros" class="wrap section--lg about">
     <Photo
-      name="andres"
-      alt="Andrés González Meza, fundador de Activa Corredores"
-      placeholder="Andrés en terreno, retrato natural"
+      name="nosotros"
+      alt=""
+      placeholder="el equipo de Activa en terreno"
       tone={2}
       class="about__photo px"
       widths={[420, 640, 900]}
@@ -351,14 +351,15 @@ const comunas = [
     />
     <div class="about__text rv">
       <p class="eyebrow">05 / Nosotros</p>
-      <Heading size="md" text="Detrás de cada propiedad" accent="hay una persona a cargo." />
+      <Heading size="md" text="Un equipo detrás," accent="un responsable para ti." />
       <blockquote class="about__quote">
         <p>
-          “Creé Activa Corredores para que vender o arrendar no sea un salto al vacío. Usamos tecnología para
-          trabajar mejor, pero la relación contigo la llevo yo.”
+          “Creamos Activa Corredores para que vender o arrendar no sea un salto al vacío. Usamos tecnología para
+          trabajar mejor, pero cada propiedad tiene una persona del equipo a cargo, que te conoce y te informa cada
+          semana.”
         </p>
       </blockquote>
-      <p class="muted about__sign">Andrés González Meza, fundador y corredor</p>
+      <p class="muted about__sign">Equipo fundador de Activa Corredores</p>
     </div>
   </section>
 
@@ -856,6 +857,9 @@ const comunas = [
     display: flex;
     flex-direction: column;
     gap: 20px;
+  }
+  .about__text :global(.title em) {
+    display: block;
   }
   .about__quote {
     margin: 0;

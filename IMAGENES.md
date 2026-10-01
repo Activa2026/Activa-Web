@@ -17,5 +17,5 @@ Conviene subir las fotos al tamaño de la tabla o mayor; no hace falta comprimir
 | perfil-arrendar.webp | Inicio › ¿Quién eres? | IA o banco (living luminoso) | 800×700 |
 | perfil-administrar.webp | Inicio › ¿Quién eres? | IA o banco (entrega de llaves) | 800×700 |
 | perfil-buscar.webp | Inicio › ¿Quién eres? | IA o banco (familia en un barrio) | 800×700 |
-| andres.webp | Inicio › Nosotros | REAL (retrato natural en terreno) | 900×1000 |
+| nosotros.webp | Inicio › Nosotros (imagen general del equipo; hoy usa provisoriamente la foto de portada) | IA o real (equipo de 3 en terreno, sin rostros protagónicos) | 900×1000 (vertical) |
 | og-image.jpg | Vista previa al compartir el link | Diseño con logo | 1200×630 |

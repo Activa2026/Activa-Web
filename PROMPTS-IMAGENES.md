@@ -4,7 +4,7 @@ Prompts en inglés porque los modelos responden con más precisión; el comentar
 Al terminar, guarda cada imagen con el **nombre de archivo indicado** y pásamela (o déjala en `src/assets/images/`).
 No hace falta comprimirlas: el sitio genera las versiones optimizadas.
 
-**No se generan con IA:** las 4 comunas y el retrato de Andrés (ver `IMAGENES.md`): van fotos reales.
+**No se generan con IA:** las 4 comunas (ver `IMAGENES.md`): van fotos reales.
 
 ---
 
@@ -83,6 +83,19 @@ A young family (two adults and a child) walking hand in hand along a leafy resid
 in Santiago, seen from behind at a medium distance, late-afternoon light, trees and house fronts
 around them, the Andes foothills faint in the distance. Natural, candid, hopeful mood.
 Faces not visible. No text, no logos. Aspect ratio 4:3.
+```
+
+## 6. Nosotros (imagen general del equipo) — `nosotros` · proporción **4:5** vertical (mínimo 900×1125)
+
+Reemplaza la foto provisoria de la sección "Un equipo detrás, un responsable para ti".
+Si prefieren una foto real del equipo, esa siempre será mejor.
+
+```
+Three real-estate professionals (business-casual clothes in navy, beige and olive)
+walking together along a leafy residential sidewalk in eastern Santiago at golden hour, seen from behind
+or three-quarter back view, one of them holding a folder. Houses with small gardens and low walls around them,
+the Andes foothills faint in the background. Natural, confident, approachable team mood.
+Faces not visible or not in focus. No text, no logos. Vertical composition, aspect ratio 4:5.
 ```
 
 ---
