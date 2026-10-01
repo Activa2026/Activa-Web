@@ -95,7 +95,8 @@ const { variant = 'card' } = Astro.props;
 
   <div class="vform__step vform__done" data-step="3" hidden tabindex="-1">
     <p class="vform__done-title">Recibimos tu solicitud.</p>
-    <p>Te escribiremos de inmediato por WhatsApp para coordinar tu Valorización 360°.</p>
+    <p>Te escribiremos por WhatsApp para coordinar tu Valorización 360°.</p>
+    <p>¿Prefieres adelantarte? <a href={WHATSAPP_URL} class="link" data-wa-done>Escríbenos ahora por WhatsApp</a></p>
     <a href="/sistema" class="link">Mientras tanto, conoce el Sistema Activa</a>
     <button type="button" class="btn btn--ghost vform__reset" data-reset>Enviar otra solicitud</button>
   </div>

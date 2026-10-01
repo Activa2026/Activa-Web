@@ -1,7 +1,8 @@
 // Lógica del formulario de valorización (components/ValuationForm.astro).
 // Valida, protege contra spam (campo trampa, tiempo mínimo y límite de envíos por
-// navegador) y envía al sistema de respuesta de leads. Si no hay endpoint o el envío
-// falla, ofrece continuar por WhatsApp con el mensaje ya escrito.
+// navegador) y envía al destino de leads (public/api/lead.php o el webhook definido
+// en PUBLIC_LEADS_ENDPOINT). Si el envío falla, ofrece continuar por WhatsApp con el
+// mensaje ya escrito.
 
 const STEP_NAMES = ['Tu propiedad', 'Tus datos', 'Listo'];
 const MIN_FILL_MS = 3000;
@@ -207,6 +208,8 @@ export function initValuationForm(form: HTMLFormElement): void {
       });
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       recordSubmission();
+      form.querySelector<HTMLAnchorElement>('[data-wa-done]')!.href =
+        `https://wa.me/${waNumber}?text=${encodeURIComponent(whatsappMessage())}`;
       show('3');
     } catch {
       fallback(true);

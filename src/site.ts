@@ -23,9 +23,10 @@ export function whatsappWithText(text: string): string {
 export const PROPERTIES_URL = '/#propiedades';
 export const PROPERTIES_EXTERNAL = PROPERTIES_URL.startsWith('http');
 
-// Endpoint del sistema de respuesta de leads (Node.js en Hostinger). Pendiente.
-// Mientras esté vacío, el formulario no envía y ofrece continuar por WhatsApp.
-export const LEADS_ENDPOINT = import.meta.env.PUBLIC_LEADS_ENDPOINT ?? '';
+// Destino del formulario. Por defecto, public/api/lead.php (correo + registro en Hostinger).
+// Para el agente futuro (n8n), definir PUBLIC_LEADS_ENDPOINT con la URL del webhook.
+// Si el envío falla, el formulario ofrece continuar por WhatsApp.
+export const LEADS_ENDPOINT = import.meta.env.PUBLIC_LEADS_ENDPOINT || '/api/lead.php';
 
 export const NAV = [
   { href: '/sistema', label: 'Sistema Activa' },

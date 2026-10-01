@@ -44,7 +44,23 @@ push a main ─▶ GitHub Actions (npm ci, astro check, build) ─▶ rama "depl
 5. **SSL**: en hPanel › Seguridad › SSL, confirmar que el certificado de activacorredores.cl esté activo
    (el `.htaccess` fuerza HTTPS y el dominio sin `www`).
 
+### Formulario de valorización (leads)
+
+Mientras no exista el agente de respuesta, el formulario envía a `public/api/lead.php`, que:
+
+- valida los datos, descarta robots (campo trampa) y limita a 5 envíos por hora por IP y 60 por día;
+- envía un correo a andres@activacorredores.cl con los datos y un link directo a WhatsApp;
+- guarda cada solicitud en `activa-leads/leads.csv`, **fuera** de `public_html`
+  (hPanel › Administrador de archivos, carpeta del dominio). Sirve de respaldo si un correo no llega.
+
+Para el agente (n8n u otro): definir la variable `PUBLIC_LEADS_ENDPOINT` con la URL del webhook y volver
+a publicar. El webhook recibe un JSON con `comuna`, `tipo`, `operacion`, `nombre`, `whatsapp` (+569XXXXXXXX),
+`email`, `origen` y parámetros `utm_*`, y debe responder con estado 2xx.
+
 ### Después de publicar
+
+- Enviar una solicitud de prueba y confirmar que el correo llega (revisar spam). Si el correo del dominio no
+  está en Hostinger, puede ser necesario ajustar el registro SPF.
 
 - Enviar `https://activacorredores.cl/sitemap-index.xml` en Google Search Console.
 - Revisar con PageSpeed Insights (móvil) y con el depurador de Facebook para la vista previa del link.
