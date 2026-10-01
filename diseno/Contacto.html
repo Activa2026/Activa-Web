@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Activa Corredores — Contacto</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400&amp;family=Poppins:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#0F456B}a:hover{color:#1E3350}
+input,select,button{font-family:inherit}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #C8A050;outline-offset:2px}
+@keyframes rise{from{opacity:0;transform:translateY(36px)}to{opacity:1;transform:none}}
+@keyframes fromL{from{opacity:0;transform:translateX(-48px)}to{opacity:1;transform:none}}
+@keyframes fromR{from{opacity:0;transform:translateX(48px)}to{opacity:1;transform:none}}
+@keyframes grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes drift{from{transform:translateY(36px)}to{transform:translateY(-36px)}}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion: no-preference){
+.marquee{animation:marquee 60s linear infinite}
+.marquee:hover{animation-play-state:paused}
+.in{animation:rise .9s cubic-bezier(.2,.7,.2,1) both}
+.in-2{animation-delay:.18s}
+@supports (animation-timeline: view()){
+.rv,.stagger>*,.steps>li{animation:rise linear both;animation-timeline:view();animation-range:entry 5% cover 28%}
+.stagger>:nth-child(2),.steps>li:nth-child(2){animation-range:entry 12% cover 32%}
+.stagger>:nth-child(3),.steps>li:nth-child(3){animation-range:entry 19% cover 36%}
+.stagger>:nth-child(4),.steps>li:nth-child(4){animation-range:entry 26% cover 40%}
+.steps>li:nth-child(5){animation-range:entry 33% cover 44%}
+.rv-l{animation:fromL linear both;animation-timeline:view();animation-range:entry 5% cover 30%}
+.rv-r{animation:fromR linear both;animation-timeline:view();animation-range:entry 10% cover 34%}
+.grow{transform-origin:left center;animation:grow linear both;animation-timeline:view();animation-range:entry 40% cover 45%}
+.px{animation:drift linear both;animation-timeline:view();animation-range:cover 0% cover 100%}
+}
+}
+</style>
+</helmet>
+<div style="font-family: 'Poppins', 'Helvetica Neue', sans-serif; color: #1E3350; background: #F3EEE6; font-size: 16px; line-height: 1.6">
+<header style="background: #FFFFFF; border-bottom: 1px solid #E4DCCD; position: sticky; top: 0; z-index: 20">
+<div style="max-width: 1200px; margin: 0 auto; padding: 16px 32px; display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap">
+<a href="Main.dc.html" style="display: flex; align-items: center; gap: 12px; text-decoration: none; color: #1E3350">
+<img src="/_blob/fb0ca035e09a136478973ed8027c87c1" alt="" style="height: 44px; width: auto">
+<span style="font-weight: 600; font-size: 18px; letter-spacing: 0.04em">ACTIVA CORREDORES</span>
+</a>
+<nav aria-label="Principal" style="display: flex; align-items: center; gap: 28px; flex-wrap: wrap; font-size: 15px">
+<a href="Sistema.dc.html" style="text-decoration: none; color: #1E3350; ">Sistema Activa</a>
+<a href="Vender.dc.html" style="text-decoration: none; color: #1E3350; ">Vender</a>
+<a href="Arrendar.dc.html" style="text-decoration: none; color: #1E3350; ">Arrendar</a>
+<a href="Administracion.dc.html" style="text-decoration: none; color: #1E3350; ">Administración</a>
+<a href="Main.dc.html" style="text-decoration: none; color: #1E3350; ">Propiedades</a>
+<a href="Contacto.dc.html" style="text-decoration: none; background: #0F456B; color: #FFFFFF; padding: 12px 20px; border-radius: 6px; font-weight: 500">Valoriza tu propiedad</a>
+</nav>
+</div>
+</header>
+<section style="max-width: 1200px; margin: 0 auto; padding: 96px 32px; display: flex; flex-direction: column; gap: 56px">
+<div class="in" style="display: flex; flex-direction: column; gap: 20px; max-width: 760px">
+<p style="margin: 0; font-size: 14px; font-weight: 500; letter-spacing: 0.06em; color: #647850">Contacto</p>
+<h1 style="margin: 0; font-family: 'Lora', Georgia, serif; font-weight: 500; font-size: clamp(40px, 5vw, 62px); line-height: 1.08; color: #0F456B">Conversemos sobre <em style="font-style: italic; font-weight: 400; color: #647850">tu propiedad.</em></h1>
+<p style="margin: 0; font-size: 19px; color: #33404D">Déjanos tus datos y te contactamos con una primera estimación. Si prefieres, escríbenos directo.</p>
+</div>
+<div style="display: flex; gap: 72px; flex-wrap: wrap; align-items: flex-start">
+<div class="in in-2" style="flex: 1 1 460px"><form id="valorizacion" style="background: #FFFFFF; border: 1px solid #E4DCCD; border-radius: 12px; padding: 36px; display: flex; flex-direction: column; gap: 18px">
+<div style="display: flex; flex-direction: column; gap: 10px">
+<h2 style="margin: 0; font-family: 'Lora', Georgia, serif; font-weight: 500; font-size: 24px; color: #0F456B">Valorización <em style="font-style: italic; font-weight: 400; color: #647850">gratuita</em></h2>
+<div aria-hidden="true" style="display: flex; gap: 6px">
+<span style="flex: 1; height: 4px; border-radius: 2px; background: {{bar1}}"></span>
+<span style="flex: 1; height: 4px; border-radius: 2px; background: {{bar2}}"></span>
+<span style="flex: 1; height: 4px; border-radius: 2px; background: {{bar3}}"></span>
+</div>
+<p style="margin: 0; font-size: 14px; color: #4F5A66">Paso {{stepNum}} de 3: {{stepName}}</p>
+</div>
+<sc-if value="{{isStep1}}" hint-placeholder-val="{{ true }}">
+<div style="display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; flex-direction: column; gap: 6px">
+<label for="h-comuna" style="font-size: 14px; font-weight: 500">¿Dónde está tu propiedad?</label>
+<select id="h-comuna" style="height: 46px; border: 1px solid #C9C0B0; border-radius: 6px; padding: 0 10px; font-size: 16px; color: #1E3350; background: #FFFFFF">
+<option>La Florida</option>
+<option>Macul</option>
+<option>Peñalolén</option>
+<option>La Reina</option>
+<option>Otra comuna</option>
+</select>
+</div>
+<div style="display: flex; gap: 12px; flex-wrap: wrap">
+<div style="flex: 1 1 140px; display: flex; flex-direction: column; gap: 6px">
+<label for="h-tipo" style="font-size: 14px; font-weight: 500">Tipo</label>
+<select id="h-tipo" style="height: 46px; border: 1px solid #C9C0B0; border-radius: 6px; padding: 0 10px; font-size: 16px; color: #1E3350; background: #FFFFFF">
+<option>Casa</option>
+<option>Departamento</option>
+</select>
+</div>
+<div style="flex: 1 1 140px; display: flex; flex-direction: column; gap: 6px">
+<label for="h-op" style="font-size: 14px; font-weight: 500">Quiero</label>
+<select id="h-op" style="height: 46px; border: 1px solid #C9C0B0; border-radius: 6px; padding: 0 10px; font-size: 16px; color: #1E3350; background: #FFFFFF">
+<option>Vender</option>
+<option>Arrendar</option>
+<option>Que la administren</option>
+</select>
+</div>
+</div>
+<button type="button" onClick="{{next}}" style="height: 52px; background: #0F456B; color: #FFFFFF; border: 0; border-radius: 6px; font-size: 17px; font-weight: 500; cursor: pointer">Continuar</button>
+</div>
+</sc-if>
+<sc-if value="{{isStep2}}" hint-placeholder-val="{{ false }}">
+<div style="display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; flex-direction: column; gap: 6px">
+<label for="h-nombre" style="font-size: 14px; font-weight: 500">Nombre</label>
+<input id="h-nombre" type="text" autocomplete="name" style="height: 46px; border: 1px solid #C9C0B0; border-radius: 6px; padding: 0 14px; font-size: 16px; color: #1E3350">
+</div>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<label for="h-fono" style="font-size: 14px; font-weight: 500">WhatsApp</label>
+<input id="h-fono" type="tel" autocomplete="tel" placeholder="+56 9" style="height: 46px; border: 1px solid #C9C0B0; border-radius: 6px; padding: 0 14px; font-size: 16px; color: #1E3350">
+</div>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<label for="h-mail" style="font-size: 14px; font-weight: 500">Correo (opcional)</label>
+<input id="h-mail" type="email" autocomplete="email" style="height: 46px; border: 1px solid #C9C0B0; border-radius: 6px; padding: 0 14px; font-size: 16px; color: #1E3350">
+</div>
+<div style="display: flex; gap: 12px; align-items: center">
+<button type="button" onClick="{{back}}" style="height: 52px; padding: 0 18px; background: transparent; color: #0F456B; border: 1px solid #C9C0B0; border-radius: 6px; font-size: 16px; cursor: pointer">Volver</button>
+<button type="button" onClick="{{next}}" style="flex: 1; height: 52px; background: #C8A050; color: #1E3350; border: 0; border-radius: 6px; font-size: 17px; font-weight: 600; cursor: pointer">Solicitar valorización</button>
+</div>
+</div>
+</sc-if>
+<sc-if value="{{isStep3}}" hint-placeholder-val="{{ false }}">
+<div style="display: flex; flex-direction: column; gap: 12px">
+<p style="margin: 0; font-family: 'Lora', Georgia, serif; font-size: 22px; color: #1E3350">Recibimos tu solicitud.</p>
+<p style="margin: 0; font-size: 15px; color: #33404D">Te escribiremos de inmediato por WhatsApp para coordinar tu Valorización 360°.</p>
+<a href="Sistema.dc.html" style="font-size: 15px; font-weight: 500">Mientras tanto, conoce el Sistema Activa</a>
+<button type="button" onClick="{{reset}}" style="align-self: flex-start; margin-top: 4px; padding: 10px 16px; background: transparent; color: #4F5A66; border: 1px solid #C9C0B0; border-radius: 6px; font-size: 14px; cursor: pointer">Enviar otra solicitud</button>
+</div>
+</sc-if>
+</form></div>
+<div class="rv-r" style="flex: 1 1 340px; display: flex; flex-direction: column">
+<div style="display: flex; flex-direction: column; gap: 2px; padding: 18px 0; border-top: 1px solid #E4DCCD"><span style="font-size: 13px; font-weight: 500; letter-spacing: 0.06em; color: #647850">WHATSAPP</span><a href="https://wa.me/56990241794" style="text-decoration: none; font-size: 17px; font-weight: 500">+56 9 9024 1794</a></div>
+<div style="display: flex; flex-direction: column; gap: 2px; padding: 18px 0; border-top: 1px solid #E4DCCD"><span style="font-size: 13px; font-weight: 500; letter-spacing: 0.06em; color: #647850">CORREO</span><a href="mailto:andres@activacorredores.cl" style="text-decoration: none; font-size: 17px; font-weight: 500">andres@activacorredores.cl</a></div>
+<div style="display: flex; flex-direction: column; gap: 2px; padding: 18px 0; border-top: 1px solid #E4DCCD"><span style="font-size: 13px; font-weight: 500; letter-spacing: 0.06em; color: #647850">INSTAGRAM</span><a href="https://instagram.com/activa_corredores" style="text-decoration: none; font-size: 17px; font-weight: 500">@activa_corredores</a></div>
+<div style="display: flex; flex-direction: column; gap: 2px; padding: 18px 0; border-top: 1px solid #E4DCCD"><span style="font-size: 13px; font-weight: 500; letter-spacing: 0.06em; color: #647850">HORARIO</span><span style="font-size: 17px">Lunes a sábado, de 9:00 a 19:00 hrs.</span></div>
+<div style="display: flex; flex-direction: column; gap: 2px; padding: 18px 0; border-top: 1px solid #E4DCCD"><span style="font-size: 13px; font-weight: 500; letter-spacing: 0.06em; color: #647850">ZONA DE TRABAJO</span><span style="font-size: 17px">La Florida, Macul, Peñalolén y La Reina</span></div>
+</div>
+</div>
+</section>
+<footer style="background: #FFFFFF; border-top: 1px solid #E4DCCD">
+<div style="max-width: 1200px; margin: 0 auto; padding: 48px 32px; display: flex; gap: 48px; flex-wrap: wrap; justify-content: space-between; align-items: center">
+<img src="/_blob/0d559be89a348a41303c8dfcfb1b7f11" alt="Activa Corredores: transparencia, seguridad, proactividad" style="width: 180px; height: auto">
+<div style="display: flex; gap: 28px; flex-wrap: wrap; font-size: 15px">
+<a href="Sistema.dc.html" style="text-decoration: none">Sistema Activa</a>
+<a href="Vender.dc.html" style="text-decoration: none">Vender</a>
+<a href="Arrendar.dc.html" style="text-decoration: none">Arrendar</a>
+<a href="Administracion.dc.html" style="text-decoration: none">Administración</a>
+<a href="Contacto.dc.html" style="text-decoration: none">Contacto</a>
+</div>
+<p style="margin: 0; font-size: 13px; color: #4F5A66">Activa Corredores SpA, Santiago de Chile</p>
+</div>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview": {"width": 1440, "height": 1500}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const s = (this.state && this.state.step) || 1;
+    const on = '#0F456B', off = '#E4DCCD';
+    return {
+            isStep1: s === 1, isStep2: s === 2, isStep3: s === 3,
+      stepNum: s,
+      stepName: ['Tu propiedad', 'Tus datos', 'Listo'][s - 1],
+      bar1: on, bar2: s >= 2 ? on : off, bar3: s >= 3 ? on : off,
+      next: () => this.setState({ step: Math.min(3, s + 1) }),
+      back: () => this.setState({ step: Math.max(1, s - 1) }),
+      reset: () => this.setState({ step: 1 })
+    };
+  }
+}
+</script>
+</body>
+</html>

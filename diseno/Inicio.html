@@ -1,0 +1,427 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Activa Corredores — Inicio</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400&amp;family=Poppins:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#0F456B}a:hover{color:#1E3350}
+input,select,button{font-family:inherit}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #C8A050;outline-offset:2px}
+@keyframes rise{from{opacity:0;transform:translateY(36px)}to{opacity:1;transform:none}}
+@keyframes fromL{from{opacity:0;transform:translateX(-48px)}to{opacity:1;transform:none}}
+@keyframes fromR{from{opacity:0;transform:translateX(48px)}to{opacity:1;transform:none}}
+@keyframes grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes drift{from{transform:translateY(36px)}to{transform:translateY(-36px)}}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion: no-preference){
+.marquee{animation:marquee 60s linear infinite}
+.marquee:hover{animation-play-state:paused}
+.in{animation:rise .9s cubic-bezier(.2,.7,.2,1) both}
+.in-2{animation-delay:.18s}
+@supports (animation-timeline: view()){
+.rv,.stagger>*,.steps>li{animation:rise linear both;animation-timeline:view();animation-range:entry 5% cover 28%}
+.stagger>:nth-child(2),.steps>li:nth-child(2){animation-range:entry 12% cover 32%}
+.stagger>:nth-child(3),.steps>li:nth-child(3){animation-range:entry 19% cover 36%}
+.stagger>:nth-child(4),.steps>li:nth-child(4){animation-range:entry 26% cover 40%}
+.steps>li:nth-child(5){animation-range:entry 33% cover 44%}
+.rv-l{animation:fromL linear both;animation-timeline:view();animation-range:entry 5% cover 30%}
+.rv-r{animation:fromR linear both;animation-timeline:view();animation-range:entry 10% cover 34%}
+.grow{transform-origin:left center;animation:grow linear both;animation-timeline:view();animation-range:entry 40% cover 45%}
+.px{animation:drift linear both;animation-timeline:view();animation-range:cover 0% cover 100%}
+}
+}
+</style>
+</helmet>
+<div style="font-family: 'Poppins', 'Helvetica Neue', sans-serif; color: #1E3350; background: {{ground}}; font-size: 16px; line-height: 1.6">
+
+<header style="background: #FFFFFF; border-bottom: 1px solid #E4DCCD; position: sticky; top: 0; z-index: 20">
+<div style="max-width: 1200px; margin: 0 auto; padding: 16px 32px; display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap">
+<a href="#inicio" style="display: flex; align-items: center; gap: 12px; text-decoration: none; color: #1E3350">
+<img src="/_blob/fb0ca035e09a136478973ed8027c87c1" alt="" style="height: 44px; width: auto">
+<span style="font-weight: 600; font-size: 18px; letter-spacing: 0.04em">ACTIVA CORREDORES</span>
+</a>
+<nav aria-label="Principal" style="display: flex; align-items: center; gap: 28px; flex-wrap: wrap; font-size: 15px">
+<a href="Sistema.dc.html" style="text-decoration: none; color: #1E3350">Sistema Activa</a>
+<a href="Vender.dc.html" style="text-decoration: none; color: #1E3350">Vender</a>
+<a href="Arrendar.dc.html" style="text-decoration: none; color: #1E3350">Arrendar</a>
+<a href="Administracion.dc.html" style="text-decoration: none; color: #1E3350">Administración</a>
+<a href="#nosotros" style="text-decoration: none; color: #1E3350">Nosotros</a>
+<a href="#propiedades" style="text-decoration: none; color: #4F5A66">Propiedades</a>
+<a href="#valorizacion" style="text-decoration: none; background: #0F456B; color: #FFFFFF; padding: 12px 20px; border-radius: 6px; font-weight: 500">Valoriza tu propiedad</a>
+</nav>
+</div>
+</header>
+
+<section id="inicio" style="max-width: 1200px; margin: 0 auto; padding: 88px 32px 96px; display: flex; gap: 64px; flex-wrap: wrap; align-items: center">
+<div class="in" style="flex: 1 1 480px; display: flex; flex-direction: column; gap: 28px">
+<h1 style="margin: 0; font-family: 'Lora', Georgia, serif; font-weight: 500; font-size: clamp(40px, 5vw, 64px); line-height: 1.08; color: #0F456B">Tu propiedad merece un plan, <em style="font-style: italic; font-weight: 400; color: #647850">no solo un aviso.</em></h1>
+<p style="margin: 0; font-size: 19px; line-height: 1.65; max-width: 560px; color: #33404D">Vendemos, arrendamos y administramos propiedades en La Florida, Macul, Peñalolén y La Reina con el Sistema Activa: precio respaldado por datos, difusión profesional y un responsable que te informa cada semana.</p>
+<div style="display: flex; gap: 24px; align-items: center; flex-wrap: wrap">
+<a href="#valorizacion" style="background: #0F456B; color: #FFFFFF; text-decoration: none; padding: 16px 28px; border-radius: 6px; font-weight: 500; font-size: 17px">Quiero valorizar mi propiedad</a>
+<a href="#sistema" style="color: #0F456B; font-weight: 500; font-size: 16px">Cómo funciona el Sistema Activa</a>
+</div>
+<p style="margin: 8px 0 0; font-size: 15px; color: #4F5A66">¿Buscas dónde vivir? <a href="#propiedades" style="color: #0F456B">Revisa nuestras propiedades disponibles</a></p>
+</div>
+<div class="in in-2" style="flex: 1 1 400px; background: #647850; border-radius: 12px; padding: 32px; display: flex; flex-direction: column; gap: 20px; min-height: 520px; box-sizing: border-box; justify-content: flex-end">
+<p style="margin: 0 0 auto; font-size: 13px; color: #FFFFFF">[Foto: calle arbolada del barrio, luz de tarde]</p>
+<form id="valorizacion" style="background: #FFFFFF; border-radius: 10px; padding: 28px; display: flex; flex-direction: column; gap: 18px">
+<div style="display: flex; flex-direction: column; gap: 10px">
+<h2 style="margin: 0; font-family: 'Lora', Georgia, serif; font-weight: 500; font-size: 24px; color: #0F456B">Valorización <em style="font-style: italic; font-weight: 400; color: #647850">gratuita</em></h2>
+<div aria-hidden="true" style="display: flex; gap: 6px">
+<span style="flex: 1; height: 4px; border-radius: 2px; background: {{bar1}}"></span>
+<span style="flex: 1; height: 4px; border-radius: 2px; background: {{bar2}}"></span>
+<span style="flex: 1; height: 4px; border-radius: 2px; background: {{bar3}}"></span>
+</div>
+<p style="margin: 0; font-size: 14px; color: #4F5A66">Paso {{stepNum}} de 3: {{stepName}}</p>
+</div>
+<sc-if value="{{isStep1}}" hint-placeholder-val="{{ true }}">
+<div style="display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; flex-direction: column; gap: 6px">
+<label for="h-comuna" style="font-size: 14px; font-weight: 500">¿Dónde está tu propiedad?</label>
+<select id="h-comuna" style="height: 46px; border: 1px solid #C9C0B0; border-radius: 6px; padding: 0 10px; font-size: 16px; color: #1E3350; background: #FFFFFF">
+<option>La Florida</option>
+<option>Macul</option>
+<option>Peñalolén</option>
+<option>La Reina</option>
+<option>Otra comuna</option>
+</select>
+</div>
+<div style="display: flex; gap: 12px; flex-wrap: wrap">
+<div style="flex: 1 1 140px; display: flex; flex-direction: column; gap: 6px">
+<label for="h-tipo" style="font-size: 14px; font-weight: 500">Tipo</label>
+<select id="h-tipo" style="height: 46px; border: 1px solid #C9C0B0; border-radius: 6px; padding: 0 10px; font-size: 16px; color: #1E3350; background: #FFFFFF">
+<option>Casa</option>
+<option>Departamento</option>
+</select>
+</div>
+<div style="flex: 1 1 140px; display: flex; flex-direction: column; gap: 6px">
+<label for="h-op" style="font-size: 14px; font-weight: 500">Quiero</label>
+<select id="h-op" style="height: 46px; border: 1px solid #C9C0B0; border-radius: 6px; padding: 0 10px; font-size: 16px; color: #1E3350; background: #FFFFFF">
+<option>Vender</option>
+<option>Arrendar</option>
+<option>Que la administren</option>
+</select>
+</div>
+</div>
+<button type="button" onClick="{{next}}" style="height: 52px; background: #0F456B; color: #FFFFFF; border: 0; border-radius: 6px; font-size: 17px; font-weight: 500; cursor: pointer">Continuar</button>
+</div>
+</sc-if>
+<sc-if value="{{isStep2}}" hint-placeholder-val="{{ false }}">
+<div style="display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; flex-direction: column; gap: 6px">
+<label for="h-nombre" style="font-size: 14px; font-weight: 500">Nombre</label>
+<input id="h-nombre" type="text" autocomplete="name" style="height: 46px; border: 1px solid #C9C0B0; border-radius: 6px; padding: 0 14px; font-size: 16px; color: #1E3350">
+</div>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<label for="h-fono" style="font-size: 14px; font-weight: 500">WhatsApp</label>
+<input id="h-fono" type="tel" autocomplete="tel" placeholder="+56 9" style="height: 46px; border: 1px solid #C9C0B0; border-radius: 6px; padding: 0 14px; font-size: 16px; color: #1E3350">
+</div>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<label for="h-mail" style="font-size: 14px; font-weight: 500">Correo (opcional)</label>
+<input id="h-mail" type="email" autocomplete="email" style="height: 46px; border: 1px solid #C9C0B0; border-radius: 6px; padding: 0 14px; font-size: 16px; color: #1E3350">
+</div>
+<div style="display: flex; gap: 12px; align-items: center">
+<button type="button" onClick="{{back}}" style="height: 52px; padding: 0 18px; background: transparent; color: #0F456B; border: 1px solid #C9C0B0; border-radius: 6px; font-size: 16px; cursor: pointer">Volver</button>
+<button type="button" onClick="{{next}}" style="flex: 1; height: 52px; background: #C8A050; color: #1E3350; border: 0; border-radius: 6px; font-size: 17px; font-weight: 600; cursor: pointer">Solicitar valorización</button>
+</div>
+</div>
+</sc-if>
+<sc-if value="{{isStep3}}" hint-placeholder-val="{{ false }}">
+<div style="display: flex; flex-direction: column; gap: 12px">
+<p style="margin: 0; font-family: 'Lora', Georgia, serif; font-size: 22px; color: #1E3350">Recibimos tu solicitud.</p>
+<p style="margin: 0; font-size: 15px; color: #33404D">Te escribiremos de inmediato por WhatsApp para coordinar tu Valorización 360°.</p>
+<a href="#sistema" style="font-size: 15px; font-weight: 500">Mientras tanto, conoce el Sistema Activa</a>
+<button type="button" onClick="{{reset}}" style="align-self: flex-start; margin-top: 4px; padding: 10px 16px; background: transparent; color: #4F5A66; border: 1px solid #C9C0B0; border-radius: 6px; font-size: 14px; cursor: pointer">Enviar otra solicitud</button>
+</div>
+</sc-if>
+</form>
+</div>
+</section>
+
+<section aria-label="Nuestros compromisos" style="background: #FFFFFF; border-top: 1px solid #E4DCCD; border-bottom: 1px solid #E4DCCD">
+<div class="stagger" style="max-width: 1200px; margin: 0 auto; padding: 56px 32px; display: flex; gap: 48px; flex-wrap: wrap">
+<div style="flex: 1 1 280px; display: flex; flex-direction: column; gap: 8px">
+<h3 style="margin: 0; font-family: 'Lora', Georgia, serif; font-weight: 500; font-size: 24px; color: #0F456B">Transparencia</h3>
+<p style="margin: 0; color: #33404D">Cada semana recibes un reporte con visitas, consultas y lo que opinan los interesados de tu propiedad.</p>
+</div>
+<div style="flex: 1 1 280px; display: flex; flex-direction: column; gap: 8px">
+<h3 style="margin: 0; font-family: 'Lora', Georgia, serif; font-weight: 500; font-size: 24px; color: #647850">Seguridad</h3>
+<p style="margin: 0; color: #33404D">Evaluamos a cada interesado antes de avanzar y revisamos contratos y antecedentes antes de que firmes.</p>
+</div>
+<div style="flex: 1 1 280px; display: flex; flex-direction: column; gap: 8px">
+<h3 style="margin: 0; font-family: 'Lora', Georgia, serif; font-weight: 500; font-size: 24px; color: #9A7630">Proactividad</h3>
+<p style="margin: 0; color: #33404D">No esperamos que llamen: salimos a buscar al comprador o arrendatario con campañas propias.</p>
+</div>
+</div>
+</section>
+
+<section id="sistema" style="background: #0F456B; color: #FFFFFF">
+<div style="max-width: 1200px; margin: 0 auto; padding: 104px 32px; display: flex; flex-direction: column; gap: 64px">
+<div class="rv" style="display: flex; gap: 48px; flex-wrap: wrap; align-items: flex-end; justify-content: space-between">
+<div style="flex: 1 1 420px; display: flex; flex-direction: column; gap: 14px">
+<p style="margin: 0; font-size: 14px; font-weight: 500; letter-spacing: 0.06em; color: #C8A050">01 / Sistema Activa</p>
+<h2 style="margin: 0; font-family: 'Lora', Georgia, serif; font-weight: 500; font-size: clamp(34px, 4vw, 52px); line-height: 1.1">Un método, <em style="font-style: italic; font-weight: 400; color: #C8A050">no una apuesta.</em></h2>
+</div>
+<p style="margin: 0; flex: 1 1 420px; font-size: 18px; color: #DCE5EE; max-width: 520px">Cinco etapas con un mismo responsable, desde el primer precio hasta la firma. Siempre sabes en qué etapa está tu propiedad y qué viene después.</p>
+</div>
+<ol class="steps" style="list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0">
+<li style="flex: 1 1 200px; border-top: 2px solid #C8A050; padding: 24px 24px 24px 0; display: flex; flex-direction: column; gap: 12px">
+<span style="font-family: 'Lora', Georgia, serif; font-size: 44px; line-height: 1; color: #C8A050">1</span>
+<h3 style="margin: 0; font-size: 19px; font-weight: 600">Valorización 360°</h3>
+<p style="margin: 0; font-size: 15px; color: #DCE5EE">Cruzamos ventas reales inscritas en el CBR con dos modelos de tasación y te entregamos tres precios posibles.</p>
+</li>
+<li style="flex: 1 1 200px; border-top: 2px solid #C8A050; padding: 24px 24px 24px 0; display: flex; flex-direction: column; gap: 12px">
+<span style="font-family: 'Lora', Georgia, serif; font-size: 44px; line-height: 1; color: #C8A050">2</span>
+<h3 style="margin: 0; font-size: 19px; font-weight: 600">Preparación</h3>
+<p style="margin: 0; font-size: 15px; color: #DCE5EE">Fotografía, video y una descripción escrita para tu propiedad y tu barrio, no una plantilla.</p>
+</li>
+<li style="flex: 1 1 200px; border-top: 2px solid #C8A050; padding: 24px 24px 24px 0; display: flex; flex-direction: column; gap: 12px">
+<span style="font-family: 'Lora', Georgia, serif; font-size: 44px; line-height: 1; color: #C8A050">3</span>
+<h3 style="margin: 0; font-size: 19px; font-weight: 600">Difusión activa</h3>
+<p style="margin: 0; font-size: 15px; color: #DCE5EE">Publicación en los principales portales y campañas dirigidas al comprador o arrendatario que calza con tu propiedad.</p>
+</li>
+<li style="flex: 1 1 200px; border-top: 2px solid #C8A050; padding: 24px 24px 24px 0; display: flex; flex-direction: column; gap: 12px">
+<span style="font-family: 'Lora', Georgia, serif; font-size: 44px; line-height: 1; color: #C8A050">4</span>
+<h3 style="margin: 0; font-size: 19px; font-weight: 600">Filtro y visitas</h3>
+<p style="margin: 0; font-size: 15px; color: #DCE5EE">Calificamos a cada interesado antes de agendar. Tú solo recibes visitas con intención real.</p>
+</li>
+<li style="flex: 1 1 200px; border-top: 2px solid #C8A050; padding: 24px 0 24px 0; display: flex; flex-direction: column; gap: 12px">
+<span style="font-family: 'Lora', Georgia, serif; font-size: 44px; line-height: 1; color: #C8A050">5</span>
+<h3 style="margin: 0; font-size: 19px; font-weight: 600">Cierre y seguimiento</h3>
+<p style="margin: 0; font-size: 15px; color: #DCE5EE">Negociación, contrato y firma. Si arriendas, podemos seguir a cargo con la administración.</p>
+</li>
+</ol>
+<div>
+<a href="#valorizacion" style="display: inline-block; background: #C8A050; color: #1E3350; text-decoration: none; padding: 16px 28px; border-radius: 6px; font-weight: 600; font-size: 17px">Empezar por la valorización</a>
+</div>
+</div>
+</section>
+
+<section style="max-width: 1200px; margin: 0 auto; padding: 104px 32px; display: flex; gap: 72px; flex-wrap: wrap; align-items: center">
+<div class="rv-l" style="flex: 1 1 420px; display: flex; flex-direction: column; gap: 20px">
+<p style="margin: 0; font-size: 14px; font-weight: 500; letter-spacing: 0.06em; color: #647850">02 / Valorización 360°</p>
+<h2 style="margin: 0; font-family: 'Lora', Georgia, serif; font-weight: 500; font-size: clamp(32px, 3.6vw, 46px); line-height: 1.12; color: #0F456B">Antes de publicar, <em style="font-style: italic; font-weight: 400; color: #647850">ya sabes cuánto vale.</em></h2>
+<p style="margin: 0; font-size: 18px; color: #33404D; max-width: 520px">La Valorización 360° combina tres fuentes independientes para que el precio no dependa de una opinión. Recibes un informe con tres escenarios y lo que te quedaría líquido en cada uno.</p>
+<ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 12px; font-size: 16px">
+<li style="display: flex; gap: 12px; align-items: baseline"><span aria-hidden="true" style="width: 10px; height: 10px; border-radius: 2px; background: #0F456B; flex: none"></span>Ventas reales de propiedades similares inscritas en el Conservador de Bienes Raíces</li>
+<li style="display: flex; gap: 12px; align-items: baseline"><span aria-hidden="true" style="width: 10px; height: 10px; border-radius: 2px; background: #647850; flex: none"></span>Dos modelos de tasación automatizada, HousePricing y Propiteq</li>
+<li style="display: flex; gap: 12px; align-items: baseline"><span aria-hidden="true" style="width: 10px; height: 10px; border-radius: 2px; background: #C8A050; flex: none"></span>El análisis de un corredor que conoce tu barrio</li>
+</ul>
+<div>
+<a href="#valorizacion" style="display: inline-block; background: #0F456B; color: #FFFFFF; text-decoration: none; padding: 16px 28px; border-radius: 6px; font-weight: 500; font-size: 17px">Pedir mi valorización</a>
+</div>
+</div>
+<figure class="rv-r" aria-label="Ejemplo de informe de valorización" style="flex: 1 1 440px; margin: 0; background: #FFFFFF; border: 1px solid #E4DCCD; border-radius: 12px; padding: 32px; display: flex; flex-direction: column; gap: 28px">
+<div style="display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; align-items: baseline">
+<p style="margin: 0; font-family: 'Lora', Georgia, serif; font-size: 22px; color: #0F456B">Informe de valorización</p>
+<p style="margin: 0; font-size: 14px; color: #4F5A66">Casa en [comuna], [m²] construidos</p>
+</div>
+<div style="display: flex; flex-direction: column; gap: 14px">
+<div style="height: 10px; border-radius: 5px; background: #EDE6DA; position: relative">
+<span class="grow" style="position: absolute; left: 18%; right: 20%; top: 0; bottom: 0; background: #0F456B; border-radius: 5px"></span>
+</div>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px">
+<div style="display: flex; flex-direction: column; gap: 2px">
+<span style="font-size: 14px; color: #4F5A66">Competitivo</span>
+<span style="font-family: 'Lora', Georgia, serif; font-size: 26px; color: #1E3350">[UF]</span>
+<span style="font-size: 13px; color: #4F5A66">Venta más rápida</span>
+</div>
+<div style="display: flex; flex-direction: column; gap: 2px; border-left: 1px solid #E4DCCD; padding-left: 16px">
+<span style="font-size: 14px; color: #4F5A66">Mercado</span>
+<span style="font-family: 'Lora', Georgia, serif; font-size: 26px; color: #0F456B; font-weight: 600">[UF]</span>
+<span style="font-size: 13px; color: #4F5A66">Precio recomendado</span>
+</div>
+<div style="display: flex; flex-direction: column; gap: 2px; border-left: 1px solid #E4DCCD; padding-left: 16px">
+<span style="font-size: 14px; color: #4F5A66">Aspiracional</span>
+<span style="font-family: 'Lora', Georgia, serif; font-size: 26px; color: #1E3350">[UF]</span>
+<span style="font-size: 13px; color: #4F5A66">Requiere más tiempo</span>
+</div>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 10px">
+<p style="margin: 0; font-size: 14px; font-weight: 500">Peso de cada fuente</p>
+<div class="grow" style="display: flex; height: 28px; border-radius: 6px; overflow: hidden; font-size: 13px; font-weight: 500">
+<span style="flex: 70; background: #0F456B; color: #FFFFFF; display: flex; align-items: center; padding-left: 10px">CBR 70%</span>
+<span style="flex: 15; background: #647850"></span>
+<span style="flex: 15; background: #C8A050"></span>
+</div>
+<div style="display: flex; gap: 20px; flex-wrap: wrap; font-size: 13px; color: #33404D">
+<span style="display: flex; align-items: center; gap: 8px"><span aria-hidden="true" style="width: 10px; height: 10px; border-radius: 2px; background: #0F456B"></span>Ventas CBR 70%</span>
+<span style="display: flex; align-items: center; gap: 8px"><span aria-hidden="true" style="width: 10px; height: 10px; border-radius: 2px; background: #647850"></span>HousePricing 15%</span>
+<span style="display: flex; align-items: center; gap: 8px"><span aria-hidden="true" style="width: 10px; height: 10px; border-radius: 2px; background: #C8A050"></span>Propiteq 15%</span>
+</div>
+</div>
+<div style="background: #F3EEE6; border-radius: 8px; padding: 16px 20px; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; align-items: baseline">
+<span style="font-size: 15px">Líquido estimado para ti, después de comisión y gastos</span>
+<span style="font-family: 'Lora', Georgia, serif; font-size: 22px; color: #0F456B">[UF]</span>
+</div>
+</figure>
+</section>
+
+<section aria-label="Las reglas Activa" style="background: #C8A050; color: #1E3350; overflow: hidden; display: flex; align-items: stretch">
+<p style="margin: 0; flex: none; background: #1E3350; color: #FFFFFF; padding: 22px 28px; font-size: 14px; font-weight: 500; letter-spacing: 0.06em; display: flex; align-items: center; position: relative; z-index: 1">Las reglas Activa</p>
+<div class="marquee" style="display: flex; flex: none; width: max-content; font-family: 'Lora', Georgia, serif; font-style: italic; font-size: 22px; padding: 18px 0; align-items: center">
+<div style="display: flex"><span style="display: flex; align-items: center; gap: 40px; padding-right: 40px; white-space: nowrap"><span>Un precio sin datos es solo una opinión.</span><span aria-hidden="true" style="width: 8px; height: 8px; background: #0F456B; transform: rotate(45deg); flex: none"></span></span><span style="display: flex; align-items: center; gap: 40px; padding-right: 40px; white-space: nowrap"><span>Publicar no es lo mismo que vender.</span><span aria-hidden="true" style="width: 8px; height: 8px; background: #0F456B; transform: rotate(45deg); flex: none"></span></span><span style="display: flex; align-items: center; gap: 40px; padding-right: 40px; white-space: nowrap"><span>Si no te informamos, no estamos trabajando.</span><span aria-hidden="true" style="width: 8px; height: 8px; background: #0F456B; transform: rotate(45deg); flex: none"></span></span><span style="display: flex; align-items: center; gap: 40px; padding-right: 40px; white-space: nowrap"><span>La visita que no filtramos es tiempo que tú pierdes.</span><span aria-hidden="true" style="width: 8px; height: 8px; background: #0F456B; transform: rotate(45deg); flex: none"></span></span><span style="display: flex; align-items: center; gap: 40px; padding-right: 40px; white-space: nowrap"><span>El contrato se revisa antes, no después.</span><span aria-hidden="true" style="width: 8px; height: 8px; background: #0F456B; transform: rotate(45deg); flex: none"></span></span><span style="display: flex; align-items: center; gap: 40px; padding-right: 40px; white-space: nowrap"><span>Tu barrio no es una comuna más.</span><span aria-hidden="true" style="width: 8px; height: 8px; background: #0F456B; transform: rotate(45deg); flex: none"></span></span></div>
+<div aria-hidden="true" style="display: flex"><span style="display: flex; align-items: center; gap: 40px; padding-right: 40px; white-space: nowrap"><span>Un precio sin datos es solo una opinión.</span><span aria-hidden="true" style="width: 8px; height: 8px; background: #0F456B; transform: rotate(45deg); flex: none"></span></span><span style="display: flex; align-items: center; gap: 40px; padding-right: 40px; white-space: nowrap"><span>Publicar no es lo mismo que vender.</span><span aria-hidden="true" style="width: 8px; height: 8px; background: #0F456B; transform: rotate(45deg); flex: none"></span></span><span style="display: flex; align-items: center; gap: 40px; padding-right: 40px; white-space: nowrap"><span>Si no te informamos, no estamos trabajando.</span><span aria-hidden="true" style="width: 8px; height: 8px; background: #0F456B; transform: rotate(45deg); flex: none"></span></span><span style="display: flex; align-items: center; gap: 40px; padding-right: 40px; white-space: nowrap"><span>La visita que no filtramos es tiempo que tú pierdes.</span><span aria-hidden="true" style="width: 8px; height: 8px; background: #0F456B; transform: rotate(45deg); flex: none"></span></span><span style="display: flex; align-items: center; gap: 40px; padding-right: 40px; white-space: nowrap"><span>El contrato se revisa antes, no después.</span><span aria-hidden="true" style="width: 8px; height: 8px; background: #0F456B; transform: rotate(45deg); flex: none"></span></span><span style="display: flex; align-items: center; gap: 40px; padding-right: 40px; white-space: nowrap"><span>Tu barrio no es una comuna más.</span><span aria-hidden="true" style="width: 8px; height: 8px; background: #0F456B; transform: rotate(45deg); flex: none"></span></span></div>
+</div>
+</section>
+
+<section id="servicios" style="background: #FFFFFF; border-bottom: 1px solid #E4DCCD">
+<div style="max-width: 1200px; margin: 0 auto; padding: 96px 32px; display: flex; flex-direction: column; gap: 48px">
+<div class="rv" style="display: flex; flex-direction: column; gap: 14px">
+<p style="margin: 0; font-size: 14px; font-weight: 500; letter-spacing: 0.06em; color: #647850">03 / ¿Quién eres?</p>
+<h2 style="margin: 0; font-family: 'Lora', Georgia, serif; font-weight: 500; font-size: clamp(30px, 3.4vw, 42px); line-height: 1.15; color: #0F456B">Cada caso tiene <em style="font-style: italic; font-weight: 400; color: #647850">su propio camino.</em></h2>
+</div>
+<div class="stagger" style="display: flex; flex-wrap: wrap; gap: 32px">
+<a href="Vender.dc.html" style="flex: 1 1 240px; display: flex; flex-direction: column; gap: 14px; text-decoration: none; color: #1E3350">
+<div style="height: 220px; border-radius: 10px; background: #647850; padding: 16px; box-sizing: border-box; display: flex; align-items: flex-end"><span style="font-size: 13px; color: #FFFFFF">[Foto: fachada de casa con jardín]</span></div>
+<h3 style="margin: 0; font-family: 'Lora', Georgia, serif; font-weight: 500; font-size: 24px">Quiero vender</h3>
+<p style="margin: 0; font-size: 15px; color: #33404D">Necesitas el precio correcto y una venta que llegue a escritura sin sorpresas.</p>
+<span style="margin-top: auto; font-weight: 500; color: #0F456B; text-decoration: underline; text-underline-offset: 4px">Valorizar para vender</span>
+</a>
+<a href="Arrendar.dc.html" style="flex: 1 1 240px; display: flex; flex-direction: column; gap: 14px; text-decoration: none; color: #1E3350">
+<div style="height: 220px; border-radius: 10px; background: #8A7A5C; padding: 16px; box-sizing: border-box; display: flex; align-items: flex-end"><span style="font-size: 13px; color: #FFFFFF">[Foto: living luminoso listo para arrendar]</span></div>
+<h3 style="margin: 0; font-family: 'Lora', Georgia, serif; font-weight: 500; font-size: 24px">Quiero arrendar</h3>
+<p style="margin: 0; font-size: 15px; color: #33404D">Necesitas un arrendatario confiable y un contrato que te proteja.</p>
+<span style="margin-top: auto; font-weight: 500; color: #0F456B; text-decoration: underline; text-underline-offset: 4px">Valorizar para arrendar</span>
+</a>
+<a href="Administracion.dc.html" style="flex: 1 1 240px; display: flex; flex-direction: column; gap: 14px; text-decoration: none; color: #1E3350">
+<div style="height: 220px; border-radius: 10px; background: #5E6E4A; padding: 16px; box-sizing: border-box; display: flex; align-items: flex-end"><span style="font-size: 13px; color: #FFFFFF">[Foto: llaves y entrega de propiedad]</span></div>
+<h3 style="margin: 0; font-family: 'Lora', Georgia, serif; font-weight: 500; font-size: 24px">Que alguien lo administre</h3>
+<p style="margin: 0; font-size: 15px; color: #33404D">Necesitas que el arriendo llegue cada mes y que alguien responda por ti. Hoy administramos cerca de 60 propiedades.</p>
+<span style="margin-top: auto; font-weight: 500; color: #0F456B; text-decoration: underline; text-underline-offset: 4px">Conocer la administración</span>
+</a>
+<a href="#propiedades" style="flex: 1 1 240px; display: flex; flex-direction: column; gap: 14px; text-decoration: none; color: #1E3350">
+<div style="height: 220px; border-radius: 10px; background: #7A6A4C; padding: 16px; box-sizing: border-box; display: flex; align-items: flex-end"><span style="font-size: 13px; color: #FFFFFF">[Foto: familia recorriendo un barrio]</span></div>
+<h3 style="margin: 0; font-family: 'Lora', Georgia, serif; font-weight: 500; font-size: 24px">Busco dónde vivir</h3>
+<p style="margin: 0; font-size: 15px; color: #33404D">Necesitas opciones que calcen contigo, en barrios que conocemos bien.</p>
+<span style="margin-top: auto; font-weight: 500; color: #0F456B; text-decoration: underline; text-underline-offset: 4px">Ver propiedades disponibles</span>
+</a>
+</div>
+</div>
+</section>
+
+<section style="max-width: 1200px; margin: 0 auto; padding: 104px 32px; display: flex; flex-direction: column; gap: 48px">
+<div class="rv" style="display: flex; gap: 48px; flex-wrap: wrap; align-items: flex-end; justify-content: space-between">
+<div style="flex: 1 1 420px; display: flex; flex-direction: column; gap: 14px">
+<p style="margin: 0; font-size: 14px; font-weight: 500; letter-spacing: 0.06em; color: #647850">04 / Comunas</p>
+<h2 style="margin: 0; font-family: 'Lora', Georgia, serif; font-weight: 500; font-size: clamp(30px, 3.4vw, 42px); line-height: 1.15; color: #0F456B">Trabajamos donde <em style="font-style: italic; font-weight: 400; color: #647850">conocemos cada calle.</em></h2>
+</div>
+<p style="margin: 0; flex: 1 1 360px; font-size: 17px; color: #33404D">Nos concentramos en cuatro comunas del sector oriente y suroriente. Eso nos permite comparar con ventas reales de tu mismo barrio.</p>
+</div>
+<div class="stagger" style="display: flex; flex-wrap: wrap; gap: 24px">
+<div style="flex: 1 1 240px; display: flex; flex-direction: column; gap: 14px">
+<div style="height: 260px; border-radius: 10px; background: #647850; padding: 16px; box-sizing: border-box; display: flex; align-items: flex-end"><span style="font-size: 13px; color: #FFFFFF">[Foto: La Florida]</span></div>
+<h3 style="margin: 0; font-family: 'Lora', Georgia, serif; font-weight: 500; font-size: 24px">La Florida</h3>
+<p style="margin: 0; font-size: 15px; color: #4F5A66">Casas y departamentos familiares con buena conexión.</p>
+</div>
+<div style="flex: 1 1 240px; display: flex; flex-direction: column; gap: 14px">
+<div style="height: 260px; border-radius: 10px; background: #8A7A5C; padding: 16px; box-sizing: border-box; display: flex; align-items: flex-end"><span style="font-size: 13px; color: #FFFFFF">[Foto: Macul]</span></div>
+<h3 style="margin: 0; font-family: 'Lora', Georgia, serif; font-weight: 500; font-size: 24px">Macul</h3>
+<p style="margin: 0; font-size: 15px; color: #4F5A66">Barrios consolidados, cerca de todo.</p>
+</div>
+<div style="flex: 1 1 240px; display: flex; flex-direction: column; gap: 14px">
+<div style="height: 260px; border-radius: 10px; background: #5E6E4A; padding: 16px; box-sizing: border-box; display: flex; align-items: flex-end"><span style="font-size: 13px; color: #FFFFFF">[Foto: Peñalolén]</span></div>
+<h3 style="margin: 0; font-family: 'Lora', Georgia, serif; font-weight: 500; font-size: 24px">Peñalolén</h3>
+<p style="margin: 0; font-size: 15px; color: #4F5A66">Condominios con vista a la precordillera.</p>
+</div>
+<div style="flex: 1 1 240px; display: flex; flex-direction: column; gap: 14px">
+<div style="height: 260px; border-radius: 10px; background: #7A6A4C; padding: 16px; box-sizing: border-box; display: flex; align-items: flex-end"><span style="font-size: 13px; color: #FFFFFF">[Foto: La Reina]</span></div>
+<h3 style="margin: 0; font-family: 'Lora', Georgia, serif; font-weight: 500; font-size: 24px">La Reina</h3>
+<p style="margin: 0; font-size: 15px; color: #4F5A66">Calles arboladas y casas amplias.</p>
+</div>
+</div>
+</section>
+
+<section id="propiedades" style="background: #E6E9DC">
+<div style="max-width: 1200px; margin: 0 auto; padding: 56px 32px; display: flex; gap: 32px; flex-wrap: wrap; align-items: center; justify-content: space-between">
+<div style="flex: 1 1 420px; display: flex; flex-direction: column; gap: 6px">
+<h2 style="margin: 0; font-family: 'Lora', Georgia, serif; font-weight: 500; font-size: 28px; color: #1E3350">¿Buscas dónde vivir?</h2>
+<p style="margin: 0; color: #33404D">Revisa las propiedades que tenemos disponibles para venta y arriendo.</p>
+</div>
+<a href="#propiedades" style="border: 2px solid #1E3350; color: #1E3350; text-decoration: none; padding: 14px 24px; border-radius: 6px; font-weight: 500">Ver propiedades disponibles</a>
+</div>
+</section>
+
+<section id="nosotros" style="max-width: 1200px; margin: 0 auto; padding: 104px 32px; display: flex; gap: 72px; flex-wrap: wrap; align-items: center">
+<div class="px" style="flex: 0 1 420px; height: 480px; border-radius: 12px; background: #8A7A5C; padding: 20px; box-sizing: border-box; display: flex; align-items: flex-end"><span style="font-size: 13px; color: #FFFFFF">[Foto: Andrés en terreno, retrato natural]</span></div>
+<div class="rv" style="flex: 1 1 420px; display: flex; flex-direction: column; gap: 20px">
+<p style="margin: 0; font-size: 14px; font-weight: 500; letter-spacing: 0.06em; color: #647850">05 / Nosotros</p>
+<h2 style="margin: 0; font-family: 'Lora', Georgia, serif; font-weight: 500; font-size: clamp(30px, 3.4vw, 42px); line-height: 1.15; color: #0F456B">Detrás de cada propiedad <em style="font-style: italic; font-weight: 400; color: #647850">hay una persona a cargo.</em></h2>
+<p style="margin: 0; font-family: 'Lora', Georgia, serif; font-style: italic; font-size: 21px; line-height: 1.6; color: #33404D">“Creé Activa Corredores para que vender o arrendar no sea un salto al vacío. Usamos tecnología para trabajar mejor, pero la relación contigo la llevo yo.”</p>
+<p style="margin: 0; font-size: 15px; color: #4F5A66">Andrés González Meza, fundador y corredor</p>
+</div>
+</section>
+
+<section style="background: #1E3350; color: #FFFFFF">
+<div class="rv" style="max-width: 1200px; margin: 0 auto; padding: 88px 32px; display: flex; gap: 40px; flex-wrap: wrap; align-items: center; justify-content: space-between">
+<div style="flex: 1 1 480px; display: flex; flex-direction: column; gap: 12px">
+<h2 style="margin: 0; font-family: 'Lora', Georgia, serif; font-weight: 500; font-size: clamp(30px, 3.4vw, 44px); line-height: 1.12">Conversemos sobre <em style="font-style: italic; font-weight: 400; color: #C8A050">tu propiedad.</em></h2>
+<p style="margin: 0; font-size: 18px; color: #DCE5EE">Sin compromiso: te explicamos el Sistema Activa y te entregamos una primera valorización.</p>
+</div>
+<div style="display: flex; gap: 16px; flex-wrap: wrap">
+<a href="#valorizacion" style="background: #C8A050; color: #1E3350; text-decoration: none; padding: 16px 28px; border-radius: 6px; font-weight: 600; font-size: 17px">Solicitar valorización</a>
+<a href="https://wa.me/56990241794" style="border: 2px solid #FFFFFF; color: #FFFFFF; text-decoration: none; padding: 14px 24px; border-radius: 6px; font-weight: 500; font-size: 17px; display: flex; align-items: center; gap: 10px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8.5 8.5 0 0 1-12.6 7.4L3 21l1.6-5.2A8.5 8.5 0 1 1 21 12z"></path></svg>Escribir por WhatsApp</a>
+</div>
+</div>
+</section>
+
+<footer style="background: #FFFFFF">
+<div style="max-width: 1200px; margin: 0 auto; padding: 56px 32px 40px; display: flex; gap: 48px; flex-wrap: wrap; justify-content: space-between">
+<div style="flex: 0 1 260px; display: flex; flex-direction: column; gap: 12px">
+<img src="/_blob/0d559be89a348a41303c8dfcfb1b7f11" alt="Activa Corredores: transparencia, seguridad, proactividad" style="width: 200px; height: auto">
+</div>
+<div style="flex: 1 1 200px; display: flex; flex-direction: column; gap: 8px; font-size: 15px">
+<p style="margin: 0; font-weight: 600">Servicios</p>
+<a href="#servicios" style="text-decoration: none">Venta</a>
+<a href="#servicios" style="text-decoration: none">Arriendo</a>
+<a href="#servicios" style="text-decoration: none">Administración</a>
+<a href="#valorizacion" style="text-decoration: none">Valorización 360°</a>
+</div>
+<div style="flex: 1 1 200px; display: flex; flex-direction: column; gap: 8px; font-size: 15px">
+<p style="margin: 0; font-weight: 600">Contacto</p>
+<a href="mailto:andres@activacorredores.cl" style="text-decoration: none">andres@activacorredores.cl</a>
+<a href="https://wa.me/56990241794" style="text-decoration: none">WhatsApp +56 9 9024 1794</a>
+<a href="https://instagram.com/activa_corredores" style="text-decoration: none">Instagram @activa_corredores</a>
+</div>
+<div style="flex: 1 1 200px; display: flex; flex-direction: column; gap: 8px; font-size: 15px; color: #33404D">
+<p style="margin: 0; font-weight: 600; color: #1E3350">Comunas</p>
+<span>La Florida</span>
+<span>Macul</span>
+<span>Peñalolén</span>
+<span>La Reina</span>
+</div>
+</div>
+<div style="max-width: 1200px; margin: 0 auto; padding: 20px 32px 32px; border-top: 1px solid #E4DCCD; font-size: 13px; color: #4F5A66">Activa Corredores SpA, Santiago de Chile</div>
+</footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"ground":{"editor":"color","default":"#F3EEE6","options":["#F3EEE6","#FFFFFF","#EEF0E8"]},"$preview":{"width":1440,"height":5900}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const s = (this.state && this.state.step) || 1;
+    const on = '#0F456B', off = '#E4DCCD';
+    return {
+      ground: this.props.ground ?? '#F3EEE6',
+      isStep1: s === 1, isStep2: s === 2, isStep3: s === 3,
+      stepNum: s,
+      stepName: ['Tu propiedad', 'Tus datos', 'Listo'][s - 1],
+      bar1: on, bar2: s >= 2 ? on : off, bar3: s >= 3 ? on : off,
+      next: () => this.setState({ step: Math.min(3, s + 1) }),
+      back: () => this.setState({ step: Math.max(1, s - 1) }),
+      reset: () => this.setState({ step: 1 })
+    };
+  }
+}
+</script>
+</body>
+</html>
