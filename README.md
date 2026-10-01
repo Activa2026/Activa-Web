@@ -33,16 +33,12 @@ push a main ─▶ GitHub Actions (npm ci, astro check, build) ─▶ rama "depl
    actualiza la rama `deploy`.
 2. **Endpoint de leads** (cuando esté): en GitHub, *Settings › Secrets and variables › Actions › Variables*,
    crear `PUBLIC_LEADS_ENDPOINT` con la URL. Volver a ejecutar la acción.
-3. **Hostinger** (hPanel › Sitios web › activacorredores.cl › Avanzado › **Git**):
-   - Repositorio: `https://github.com/Activa2026/Activa-Web.git` · Rama: **`deploy`** · Directorio: vacío (= `public_html`).
-   - Si algún día el repositorio pasa a privado: usar `git@github.com:Activa2026/Activa-Web.git` y agregar la
-     **clave SSH** que muestra hPanel en GitHub, *Settings › Deploy keys* (solo lectura).
-     `public_html` debe estar vacío la primera vez.
-   - Pulsar **Implementar** y luego activar **Implementación automática**: hPanel entrega una URL de webhook.
-4. **Webhook**: en GitHub, *Settings › Webhooks › Add webhook*, pegar esa URL (tipo `application/json`, evento *push*).
-   Desde ahí, cada publicación en `deploy` se refleja sola en el sitio.
-5. **SSL**: en hPanel › Seguridad › SSL, confirmar que el certificado de activacorredores.cl esté activo
-   (el `.htaccess` fuerza HTTPS y el dominio sin `www`).
+3. **Hostinger** (listo): sitio "PHP/HTML" vacío para activacorredores.cl, conectado en
+   hPanel › Sitios web › activacorredores.cl › Avanzado › **Git** › *Continúa con GitHub*
+   (app de Hostinger con acceso solo a `Activa-Web`), rama **`deploy`**, directorio `public_html`.
+4. **DNS** (hPanel › Dominios › Dominios externos › activacorredores.cl › Administrar DNS): el correo es
+   Google Workspace (MX `smtp.google.com`). SPF: `v=spf1 include:_spf.google.com include:_spf.mail.hostinger.com ~all`.
+   **No activar el email de Hostinger** ni usar asistentes que cambien los MX.
 
 ### Formulario de valorización (leads)
 
