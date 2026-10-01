@@ -35,7 +35,7 @@ Firefox. Respetar `prefers-reduced-motion` (sin animación).
 
 ## Datos del negocio (no inventar otros)
 - Valorización 360°: comparables CBR 70%, HousePricing 15%, Propiteq 15%. Entrega 3 precios (competitivo, mercado, aspiracional) y líquido estimado.
-- Comisión de venta: 2% sobre el precio de venta [confirmar si es + IVA].
+- Comisión de venta: 2% sobre el precio de venta, sin IVA (confirmado).
 - Orden de venta exclusiva por 120 días.
 - Comisión de arriendo: 50% de un mes de arriendo + IVA.
 - Administración: 8% + IVA sobre el arriendo mensual. Cerca de 60 propiedades administradas.
@@ -52,7 +52,7 @@ de WhatsApp salga de inmediato. Pedir el endpoint antes de implementarlo. Valida
 (honeypot + límite de envíos).
 
 ## Imágenes
-Ver `IMAGENES.md`. Construir con los nombres de archivo indicados en `public/images/`; mientras no existan,
+Ver `IMAGENES.md`. Las fotos van en `src/assets/images/` con los nombres indicados (Astro las optimiza desde ahí; `og-image.jpg` va en `public/images/`); mientras no existan,
 mostrar un bloque de color de la paleta con el texto del marcador. Optimizar a WebP/AVIF con tamaños responsivos.
 
 ## Calidad

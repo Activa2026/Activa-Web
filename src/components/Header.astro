@@ -1,0 +1,221 @@
+---
+import { NAV, PROPERTIES_URL, PROPERTIES_EXTERNAL } from '../site';
+
+interface Props {
+  current?: string;
+}
+const { current } = Astro.props;
+const isHome = current === '/';
+const ctaHref = isHome ? '#valorizacion' : '/contacto';
+const extAttrs = PROPERTIES_EXTERNAL ? { target: '_blank', rel: 'noopener' } : {};
+---
+
+<header class="site-header">
+  <div class="wrap site-header__bar">
+    <a class="brand" href="/" aria-label="Activa Corredores, inicio">
+      <img src="/brand/isotipo-88.png" alt="" width="52" height="44" />
+      <span>ACTIVA CORREDORES</span>
+    </a>
+
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu-principal">
+      <span class="menu-toggle__icon" aria-hidden="true"></span>
+      <span class="menu-toggle__label">Menú</span>
+    </button>
+
+    <nav id="menu-principal" class="site-nav" aria-label="Principal">
+      {
+        NAV.map((item) => (
+          <a href={item.href} aria-current={current === item.href ? 'page' : undefined}>
+            {item.label}
+          </a>
+        ))
+      }
+      <a href={PROPERTIES_URL} class="site-nav__secondary" {...extAttrs}>Propiedades</a>
+      <a href={ctaHref} class="btn btn--primary site-nav__cta">Valoriza tu propiedad</a>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: var(--white);
+    border-bottom: 1px solid var(--line);
+  }
+  .site-header__bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding-block: 16px;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: var(--ink);
+    font-weight: 600;
+    font-size: 18px;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+  }
+  .brand img {
+    height: 44px;
+    width: auto;
+  }
+  .brand:hover {
+    color: var(--ink);
+  }
+
+  .site-nav {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    font-size: 15px;
+    white-space: nowrap;
+  }
+  .site-nav a:not(.btn) {
+    color: var(--ink);
+    text-decoration: none;
+    text-underline-offset: 6px;
+  }
+  .site-nav a:not(.btn):hover,
+  .site-nav a[aria-current='page'] {
+    text-decoration: underline;
+    text-decoration-color: var(--gold);
+    text-decoration-thickness: 2px;
+  }
+  .site-nav .site-nav__secondary {
+    color: var(--text-3);
+  }
+  .site-nav__cta.btn {
+    min-height: 0;
+    padding: 12px 20px;
+    font-size: 15px;
+    border-width: 0;
+  }
+
+  .menu-toggle {
+    display: none;
+  }
+
+  @media (max-width: 1140px) {
+    .menu-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      min-height: 44px;
+      padding: 8px 14px;
+      background: transparent;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      color: var(--ink);
+      font-size: 15px;
+      font-weight: 500;
+      cursor: pointer;
+    }
+    .menu-toggle__icon,
+    .menu-toggle__icon::before,
+    .menu-toggle__icon::after {
+      display: block;
+      width: 18px;
+      height: 2px;
+      background: currentColor;
+      border-radius: 1px;
+      transition: transform 0.2s var(--ease), background-color 0.2s;
+    }
+    .menu-toggle__icon {
+      position: relative;
+    }
+    .menu-toggle__icon::before,
+    .menu-toggle__icon::after {
+      content: '';
+      position: absolute;
+      left: 0;
+    }
+    .menu-toggle__icon::before {
+      top: -6px;
+    }
+    .menu-toggle__icon::after {
+      top: 6px;
+    }
+    .menu-toggle[aria-expanded='true'] .menu-toggle__icon {
+      background: transparent;
+    }
+    .menu-toggle[aria-expanded='true'] .menu-toggle__icon::before {
+      transform: translateY(6px) rotate(45deg);
+    }
+    .menu-toggle[aria-expanded='true'] .menu-toggle__icon::after {
+      transform: translateY(-6px) rotate(-45deg);
+    }
+
+    .site-nav {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+      padding: 8px var(--gutter) 24px;
+      background: var(--white);
+      border-bottom: 1px solid var(--line);
+      box-shadow: 0 16px 24px -16px rgb(30 51 80 / 0.25);
+      font-size: 17px;
+    }
+    .site-nav a:not(.btn) {
+      padding: 14px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .site-nav__cta.btn {
+      margin-top: 20px;
+      padding: 16px 20px;
+      font-size: 17px;
+    }
+    /* Sin JS el menú queda visible; con JS se oculta hasta abrirlo. */
+    :global(.js) .site-nav:not(.is-open) {
+      display: none;
+    }
+  }
+
+  @media (max-width: 420px) {
+    .brand {
+      font-size: 15px;
+      gap: 10px;
+    }
+    .brand img {
+      height: 36px;
+    }
+    .menu-toggle__label {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+    }
+  }
+</style>
+
+<script>
+  const toggle = document.querySelector<HTMLButtonElement>('.menu-toggle');
+  const nav = document.getElementById('menu-principal');
+  if (toggle && nav) {
+    const setOpen = (open: boolean) => {
+      toggle.setAttribute('aria-expanded', String(open));
+      nav.classList.toggle('is-open', open);
+    };
+    toggle.addEventListener('click', () => setOpen(toggle.getAttribute('aria-expanded') !== 'true'));
+    nav.addEventListener('click', (e) => {
+      if ((e.target as HTMLElement).closest('a')) setOpen(false);
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && nav.classList.contains('is-open')) {
+        setOpen(false);
+        toggle.focus();
+      }
+    });
+  }
+</script>

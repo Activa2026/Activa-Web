@@ -1,0 +1,81 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import SectionHead from '../components/SectionHead.astro';
+import Heading from '../components/Heading.astro';
+import Features from '../components/Features.astro';
+import Report from '../components/Report.astro';
+import Faq from '../components/Faq.astro';
+import CtaBand from '../components/CtaBand.astro';
+---
+
+<Base
+  title="Administración de arriendos | Activa Corredores"
+  description="Administramos tu propiedad arrendada en La Florida, Macul, Peñalolén y La Reina: cobro, mantenciones, reajustes y renovaciones. 8% + IVA."
+  current="/administracion"
+>
+  <PageHero
+    eyebrow="Administración"
+    title="Tu arriendo,"
+    accent="sin preocupaciones."
+    lead="Nos encargamos del día a día de tu propiedad arrendada: cobro, mantenciones, reajustes y renovaciones. Hoy administramos cerca de 60 propiedades en el sector oriente y suroriente de Santiago."
+  >
+    <a href="/contacto?op=administrar" class="btn btn--primary">Solicitar propuesta</a>
+  </PageHero>
+
+  <section class="section--white">
+    <div class="wrap section stack gap-48">
+      <SectionHead eyebrow="Qué incluye" title="Todo lo que ocurre" accent="después de firmar." />
+      <Features
+        items={[
+          { title: 'Cobro y transferencia', text: 'Cobramos el arriendo cada mes y te transferimos el monto acordado con su respaldo.' },
+          { title: 'Mantenciones', text: 'Cada solicitud del arrendatario queda registrada, coordinamos al técnico y te informamos antes de aprobar gastos.' },
+          { title: 'Reajustes y renovaciones', text: 'Aplicamos los reajustes del contrato y gestionamos la renovación o el término a tiempo.' },
+          { title: 'Seguimiento del arrendatario', text: 'Somos el punto de contacto para cualquier tema, para que no tengas que serlo tú.' },
+          { title: 'Entrega y recepción', text: 'Al terminar el contrato, revisamos la propiedad contra el inventario inicial y gestionamos la garantía.' },
+        ]}
+      />
+    </div>
+  </section>
+
+  <section class="wrap section split">
+    <div class="split__text rv-l">
+      <p class="eyebrow">Transparencia</p>
+      <Heading size="md" text="Un resumen claro," accent="cada mes." />
+      <p class="body-lg">Recibes el detalle de lo cobrado, lo transferido y cada mantención realizada, con sus respaldos.</p>
+    </div>
+    <Report
+      label="Ejemplo de resumen mensual"
+      title="Resumen mensual"
+      meta="[Mes], [dirección]"
+      stats={[
+        { label: 'Arriendo cobrado', value: '[$]' },
+        { label: 'Mantenciones', value: '[n]' },
+        { label: 'Transferido', value: '[$]' },
+      ]}
+      noteLabel="Próximo hito:"
+      note="[reajuste, renovación o revisión programada]"
+    />
+  </section>
+
+  <section class="section--white">
+    <div class="wrap section stack gap-48">
+      <SectionHead eyebrow="Preguntas frecuentes" title="Lo que" accent="más nos preguntan." />
+      <Faq
+        items={[
+          { q: '¿Cuánto cuesta la administración?', a: 'El honorario es de 8% + IVA sobre el arriendo mensual.' },
+          { q: '¿Puedo contratarla si ya tengo arrendatario?', a: 'Sí. Revisamos el contrato vigente, hacemos un inventario actualizado y nos presentamos al arrendatario.' },
+          { q: '¿Quién aprueba los gastos de mantención?', a: 'Tú. Te informamos el problema y el presupuesto antes de hacer cualquier trabajo, salvo urgencias definidas en el contrato de administración.' },
+        ]}
+      />
+    </div>
+  </section>
+
+  <CtaBand
+    title="Delega tu arriendo"
+    accent="con tranquilidad."
+    text="Te preparamos una propuesta de administración para tu propiedad."
+    ctaLabel="Solicitar propuesta"
+    ctaHref="/contacto?op=administrar"
+  />
+</Base>

@@ -1,0 +1,285 @@
+---
+// Formulario de valorización en 3 pasos. Lógica en scripts/valuation-form.ts.
+import { SITE, LEADS_ENDPOINT, WHATSAPP_URL } from '../site';
+
+interface Props {
+  variant?: 'hero' | 'card';
+}
+const { variant = 'card' } = Astro.props;
+---
+
+<form
+  id="valorizacion"
+  class:list={['vform', `vform--${variant}`]}
+  data-endpoint={LEADS_ENDPOINT}
+  data-whatsapp={SITE.whatsappNumber}
+  novalidate
+  aria-labelledby="vform-title"
+>
+  <div class="vform__head">
+    <h2 id="vform-title" class="title vform__title">Valorización <em>gratuita</em></h2>
+    <div class="vform__bars" aria-hidden="true">
+      <span class="is-on"></span><span></span><span></span>
+    </div>
+    <p class="vform__status" aria-live="polite" data-status>Paso 1 de 3: Tu propiedad</p>
+  </div>
+
+  <!-- Campo trampa para robots: oculto para personas -->
+  <div class="vform__hp" aria-hidden="true">
+    <label for="vf-empresa">Empresa</label>
+    <input id="vf-empresa" name="empresa" type="text" tabindex="-1" autocomplete="off" />
+  </div>
+
+  <fieldset class="vform__step" data-step="1">
+    <legend class="sr-only">Tu propiedad</legend>
+    <div class="field">
+      <label for="vf-comuna">¿Dónde está tu propiedad?</label>
+      <select id="vf-comuna" name="comuna">
+        {SITE.comunas.map((c) => <option>{c}</option>)}
+        <option>Otra comuna</option>
+      </select>
+    </div>
+    <div class="vform__row">
+      <div class="field">
+        <label for="vf-tipo">Tipo</label>
+        <select id="vf-tipo" name="tipo">
+          <option value="casa">Casa</option>
+          <option value="departamento">Departamento</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="vf-op">Quiero</label>
+        <select id="vf-op" name="operacion">
+          <option value="vender">Vender</option>
+          <option value="arrendar">Arrendar</option>
+          <option value="administrar">Que la administren</option>
+        </select>
+      </div>
+    </div>
+    <button type="button" class="btn btn--primary vform__submit" data-next>Continuar</button>
+  </fieldset>
+
+  <fieldset class="vform__step" data-step="2" hidden>
+    <legend class="sr-only">Tus datos</legend>
+    <div class="field">
+      <label for="vf-nombre">Nombre</label>
+      <input id="vf-nombre" name="nombre" type="text" autocomplete="name" required maxlength="80" aria-describedby="vf-nombre-err" />
+      <p class="field__error" id="vf-nombre-err" hidden></p>
+    </div>
+    <div class="field">
+      <label for="vf-fono">WhatsApp</label>
+      <input
+        id="vf-fono"
+        name="whatsapp"
+        type="tel"
+        inputmode="tel"
+        autocomplete="tel"
+        placeholder="+56 9"
+        required
+        maxlength="20"
+        aria-describedby="vf-fono-err"
+      />
+      <p class="field__error" id="vf-fono-err" hidden></p>
+    </div>
+    <div class="field">
+      <label for="vf-mail">Correo (opcional)</label>
+      <input id="vf-mail" name="email" type="email" autocomplete="email" maxlength="120" aria-describedby="vf-mail-err" />
+      <p class="field__error" id="vf-mail-err" hidden></p>
+    </div>
+    <p class="field__error vform__send-error" data-send-error hidden></p>
+    <div class="vform__row vform__row--actions">
+      <button type="button" class="btn btn--ghost" data-back>Volver</button>
+      <button type="submit" class="btn btn--gold vform__submit">Solicitar valorización</button>
+    </div>
+  </fieldset>
+
+  <div class="vform__step vform__done" data-step="3" hidden tabindex="-1">
+    <p class="vform__done-title">Recibimos tu solicitud.</p>
+    <p>Te escribiremos de inmediato por WhatsApp para coordinar tu Valorización 360°.</p>
+    <a href="/sistema" class="link">Mientras tanto, conoce el Sistema Activa</a>
+    <button type="button" class="btn btn--ghost vform__reset" data-reset>Enviar otra solicitud</button>
+  </div>
+
+  <div class="vform__step vform__done" data-step="fallback" hidden tabindex="-1">
+    <p class="vform__done-title">Último paso: envíanos tu solicitud.</p>
+    <p data-fallback-text>
+      Te dejamos el mensaje ya escrito con tus datos. Envíalo por WhatsApp y coordinamos tu Valorización 360° ahí mismo.
+    </p>
+    <a href={WHATSAPP_URL} class="btn btn--primary" data-wa-fallback>Enviar por WhatsApp</a>
+    <button type="button" class="btn btn--ghost vform__reset" data-reset>Volver al formulario</button>
+  </div>
+
+  <noscript>
+    <p class="vform__noscript">
+      Para usar el formulario necesitas JavaScript. También puedes escribirnos directo a
+      <a href={WHATSAPP_URL}>WhatsApp {SITE.whatsappDisplay}</a>.
+    </p>
+  </noscript>
+</form>
+
+<style>
+  .vform {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+  .vform--card {
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    padding: 36px;
+  }
+  @media (max-width: 480px) {
+    .vform,
+    .vform--card {
+      padding: 24px 20px;
+    }
+  }
+
+  .vform__head {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .vform__title {
+    font-size: 24px;
+  }
+  .vform__bars {
+    display: flex;
+    gap: 6px;
+  }
+  .vform__bars span {
+    flex: 1;
+    height: 4px;
+    border-radius: 2px;
+    background: var(--line);
+    transition: background-color 0.3s;
+  }
+  .vform__bars span.is-on {
+    background: var(--blue);
+  }
+  .vform__status {
+    font-size: 14px;
+    color: var(--text-3);
+  }
+
+  .vform__step {
+    border: 0;
+    margin: 0;
+    padding: 0;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .vform__step[hidden] {
+    display: none;
+  }
+  .vform__row {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .vform__row > .field {
+    flex: 1 1 140px;
+  }
+  .vform__row--actions {
+    flex-wrap: nowrap;
+    align-items: stretch;
+  }
+  .vform__row--actions .vform__submit {
+    flex: 1;
+  }
+  .vform__submit {
+    font-size: 17px;
+    padding-inline: 16px;
+  }
+  @media (max-width: 400px) {
+    .vform__row--actions .btn--ghost {
+      padding-inline: 14px;
+    }
+    .vform__row--actions .vform__submit {
+      font-size: 16px;
+      padding-inline: 10px;
+    }
+  }
+  .vform__submit[aria-busy='true'] {
+    opacity: 0.7;
+    cursor: progress;
+  }
+
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 0;
+  }
+  .field label {
+    font-size: 14px;
+    font-weight: 500;
+  }
+  .field input,
+  .field select {
+    height: 46px;
+    width: 100%;
+    border: 1px solid var(--field-border);
+    border-radius: var(--radius-sm);
+    padding: 0 14px;
+    font-size: 16px;
+    color: var(--ink);
+    background: var(--white);
+  }
+  .field select {
+    padding-inline: 10px;
+  }
+  .field input[aria-invalid='true'] {
+    border-color: #a8322d;
+    box-shadow: 0 0 0 1px #a8322d;
+  }
+  .field__error {
+    font-size: 14px;
+    color: #a8322d;
+  }
+
+  .vform__hp {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+
+  .vform__done {
+    gap: 12px;
+    color: var(--text-2);
+    font-size: 15px;
+    outline: none;
+  }
+  .vform__done-title {
+    font-family: var(--font-serif);
+    font-size: 22px;
+    color: var(--ink);
+  }
+  .vform__done .btn--primary {
+    align-self: flex-start;
+  }
+  .vform__reset {
+    align-self: flex-start;
+    margin-top: 4px;
+    min-height: 0;
+    padding: 10px 16px;
+    font-size: 14px;
+    color: var(--text-3);
+  }
+  .vform__noscript {
+    font-size: 14px;
+    color: var(--text-2);
+  }
+</style>
+
+<script>
+  import { initValuationForm } from '../scripts/valuation-form';
+  document.querySelectorAll<HTMLFormElement>('form.vform').forEach(initValuationForm);
+</script>

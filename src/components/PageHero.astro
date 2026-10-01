@@ -1,0 +1,22 @@
+---
+import Heading from './Heading.astro';
+
+interface Props {
+  eyebrow: string;
+  title: string;
+  accent: string;
+  lead: string;
+}
+const { eyebrow, title, accent, lead } = Astro.props;
+---
+
+<section class="page-hero">
+  <div class="wrap">
+    <div class="page-hero__inner in">
+      <p class="eyebrow">{eyebrow}</p>
+      <Heading as="h1" size="display" text={title} accent={accent} />
+      <p class="lead">{lead}</p>
+      {Astro.slots.has('default') && <div class="actions"><slot /></div>}
+    </div>
+  </div>
+</section>

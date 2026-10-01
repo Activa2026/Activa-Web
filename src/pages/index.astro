@@ -1,0 +1,879 @@
+---
+import Base from '../layouts/Base.astro';
+import Heading from '../components/Heading.astro';
+import SectionHead from '../components/SectionHead.astro';
+import Photo from '../components/Photo.astro';
+import ValuationForm from '../components/ValuationForm.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { PROPERTIES_URL, PROPERTIES_EXTERNAL } from '../site';
+
+const extAttrs = PROPERTIES_EXTERNAL ? { target: '_blank', rel: 'noopener' } : {};
+
+const pillars = [
+  {
+    name: 'Transparencia',
+    tone: 'blue',
+    text: 'Cada semana recibes un reporte con visitas, consultas y lo que opinan los interesados de tu propiedad.',
+  },
+  {
+    name: 'Seguridad',
+    tone: 'olive',
+    text: 'Evaluamos a cada interesado antes de avanzar y revisamos contratos y antecedentes antes de que firmes.',
+  },
+  {
+    name: 'Proactividad',
+    tone: 'gold',
+    text: 'No esperamos que llamen: salimos a buscar al comprador o arrendatario con campañas propias.',
+  },
+];
+
+const stages = [
+  {
+    name: 'Valorización 360°',
+    text: 'Cruzamos ventas reales inscritas en el CBR con dos modelos de tasación y te entregamos tres precios posibles.',
+  },
+  {
+    name: 'Preparación',
+    text: 'Fotografía, video y una descripción escrita para tu propiedad y tu barrio, no una plantilla.',
+  },
+  {
+    name: 'Difusión activa',
+    text: 'Publicación en los principales portales y campañas dirigidas al comprador o arrendatario que calza con tu propiedad.',
+  },
+  {
+    name: 'Filtro y visitas',
+    text: 'Calificamos a cada interesado antes de agendar. Tú solo recibes visitas con intención real.',
+  },
+  {
+    name: 'Cierre y seguimiento',
+    text: 'Negociación, contrato y firma. Si arriendas, podemos seguir a cargo con la administración.',
+  },
+];
+
+const rules = [
+  'Un precio sin datos es solo una opinión.',
+  'Publicar no es lo mismo que vender.',
+  'Si no te informamos, no estamos trabajando.',
+  'La visita que no filtramos es tiempo que tú pierdes.',
+  'El contrato se revisa antes, no después.',
+  'Tu barrio no es una comuna más.',
+];
+
+const profiles = [
+  {
+    href: '/vender',
+    image: 'perfil-vender',
+    placeholder: 'fachada de casa con jardín',
+    tone: 1,
+    title: 'Quiero vender',
+    text: 'Necesitas el precio correcto y una venta que llegue a escritura sin sorpresas.',
+    cta: 'Valorizar para vender',
+  },
+  {
+    href: '/arrendar',
+    image: 'perfil-arrendar',
+    placeholder: 'living luminoso listo para arrendar',
+    tone: 2,
+    title: 'Quiero arrendar',
+    text: 'Necesitas un arrendatario confiable y un contrato que te proteja.',
+    cta: 'Valorizar para arrendar',
+  },
+  {
+    href: '/administracion',
+    image: 'perfil-administrar',
+    placeholder: 'llaves y entrega de propiedad',
+    tone: 3,
+    title: 'Que alguien lo administre',
+    text: 'Necesitas que el arriendo llegue cada mes y que alguien responda por ti. Hoy administramos cerca de 60 propiedades.',
+    cta: 'Conocer la administración',
+  },
+  {
+    href: PROPERTIES_URL,
+    image: 'perfil-buscar',
+    placeholder: 'familia recorriendo un barrio',
+    tone: 4,
+    title: 'Busco dónde vivir',
+    text: 'Necesitas opciones que calcen contigo, en barrios que conocemos bien.',
+    cta: 'Ver propiedades disponibles',
+  },
+] as const;
+
+const comunas = [
+  { name: 'La Florida', image: 'comuna-la-florida', tone: 1, text: 'Casas y departamentos familiares con buena conexión.' },
+  { name: 'Macul', image: 'comuna-macul', tone: 2, text: 'Barrios consolidados, cerca de todo.' },
+  { name: 'Peñalolén', image: 'comuna-penalolen', tone: 3, text: 'Condominios con vista a la precordillera.' },
+  { name: 'La Reina', image: 'comuna-la-reina', tone: 4, text: 'Calles arboladas y casas amplias.' },
+] as const;
+---
+
+<Base
+  title="Activa Corredores | Venta, arriendo y administración en La Florida, Macul, Peñalolén y La Reina"
+  description="Corredora de propiedades en La Florida, Macul, Peñalolén y La Reina. Vendemos, arrendamos y administramos con el Sistema Activa. Pide tu Valorización 360° gratuita."
+  current="/"
+>
+  <!-- Héroe con formulario -->
+  <section class="wrap hero">
+    <div class="hero__text in">
+      <Heading as="h1" size="display" text="Tu propiedad merece un plan," accent="no solo un aviso." />
+      <p class="lead">
+        Vendemos, arrendamos y administramos propiedades en La Florida, Macul, Peñalolén y La Reina con el Sistema
+        Activa: precio respaldado por datos, difusión profesional y un responsable que te informa cada semana.
+      </p>
+      <div class="actions">
+        <a href="#valorizacion" class="btn btn--primary">Quiero valorizar mi propiedad</a>
+        <a href="#sistema" class="link">Cómo funciona el Sistema Activa</a>
+      </div>
+      <p class="hero__aside">
+        ¿Buscas dónde vivir? <a href={PROPERTIES_URL} {...extAttrs}>Revisa nuestras propiedades disponibles</a>
+      </p>
+    </div>
+    <div class="hero__panel in in-2">
+      <Photo
+        name="hero"
+        alt=""
+        placeholder="calle arbolada del barrio, luz de tarde"
+        class="hero__photo"
+        widths={[600, 900, 1200, 1600]}
+        sizes="(max-width: 900px) 100vw, 560px"
+        priority
+      />
+      <ValuationForm variant="hero" />
+    </div>
+  </section>
+
+  <!-- Compromisos -->
+  <section class="section--white section--rule" aria-label="Nuestros compromisos">
+    <div class="wrap pillars stagger">
+      {
+        pillars.map((p) => (
+          <div class="pillar">
+            <h2 class:list={['pillar__name', `pillar__name--${p.tone}`]}>{p.name}</h2>
+            <p>{p.text}</p>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- Sistema Activa -->
+  <section id="sistema" class="section--blue on-dark">
+    <div class="wrap section--lg system">
+      <SectionHead eyebrow="01 / Sistema Activa" title="Un método," accent="no una apuesta." size="xl">
+        <p class="body-lg">
+          Cinco etapas con un mismo responsable, desde el primer precio hasta la firma. Siempre sabes en qué etapa
+          está tu propiedad y qué viene después.
+        </p>
+      </SectionHead>
+      <ol class="steps system__steps">
+        {
+          stages.map((s, i) => (
+            <li>
+              <span class="system__num" aria-hidden="true">{i + 1}</span>
+              <h3><span class="sr-only">Etapa {i + 1}: </span>{s.name}</h3>
+              <p>{s.text}</p>
+            </li>
+          ))
+        }
+      </ol>
+      <div>
+        <a href="#valorizacion" class="btn btn--gold">Empezar por la valorización</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Valorización 360° -->
+  <section class="wrap section--lg split valuation">
+    <div class="split__text rv-l">
+      <p class="eyebrow">02 / Valorización 360°</p>
+      <Heading size="lg" text="Antes de publicar," accent="ya sabes cuánto vale." />
+      <p class="body-lg">
+        La Valorización 360° combina tres fuentes independientes para que el precio no dependa de una opinión.
+        Recibes un informe con tres escenarios y lo que te quedaría líquido en cada uno.
+      </p>
+      <ul class="sources">
+        <li><span class="swatch swatch--blue" aria-hidden="true"></span>Ventas reales de propiedades similares inscritas en el Conservador de Bienes Raíces</li>
+        <li><span class="swatch swatch--olive" aria-hidden="true"></span>Dos modelos de tasación automatizada, HousePricing y Propiteq</li>
+        <li><span class="swatch swatch--gold" aria-hidden="true"></span>El análisis de un corredor que conoce tu barrio</li>
+      </ul>
+      <div>
+        <a href="#valorizacion" class="btn btn--primary">Pedir mi valorización</a>
+      </div>
+    </div>
+
+    <figure class="report rv-r" aria-label="Ejemplo de informe de valorización">
+      <div class="report__head">
+        <p class="report__title">Informe de valorización</p>
+        <p class="report__meta">Casa en [comuna], [m²] construidos</p>
+      </div>
+      <div class="stack range">
+        <div class="range__track" aria-hidden="true"><span class="range__fill grow"></span></div>
+        <div class="report__stats">
+          <div class="report__stat">
+            <span class="report__label">Competitivo</span>
+            <span class="report__value">[UF]</span>
+            <span class="report__hint">Venta más rápida</span>
+          </div>
+          <div class="report__stat">
+            <span class="report__label">Mercado</span>
+            <span class="report__value report__value--strong">[UF]</span>
+            <span class="report__hint">Precio recomendado</span>
+          </div>
+          <div class="report__stat">
+            <span class="report__label">Aspiracional</span>
+            <span class="report__value">[UF]</span>
+            <span class="report__hint">Requiere más tiempo</span>
+          </div>
+        </div>
+      </div>
+      <div class="stack weights">
+        <p class="weights__title">Peso de cada fuente</p>
+        <div class="weights__bar grow" role="img" aria-label="Ventas CBR 70%, HousePricing 15%, Propiteq 15%">
+          <span style="flex: 70" class="weights__seg weights__seg--blue">CBR 70%</span>
+          <span style="flex: 15" class="weights__seg weights__seg--olive"></span>
+          <span style="flex: 15" class="weights__seg weights__seg--gold"></span>
+        </div>
+        <div class="weights__legend" aria-hidden="true">
+          <span><span class="swatch swatch--blue"></span>Ventas CBR 70%</span>
+          <span><span class="swatch swatch--olive"></span>HousePricing 15%</span>
+          <span><span class="swatch swatch--gold"></span>Propiteq 15%</span>
+        </div>
+      </div>
+      <div class="report__note net">
+        <span>Líquido estimado para ti, después de comisión y gastos</span>
+        <span class="net__value">[UF]</span>
+      </div>
+    </figure>
+  </section>
+
+  <!-- Las reglas Activa -->
+  <section class="rules" aria-labelledby="rules-label">
+    <div class="rules__label">
+      <p id="rules-label">Las reglas Activa</p>
+      <button type="button" class="rules__toggle" aria-pressed="false" aria-label="Pausar el texto en movimiento">
+        <span aria-hidden="true"></span>
+      </button>
+    </div>
+    <div class="marquee">
+      <div class="marquee__track">
+        {
+          [0, 1].map((copy) => (
+            <ul class="marquee__group" aria-hidden={copy === 1 ? 'true' : undefined}>
+              {rules.map((r) => (
+                <li>
+                  <span>{r}</span>
+                  <span class="marquee__dot" aria-hidden="true" />
+                </li>
+              ))}
+            </ul>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ¿Quién eres? -->
+  <section id="servicios" class="section--white profiles-section">
+    <div class="wrap section stack gap-48">
+      <SectionHead eyebrow="03 / ¿Quién eres?" title="Cada caso tiene" accent="su propio camino." />
+      <div class="cards stagger">
+        {
+          profiles.map((p) => (
+            <a href={p.href} class="card" {...(p.href.startsWith('http') ? extAttrs : {})}>
+              <Photo
+                name={p.image}
+                alt=""
+                placeholder={p.placeholder}
+                tone={p.tone}
+                class="card__photo"
+                sizes="(max-width: 640px) 100vw, (max-width: 1100px) 50vw, 280px"
+                widths={[320, 560, 800]}
+              />
+              <h3 class="card__title">{p.title}</h3>
+              <p class="card__text">{p.text}</p>
+              <span class="card__cta">{p.cta}</span>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Comunas -->
+  <section class="wrap section--lg stack gap-48">
+    <SectionHead eyebrow="04 / Comunas" title="Trabajamos donde" accent="conocemos cada calle.">
+      <p class="body-lg comunas__intro">
+        Nos concentramos en cuatro comunas del sector oriente y suroriente. Eso nos permite comparar con ventas reales
+        de tu mismo barrio.
+      </p>
+    </SectionHead>
+    <div class="cards cards--tight stagger">
+      {
+        comunas.map((c) => (
+          <div class="card">
+            <Photo
+              name={c.image}
+              alt={`Barrio residencial en ${c.name}`}
+              placeholder={c.name}
+              tone={c.tone}
+              class="card__photo card__photo--tall"
+              sizes="(max-width: 640px) 100vw, (max-width: 1100px) 50vw, 280px"
+              widths={[320, 560, 800]}
+            />
+            <h3 class="card__title">{c.name}</h3>
+            <p class="card__text muted">{c.text}</p>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- Propiedades (secundario) -->
+  <section id="propiedades" class="properties">
+    <div class="wrap properties__inner">
+      <div class="properties__text">
+        <h2 class="title properties__title">¿Buscas dónde vivir?</h2>
+        <p>Revisa las propiedades que tenemos disponibles para venta y arriendo.</p>
+      </div>
+      <a href={PROPERTIES_URL} class="btn btn--outline-dark" {...extAttrs}>Ver propiedades disponibles</a>
+    </div>
+  </section>
+
+  <!-- Nosotros -->
+  <section id="nosotros" class="wrap section--lg about">
+    <Photo
+      name="andres"
+      alt="Andrés González Meza, fundador de Activa Corredores"
+      placeholder="Andrés en terreno, retrato natural"
+      tone={2}
+      class="about__photo px"
+      widths={[420, 640, 900]}
+      sizes="(max-width: 900px) 100vw, 420px"
+    />
+    <div class="about__text rv">
+      <p class="eyebrow">05 / Nosotros</p>
+      <Heading size="md" text="Detrás de cada propiedad" accent="hay una persona a cargo." />
+      <blockquote class="about__quote">
+        <p>
+          “Creé Activa Corredores para que vender o arrendar no sea un salto al vacío. Usamos tecnología para
+          trabajar mejor, pero la relación contigo la llevo yo.”
+        </p>
+      </blockquote>
+      <p class="muted about__sign">Andrés González Meza, fundador y corredor</p>
+    </div>
+  </section>
+
+  <CtaBand
+    title="Conversemos sobre"
+    accent="tu propiedad."
+    text="Sin compromiso: te explicamos el Sistema Activa y te entregamos una primera valorización."
+    ctaLabel="Solicitar valorización"
+    ctaHref="#valorizacion"
+  />
+</Base>
+
+<script>
+  const rules = document.querySelector<HTMLElement>('.rules');
+  const toggle = rules?.querySelector<HTMLButtonElement>('.rules__toggle');
+  toggle?.addEventListener('click', () => {
+    const paused = toggle.getAttribute('aria-pressed') !== 'true';
+    toggle.setAttribute('aria-pressed', String(paused));
+    toggle.setAttribute('aria-label', paused ? 'Reanudar el texto en movimiento' : 'Pausar el texto en movimiento');
+    rules!.classList.toggle('is-paused', paused);
+  });
+</script>
+
+<style>
+  /* Héroe */
+  .hero {
+    display: flex;
+    gap: 48px 64px;
+    flex-wrap: wrap;
+    align-items: center;
+    padding-block: 88px 96px;
+  }
+  .hero__text {
+    flex: 1 1 480px;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    min-width: 0;
+  }
+  .hero__text .lead {
+    max-width: 560px;
+  }
+  .hero__aside {
+    margin-top: 8px;
+    font-size: 15px;
+    color: var(--text-3);
+  }
+  .hero__panel {
+    position: relative;
+    flex: 1 1 400px;
+    min-width: 0;
+    min-height: 520px;
+    padding: 32px;
+    border-radius: var(--radius-lg);
+    background: var(--olive);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    isolation: isolate;
+  }
+  .hero__panel :global(.hero__photo) {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+  }
+  .hero__panel :global(.hero__photo.photo--placeholder) {
+    align-items: flex-start;
+    padding: 32px;
+  }
+  @media (max-width: 640px) {
+    .hero {
+      padding-block: 48px 64px;
+    }
+    .hero__text {
+      flex-basis: 100%;
+      gap: 22px;
+    }
+    .hero__panel {
+      flex-basis: 100%;
+      min-height: 0;
+      padding: 72px 12px 12px;
+    }
+    .hero__panel :global(.hero__photo.photo--placeholder) {
+      padding: 16px 20px;
+    }
+  }
+
+  /* Compromisos */
+  .pillars {
+    display: flex;
+    gap: 32px 48px;
+    flex-wrap: wrap;
+    padding-block: 56px;
+  }
+  .pillar {
+    flex: 1 1 280px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .pillar p {
+    color: var(--text-2);
+  }
+  .pillar__name {
+    font-family: var(--font-serif);
+    font-weight: 500;
+    font-size: 24px;
+  }
+  .pillar__name--blue { color: var(--blue); }
+  .pillar__name--olive { color: var(--olive); }
+  .pillar__name--gold { color: var(--gold-deep); }
+
+  /* Sistema */
+  .system {
+    display: flex;
+    flex-direction: column;
+    gap: 64px;
+  }
+  .system :global(.section-head--split > p) {
+    max-width: 520px;
+  }
+  .system__steps {
+    row-gap: 0;
+  }
+  .system__steps > li {
+    flex: 1 1 200px;
+    padding: 24px 24px 24px 0;
+    gap: 12px;
+  }
+  .system__steps > li:last-child {
+    padding-right: 0;
+  }
+  .system__num {
+    font-family: var(--font-serif);
+    font-size: 44px;
+    line-height: 1;
+    color: var(--gold);
+  }
+  .system__steps h3 {
+    font-size: 19px;
+    font-weight: 600;
+  }
+  .system__steps p {
+    font-size: 15px;
+    color: var(--on-blue);
+  }
+  @media (max-width: 640px) {
+    .system {
+      gap: 40px;
+    }
+  }
+
+  /* Valorización */
+  .valuation .split__text {
+    flex-basis: 420px;
+  }
+  .valuation .report {
+    flex-basis: 440px;
+    gap: 28px;
+  }
+  .sources {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .sources li {
+    display: flex;
+    gap: 12px;
+    align-items: baseline;
+  }
+  .swatch {
+    display: inline-block;
+    flex: none;
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+  }
+  .swatch--blue { background: var(--blue); }
+  .swatch--olive { background: var(--olive); }
+  .swatch--gold { background: var(--gold); }
+
+  .range {
+    gap: 14px;
+  }
+  .range__track {
+    position: relative;
+    height: 10px;
+    border-radius: 5px;
+    background: var(--track);
+  }
+  .range__fill {
+    position: absolute;
+    inset: 0 20% 0 18%;
+    border-radius: 5px;
+    background: var(--blue);
+  }
+  .report__hint {
+    font-size: 13px;
+    color: var(--text-3);
+  }
+  .report__value--strong {
+    color: var(--blue);
+    font-weight: 500;
+  }
+  .weights {
+    gap: 10px;
+  }
+  .weights__title {
+    font-size: 14px;
+    font-weight: 500;
+  }
+  .weights__bar {
+    display: flex;
+    height: 28px;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    font-size: 13px;
+    font-weight: 500;
+  }
+  .weights__seg {
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    color: var(--white);
+  }
+  .weights__seg--blue { background: var(--blue); }
+  .weights__seg--olive { background: var(--olive); }
+  .weights__seg--gold { background: var(--gold); }
+  .weights__legend {
+    display: flex;
+    gap: 8px 20px;
+    flex-wrap: wrap;
+    font-size: 13px;
+    color: var(--text-2);
+  }
+  .weights__legend > span {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .net {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px 16px;
+    flex-wrap: wrap;
+    align-items: baseline;
+    color: var(--ink);
+  }
+  .net__value {
+    font-family: var(--font-serif);
+    font-size: 22px;
+    color: var(--blue);
+  }
+
+  /* Reglas */
+  .rules {
+    display: flex;
+    align-items: stretch;
+    background: var(--gold);
+    color: var(--ink);
+    overflow: hidden;
+  }
+  .rules__label {
+    flex: none;
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    padding: 22px 28px;
+    background: var(--ink);
+    color: var(--white);
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+  }
+  .marquee {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+  }
+  .rules__label {
+    gap: 14px;
+  }
+  .rules__toggle {
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border: 1px solid rgb(255 255 255 / 0.5);
+    border-radius: 50%;
+    background: transparent;
+    color: var(--white);
+    cursor: pointer;
+  }
+  .rules__toggle span {
+    width: 10px;
+    height: 12px;
+    border-inline: 3px solid currentColor;
+  }
+  .rules__toggle[aria-pressed='true'] span {
+    width: 0;
+    height: 0;
+    border-block: 6px solid transparent;
+    border-inline: 10px solid currentColor;
+    border-right: 0;
+    margin-left: 3px;
+  }
+  .rules.is-paused .marquee__track {
+    animation-play-state: paused;
+  }
+  .marquee__track {
+    display: flex;
+    width: max-content;
+    padding-block: 18px;
+  }
+  .marquee__group {
+    display: flex;
+    list-style: none;
+    padding: 0;
+  }
+  .marquee__group li {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    padding-right: 40px;
+    white-space: nowrap;
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 22px;
+  }
+  .marquee__dot {
+    flex: none;
+    width: 8px;
+    height: 8px;
+    background: var(--blue);
+    transform: rotate(45deg);
+  }
+  @media (max-width: 640px) {
+    .rules__label {
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px 16px;
+      font-size: 13px;
+      max-width: 104px;
+      line-height: 1.3;
+    }
+    .marquee__group li {
+      font-size: 19px;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .rules {
+      flex-direction: column;
+    }
+    .rules__toggle {
+      display: none;
+    }
+    .marquee {
+      overflow: visible;
+    }
+    .marquee__track {
+      width: auto;
+      padding: 20px var(--gutter);
+    }
+    .marquee__group {
+      flex-wrap: wrap;
+      gap: 8px 0;
+    }
+    .marquee__group[aria-hidden] {
+      display: none;
+    }
+    .marquee__group li {
+      white-space: normal;
+      font-size: 19px;
+    }
+  }
+
+  /* Tarjetas */
+  .profiles-section {
+    border-bottom: 1px solid var(--line);
+  }
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 40px 32px;
+  }
+  .cards--tight {
+    gap: 32px 24px;
+  }
+  .card {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .card :global(.card__photo) {
+    height: 220px;
+  }
+  .card :global(.card__photo--tall) {
+    height: 260px;
+  }
+  .card__title {
+    font-family: var(--font-serif);
+    font-weight: 500;
+    font-size: 24px;
+  }
+  .card__text {
+    font-size: 15px;
+    color: var(--text-2);
+  }
+  .card__text.muted {
+    color: var(--text-3);
+  }
+  .card__cta {
+    margin-top: auto;
+    font-weight: 500;
+    color: var(--blue);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+  a.card:hover {
+    color: var(--ink);
+  }
+  a.card:hover .card__cta {
+    text-decoration-color: var(--gold);
+    text-decoration-thickness: 2px;
+  }
+  a.card :global(img) {
+    transition: transform 0.6s var(--ease);
+  }
+  a.card:hover :global(img) {
+    transform: scale(1.03);
+  }
+  @media (max-width: 1100px) and (min-width: 560px) {
+    .cards {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  .comunas__intro {
+    font-size: 17px;
+  }
+
+  /* Propiedades */
+  .properties {
+    background: var(--sage);
+  }
+  .properties__inner {
+    display: flex;
+    gap: 24px 32px;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    padding-block: 56px;
+  }
+  .properties__text {
+    flex: 1 1 420px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    color: var(--text-2);
+  }
+  .properties__title {
+    font-size: 28px;
+    color: var(--ink);
+  }
+
+  /* Nosotros */
+  .about {
+    display: flex;
+    gap: 48px 72px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .about :global(.about__photo) {
+    flex: 0 1 420px;
+    height: 480px;
+    border-radius: var(--radius-lg);
+  }
+  .about :global(.about__photo.photo--placeholder) {
+    padding: 20px;
+  }
+  .about__text {
+    flex: 1 1 420px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .about__quote {
+    margin: 0;
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 21px;
+    line-height: 1.6;
+    color: var(--text-2);
+  }
+  .about__sign {
+    font-size: 15px;
+  }
+  @media (max-width: 900px) {
+    .about :global(.about__photo) {
+      flex-basis: 100%;
+      height: auto;
+      aspect-ratio: 9 / 10;
+      max-height: 520px;
+    }
+  }
+</style>

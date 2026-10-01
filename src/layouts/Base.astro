@@ -1,0 +1,113 @@
+---
+import '@fontsource/lora/latin-500.css';
+import '@fontsource/lora/latin-400-italic.css';
+import '@fontsource/lora/latin-400.css';
+import '@fontsource/poppins/latin-400.css';
+import '@fontsource/poppins/latin-500.css';
+import '@fontsource/poppins/latin-600.css';
+import '../styles/tokens.css';
+import '../styles/base.css';
+import '../styles/motion.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE, WHATSAPP_URL, INSTAGRAM_URL } from '../site';
+
+interface Props {
+  title: string;
+  description: string;
+  /** Ruta del menú que se marca como actual, p. ej. "/vender". */
+  current?: string;
+  noindex?: boolean;
+}
+
+const { title, description, current, noindex = false } = Astro.props;
+const canonical = new URL(Astro.url.pathname.replace(/\.html$/, '').replace(/\/index$/, '/'), SITE.url).href;
+const ogImage = new URL('/images/og-image.jpg', SITE.url).href;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'RealEstateAgent',
+  name: SITE.name,
+  legalName: SITE.legalName,
+  url: SITE.url,
+  logo: new URL('/brand/logo-activa.png', SITE.url).href,
+  image: ogImage,
+  email: SITE.email,
+  telephone: `+${SITE.whatsappNumber}`,
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Santiago',
+    addressRegion: 'Región Metropolitana',
+    addressCountry: 'CL',
+  },
+  areaServed: SITE.comunas.map((name) => ({ '@type': 'City', name })),
+  openingHoursSpecification: [
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+      opens: '09:00',
+      closes: '19:00',
+    },
+  ],
+  sameAs: [INSTAGRAM_URL],
+  contactPoint: {
+    '@type': 'ContactPoint',
+    contactType: 'customer service',
+    telephone: `+${SITE.whatsappNumber}`,
+    url: WHATSAPP_URL,
+    availableLanguage: 'es',
+  },
+};
+---
+
+<!doctype html>
+<html lang="es-CL">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex" />}
+    <meta name="theme-color" content="#0F456B" />
+    <link rel="icon" type="image/png" href="/brand/favicon-32.png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/brand/apple-touch-icon.png" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_CL" />
+    <meta property="og:site_name" content={SITE.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+    <script is:inline>
+      document.documentElement.classList.add('js');
+      if (
+        !matchMedia('(prefers-reduced-motion: reduce)').matches &&
+        !(window.CSS && CSS.supports('animation-timeline: view()')) &&
+        'IntersectionObserver' in window
+      ) {
+        document.documentElement.classList.add('reveal-fallback');
+      }
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#contenido">Saltar al contenido</a>
+    <Header current={current} />
+    <main id="contenido">
+      <slot />
+    </main>
+    <Footer />
+    <script>
+      import { initReveal } from '../scripts/reveal';
+      initReveal();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,47 @@
+:root {
+  /* Paleta de marca */
+  --blue: #0f456b;
+  --ink: #1e3350;
+  --olive: #647850;
+  --gold: #c8a050;
+  --sand: #f3eee6;
+  --white: #ffffff;
+  --line: #e4dccd;
+  --text-2: #33404d;
+  --text-3: #4f5a66;
+
+  /* Variantes para cumplir contraste AA en texto pequeño */
+  --olive-ink: #586a45; /* olivo sobre arena/blanco en texto < 18px */
+  --gold-ink: #d2ae62;  /* dorado sobre azul en texto < 18px */
+  --gold-deep: #9a7630; /* dorado sobre blanco (títulos) */
+  --on-blue: #dce5ee;   /* texto secundario sobre azul/tinta */
+
+  /* Superficies */
+  --sage: #e6e9dc;
+  --track: #ede6da;
+  --field-border: #948a78;
+
+  /* Bloques de foto pendientes */
+  --ph-1: #647850;
+  --ph-2: #7f7054;
+  --ph-3: #5e6e4a;
+  --ph-4: #7a6a4c;
+
+  --font-serif: 'Lora', Georgia, serif;
+  --font-sans: 'Poppins', 'Helvetica Neue', Arial, sans-serif;
+
+  --radius-sm: 6px;
+  --radius: 10px;
+  --radius-lg: 12px;
+  --wrap: 1200px;
+  --gutter: 32px;
+  --header-h: 77px;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+@media (max-width: 640px) {
+  :root {
+    --gutter: 20px;
+    --header-h: 65px;
+  }
+}

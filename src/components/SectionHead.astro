@@ -1,0 +1,29 @@
+---
+import Heading from './Heading.astro';
+
+interface Props {
+  eyebrow: string;
+  title: string;
+  accent?: string;
+  size?: 'xl' | 'lg' | 'md';
+}
+const { eyebrow, title, accent, size = 'md' } = Astro.props;
+const hasAside = Astro.slots.has('default');
+---
+
+{
+  hasAside ? (
+    <div class="section-head section-head--split rv">
+      <div>
+        <p class="eyebrow">{eyebrow}</p>
+        <Heading text={title} accent={accent} size={size} />
+      </div>
+      <slot />
+    </div>
+  ) : (
+    <div class="section-head rv">
+      <p class="eyebrow">{eyebrow}</p>
+      <Heading text={title} accent={accent} size={size} />
+    </div>
+  )
+}

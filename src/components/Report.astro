@@ -1,0 +1,54 @@
+---
+// Ejemplo de informe (reporte semanal, resumen mensual). Los valores son marcadores.
+interface Props {
+  label: string;
+  title: string;
+  meta: string;
+  stats: { label: string; value: string }[];
+  noteLabel: string;
+  note: string;
+}
+const { label, title, meta, stats, noteLabel, note } = Astro.props;
+---
+
+<figure class="report report--compact rv-r" aria-label={label}>
+  <div class="report__head">
+    <p class="report__title">{title}</p>
+    <p class="report__meta">{meta}</p>
+  </div>
+  <div class="report__stats">
+    {
+      stats.map((s) => (
+        <div class="report__stat">
+          <span class="report__label">{s.label}</span>
+          <span class="report__value">{s.value}</span>
+        </div>
+      ))
+    }
+  </div>
+  <div class="report__note"><strong>{noteLabel}</strong> {note}</div>
+</figure>
+
+<style>
+  .report--compact .report__stats {
+    gap: 20px;
+  }
+  .report--compact .report__stat + .report__stat {
+    padding-left: 20px;
+  }
+  .report--compact .report__value {
+    font-size: 30px;
+    color: var(--blue);
+  }
+  @media (max-width: 480px) {
+    .report--compact .report__stats {
+      gap: 12px;
+    }
+    .report--compact .report__stat + .report__stat {
+      padding-left: 12px;
+    }
+    .report--compact .report__value {
+      font-size: 24px;
+    }
+  }
+</style>

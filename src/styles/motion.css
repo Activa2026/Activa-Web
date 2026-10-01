@@ -1,0 +1,113 @@
+/*
+  Movimiento ligado al scroll.
+  - Navegadores con animation-timeline: animaciones CSS puras.
+  - Resto (Firefox): reveal.ts agrega .reveal-fallback a <html> y .is-visible a cada
+    elemento cuando entra en pantalla. Sin JS, todo queda visible.
+  - prefers-reduced-motion: reduce → sin animación.
+*/
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(36px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes fromL {
+  from { opacity: 0; transform: translateX(-48px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes fromR {
+  from { opacity: 0; transform: translateX(48px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes grow {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+@keyframes drift {
+  from { transform: translateY(36px); }
+  to { transform: translateY(-36px); }
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.grow {
+  transform-origin: left center;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .marquee__track {
+    animation: marquee 60s linear infinite;
+  }
+  .marquee:hover .marquee__track,
+  .marquee:focus-within .marquee__track {
+    animation-play-state: paused;
+  }
+
+  .in {
+    animation: rise 0.9s var(--ease) both;
+  }
+  .in-2 {
+    animation-delay: 0.18s;
+  }
+
+  @supports (animation-timeline: view()) {
+    .rv,
+    .stagger > *,
+    .steps > li {
+      animation: rise linear both;
+      animation-timeline: view();
+      animation-range: entry 5% cover 28%;
+    }
+    .stagger > :nth-child(2), .steps > li:nth-child(2) { animation-range: entry 12% cover 32%; }
+    .stagger > :nth-child(3), .steps > li:nth-child(3) { animation-range: entry 19% cover 36%; }
+    .stagger > :nth-child(4), .steps > li:nth-child(4) { animation-range: entry 26% cover 40%; }
+    .stagger > :nth-child(5), .steps > li:nth-child(5) { animation-range: entry 33% cover 44%; }
+    .stagger > :nth-child(n + 6), .steps > li:nth-child(n + 6) { animation-range: entry 40% cover 48%; }
+
+    .rv-l {
+      animation: fromL linear both;
+      animation-timeline: view();
+      animation-range: entry 5% cover 30%;
+    }
+    .rv-r {
+      animation: fromR linear both;
+      animation-timeline: view();
+      animation-range: entry 10% cover 34%;
+    }
+    .grow {
+      animation: grow linear both;
+      animation-timeline: view();
+      animation-range: entry 40% cover 45%;
+    }
+    .px {
+      animation: drift linear both;
+      animation-timeline: view();
+      animation-range: cover 0% cover 100%;
+    }
+  }
+
+  /* Respaldo con IntersectionObserver */
+  .reveal-fallback :is(.rv, .rv-l, .rv-r, .stagger > *, .steps > li, .grow) {
+    transition: opacity 0.9s var(--ease), transform 0.9s var(--ease);
+    transition-delay: var(--reveal-delay, 0s);
+  }
+  .reveal-fallback :is(.rv, .stagger > *, .steps > li):not(.is-visible) {
+    opacity: 0;
+    transform: translateY(36px);
+  }
+  .reveal-fallback .rv-l:not(.is-visible) {
+    opacity: 0;
+    transform: translateX(-48px);
+  }
+  .reveal-fallback .rv-r:not(.is-visible) {
+    opacity: 0;
+    transform: translateX(48px);
+  }
+  .reveal-fallback .grow:not(.is-visible) {
+    transform: scaleX(0);
+  }
+  .reveal-fallback .px {
+    transform: translateY(var(--px, 0px));
+  }
+}

@@ -1,0 +1,177 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Heading from '../components/Heading.astro';
+import Report from '../components/Report.astro';
+import CtaBand from '../components/CtaBand.astro';
+
+const stages = [
+  {
+    name: 'Valorización 360°',
+    text: 'Visitamos tu propiedad y la comparamos con ventas reales inscritas en el Conservador de Bienes Raíces (70% del cálculo), complementadas con HousePricing (15%) y Propiteq (15%). Ajustamos por metros, estado, terminaciones y ubicación.',
+    deliverable: 'Informe con tres precios posibles y lo que te quedaría líquido en cada uno.',
+  },
+  {
+    name: 'Preparación',
+    text: 'Fotografía y video profesional, una descripción escrita para tu propiedad y tu barrio, y revisión de documentos antes de publicar para evitar sorpresas al cierre.',
+    deliverable: 'Ficha de publicación lista para tu aprobación.',
+  },
+  {
+    name: 'Difusión activa',
+    text: 'Publicamos en los principales portales inmobiliarios y lanzamos campañas dirigidas al comprador o arrendatario que calza con tu propiedad. No esperamos que lleguen solos.',
+    deliverable: 'Reporte semanal con consultas, visitas y comentarios.',
+  },
+  {
+    name: 'Filtro y visitas',
+    text: 'Calificamos a cada interesado antes de agendar: capacidad de pago, financiamiento y antecedentes. Acompañamos todas las visitas.',
+    deliverable: 'Resumen de cada visita y lo que opinó el interesado.',
+  },
+  {
+    name: 'Cierre y seguimiento',
+    text: 'Negociamos en tu nombre, preparamos la promesa o el contrato y coordinamos notaría, banco y entrega. Si arriendas, podemos seguir a cargo con la administración.',
+    deliverable: 'Acompañamiento hasta la entrega de llaves.',
+  },
+];
+---
+
+<Base
+  title="Sistema Activa: cinco etapas, un solo responsable | Activa Corredores"
+  description="Conoce el Sistema Activa: Valorización 360°, preparación, difusión activa, filtro de visitas y cierre, con un responsable y reportes semanales."
+  current="/sistema"
+>
+  <PageHero
+    eyebrow="Sistema Activa"
+    title="Cinco etapas,"
+    accent="un solo responsable."
+    lead="Vender o arrendar no debería ser una caja negra. El Sistema Activa ordena todo el proceso en cinco etapas, cada una con un entregable concreto, para que siempre sepas en qué está tu propiedad y qué viene después."
+  >
+    <a href="/contacto" class="btn btn--primary">Empezar por la valorización</a>
+  </PageHero>
+
+  <section class="wrap stages" aria-label="Las cinco etapas">
+    <ol class="stages__list">
+      {
+        stages.map((s, i) => (
+          <li class="stage rv">
+            <div class="stage__head">
+              <span class="stage__num" aria-hidden="true">{i + 1}</span>
+              <h2 class="title stage__name"><span class="sr-only">Etapa {i + 1}: </span>{s.name}</h2>
+            </div>
+            <p class="stage__text">{s.text}</p>
+            <div class="stage__deliverable">
+              <span class="stage__label">LO QUE RECIBES</span>
+              <span>{s.deliverable}</span>
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+  </section>
+
+  <section class="section--white">
+    <div class="wrap section split">
+      <div class="split__text rv-l">
+        <p class="eyebrow">Transparencia</p>
+        <Heading size="md" text="Cada semana," accent="sabes lo que pasa." />
+        <p class="body-lg body-17">
+          Te enviamos un reporte con lo que ocurrió esa semana: cuántas personas consultaron, quiénes visitaron, qué
+          opinaron y qué recomendamos hacer. Sin tener que preguntar.
+        </p>
+      </div>
+      <Report
+        label="Ejemplo de reporte semanal"
+        title="Reporte semanal"
+        meta="Semana [n], [dirección]"
+        stats={[
+          { label: 'Consultas', value: '[n]' },
+          { label: 'Visitas', value: '[n]' },
+          { label: 'Ofertas', value: '[n]' },
+        ]}
+        noteLabel="Comentario principal:"
+        note="[lo que dijeron los interesados y nuestra recomendación]"
+      />
+    </div>
+  </section>
+
+  <CtaBand
+    title="Empecemos por"
+    accent="la etapa 1."
+    text="Solicita tu Valorización 360° sin costo y conoce cuánto vale tu propiedad hoy."
+    ctaLabel="Solicitar valorización"
+  />
+</Base>
+
+<style>
+  .stages {
+    padding-bottom: 96px;
+  }
+  .stages__list {
+    list-style: none;
+    padding: 0;
+  }
+  .stage {
+    display: flex;
+    gap: 24px 48px;
+    flex-wrap: wrap;
+    padding-block: 48px;
+    border-top: 1px solid var(--line);
+  }
+  .stage__head {
+    flex: 0 1 280px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .stage__num {
+    font-family: var(--font-serif);
+    font-size: 64px;
+    line-height: 1;
+    color: var(--gold-deep);
+  }
+  .stage__name {
+    font-size: 30px;
+    line-height: 1.2;
+  }
+  .stage__text {
+    flex: 1 1 360px;
+    font-size: 17px;
+    color: var(--text-2);
+  }
+  .stage__deliverable {
+    flex: 0 1 300px;
+    align-self: flex-start;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 18px 20px;
+    background: var(--white);
+    border-left: 3px solid var(--olive);
+    border-radius: 0 8px 8px 0;
+  }
+  .stage__label {
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    color: var(--olive-ink);
+  }
+  .body-17 {
+    font-size: 17px;
+  }
+  @media (max-width: 640px) {
+    .stages {
+      padding-bottom: 64px;
+    }
+    .stage {
+      padding-block: 36px;
+    }
+    .stage__num {
+      font-size: 48px;
+    }
+    .stage__name {
+      font-size: 26px;
+    }
+    .stage__deliverable {
+      flex-basis: 100%;
+    }
+  }
+</style>

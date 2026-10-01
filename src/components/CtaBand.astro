@@ -1,0 +1,27 @@
+---
+import Heading from './Heading.astro';
+import WhatsAppIcon from './WhatsAppIcon.astro';
+import { WHATSAPP_URL } from '../site';
+
+interface Props {
+  title: string;
+  accent: string;
+  text: string;
+  ctaLabel: string;
+  ctaHref?: string;
+}
+const { title, accent, text, ctaLabel, ctaHref = '/contacto' } = Astro.props;
+---
+
+<section class="section--ink on-dark">
+  <div class="wrap cta-band__inner rv">
+    <div class="cta-band__text">
+      <Heading size="cta" text={title} accent={accent} />
+      <p class="body-lg">{text}</p>
+    </div>
+    <div class="actions">
+      <a href={ctaHref} class="btn btn--gold">{ctaLabel}</a>
+      <a href={WHATSAPP_URL} class="btn btn--outline-light"><WhatsAppIcon />Escribir por WhatsApp</a>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,109 @@
+---
+import Base from '../layouts/Base.astro';
+import Heading from '../components/Heading.astro';
+import ValuationForm from '../components/ValuationForm.astro';
+import { SITE, WHATSAPP_URL, INSTAGRAM_URL } from '../site';
+
+const items = [
+  { label: 'WHATSAPP', value: SITE.whatsappDisplay, href: WHATSAPP_URL },
+  { label: 'CORREO', value: SITE.email, href: `mailto:${SITE.email}` },
+  { label: 'INSTAGRAM', value: `@${SITE.instagram}`, href: INSTAGRAM_URL },
+  { label: 'HORARIO', value: SITE.hours },
+  { label: 'ZONA DE TRABAJO', value: 'La Florida, Macul, Peñalolén y La Reina' },
+];
+---
+
+<Base
+  title="Contacto y valorización gratuita | Activa Corredores"
+  description="Solicita tu Valorización 360° gratuita o escríbenos por WhatsApp al +56 9 9024 1794. Lunes a sábado, de 9:00 a 19:00 hrs."
+  current="/contacto"
+>
+  <section class="wrap contact">
+    <div class="contact__intro in">
+      <p class="eyebrow">Contacto</p>
+      <Heading as="h1" size="display" text="Conversemos sobre" accent="tu propiedad." />
+      <p class="lead">Déjanos tus datos y te contactamos con una primera estimación. Si prefieres, escríbenos directo.</p>
+    </div>
+    <div class="contact__body">
+      <div class="contact__form in in-2">
+        <ValuationForm variant="card" />
+      </div>
+      <dl class="contact__list rv-r">
+        {
+          items.map((item) => (
+            <div class="contact__item">
+              <dt>{item.label}</dt>
+              <dd>{item.href ? <a href={item.href}>{item.value}</a> : item.value}</dd>
+            </div>
+          ))
+        }
+      </dl>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .contact {
+    display: flex;
+    flex-direction: column;
+    gap: 56px;
+    padding-block: 96px;
+  }
+  .contact__intro {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 760px;
+  }
+  .contact__intro :global(.title--display) {
+    font-size: clamp(40px, 5vw, 62px);
+  }
+  .contact__body {
+    display: flex;
+    gap: 48px 72px;
+    flex-wrap: wrap;
+    align-items: flex-start;
+  }
+  .contact__form {
+    flex: 1 1 460px;
+    min-width: 0;
+  }
+  .contact__list {
+    flex: 1 1 340px;
+    margin: 0;
+  }
+  .contact__item {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding-block: 18px;
+    border-top: 1px solid var(--line);
+  }
+  .contact__item dt {
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    color: var(--olive-ink);
+  }
+  .contact__item dd {
+    margin: 0;
+    font-size: 17px;
+    overflow-wrap: anywhere;
+  }
+  .contact__item a {
+    text-decoration: none;
+    font-weight: 500;
+  }
+  .contact__item a:hover {
+    text-decoration: underline;
+  }
+  @media (max-width: 640px) {
+    .contact {
+      padding-block: 56px 64px;
+      gap: 40px;
+    }
+    .contact__form {
+      flex-basis: 100%;
+    }
+  }
+</style>

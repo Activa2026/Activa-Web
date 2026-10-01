@@ -1,0 +1,20 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+---
+
+<Base
+  title="Página no encontrada | Activa Corredores"
+  description="La página que buscas no existe o cambió de dirección."
+  noindex
+>
+  <PageHero
+    eyebrow="Error 404"
+    title="Esta página"
+    accent="no existe."
+    lead="Puede que el enlace esté mal escrito o que la página haya cambiado de dirección."
+  >
+    <a href="/" class="btn btn--primary">Volver al inicio</a>
+    <a href="/contacto" class="link">Solicitar una valorización</a>
+  </PageHero>
+</Base>

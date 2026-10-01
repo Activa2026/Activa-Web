@@ -1,0 +1,75 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import SectionHead from '../components/SectionHead.astro';
+import Features from '../components/Features.astro';
+import Steps from '../components/Steps.astro';
+import Faq from '../components/Faq.astro';
+import CtaBand from '../components/CtaBand.astro';
+---
+
+<Base
+  title="Arrendar tu propiedad de forma segura | Activa Corredores"
+  description="Arrienda tu casa o departamento en La Florida, Macul, Peñalolén o La Reina: evaluación del arrendatario, contrato que te protege y entrega con inventario."
+  current="/arrendar"
+>
+  <PageHero
+    eyebrow="Arrendar con Activa"
+    title="Arrienda a alguien"
+    accent="en quien puedas confiar."
+    lead="Buscamos, evaluamos y elegimos contigo al arrendatario, preparamos un contrato que te proteja y entregamos la propiedad con inventario."
+  >
+    <a href="/contacto?op=arrendar" class="btn btn--primary">Valorizar para arrendar</a>
+    <a href="/administracion" class="link">Ver la administración</a>
+  </PageHero>
+
+  <section class="section--white">
+    <div class="wrap section stack gap-48">
+      <SectionHead eyebrow="Qué incluye" title="Un arriendo" accent="bien hecho desde el inicio." />
+      <Features
+        items={[
+          { title: 'Precio de arriendo', text: 'Comparamos con arriendos reales de tu sector para fijar un valor que se arriende rápido sin dejar plata sobre la mesa.' },
+          { title: 'Publicación y campañas', text: 'Fotos, descripción y difusión en portales y redes.' },
+          { title: 'Evaluación del arrendatario', text: 'Revisamos liquidaciones de sueldo, comportamiento comercial, referencias y, si corresponde, codeudor solidario.' },
+          { title: 'Contrato', text: 'Redactamos el contrato con cláusulas de garantía, reajuste y término claras.' },
+          { title: 'Entrega con inventario', text: 'Registramos el estado de la propiedad con fotos y acta firmada por ambas partes.' },
+        ]}
+      />
+    </div>
+  </section>
+
+  <section class="wrap section stack gap-48">
+    <SectionHead eyebrow="El camino" title="De la publicación" accent="a la entrega de llaves." />
+    <Steps
+      items={[
+        { name: 'Precio', desc: 'Valor de arriendo con datos' },
+        { name: 'Difusión', desc: 'Portales y campañas' },
+        { name: 'Evaluación', desc: 'Filtro de cada postulante' },
+        { name: 'Contrato', desc: 'Firma y garantía' },
+        { name: 'Entrega', desc: 'Inventario con fotos' },
+      ]}
+    />
+  </section>
+
+  <section class="section--white">
+    <div class="wrap section stack gap-48">
+      <SectionHead eyebrow="Preguntas frecuentes" title="Lo que" accent="más nos preguntan." />
+      <Faq
+        items={[
+          { q: '¿Cuánto cobran por arrendar?', a: 'La comisión es de 50% de un mes de arriendo + IVA.' },
+          { q: '¿Cómo evalúan al arrendatario?', a: 'Revisamos ingresos, comportamiento comercial y referencias. Si los antecedentes no son suficientes, pedimos un codeudor solidario.' },
+          { q: '¿Qué garantía se pide?', a: 'Lo habitual es un mes de garantía, que se devuelve al término del contrato descontando daños o deudas pendientes.' },
+          { q: '¿Qué pasa si después no paga?', a: 'Si contratas la administración, nos encargamos de la cobranza y del seguimiento. Sin administración, te orientamos sobre los pasos a seguir.' },
+        ]}
+      />
+    </div>
+  </section>
+
+  <CtaBand
+    title="¿Cuánto podrías"
+    accent="arrendar tu propiedad?"
+    text="Te damos un valor de arriendo basado en datos reales de tu barrio."
+    ctaLabel="Valorizar para arrendar"
+    ctaHref="/contacto?op=arrendar"
+  />
+</Base>

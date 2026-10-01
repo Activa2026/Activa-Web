@@ -1,0 +1,83 @@
+---
+import { SITE, WHATSAPP_URL, INSTAGRAM_URL } from '../site';
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="wrap site-footer__cols">
+    <div class="site-footer__brand">
+      <img
+        src="/brand/logo-400.png"
+        alt="Activa Corredores: transparencia, seguridad, proactividad"
+        width="200"
+        height="163"
+        loading="lazy"
+      />
+    </div>
+    <div class="site-footer__col">
+      <h2>Servicios</h2>
+      <a href="/vender">Venta</a>
+      <a href="/arrendar">Arriendo</a>
+      <a href="/administracion">Administración</a>
+      <a href="/sistema">Sistema Activa</a>
+      <a href="/contacto">Valorización 360°</a>
+    </div>
+    <div class="site-footer__col">
+      <h2>Contacto</h2>
+      <a href={`mailto:${SITE.email}`}>{SITE.email}</a>
+      <a href={WHATSAPP_URL}>WhatsApp {SITE.whatsappDisplay}</a>
+      <a href={INSTAGRAM_URL}>Instagram @{SITE.instagram}</a>
+      <span>{SITE.hours}</span>
+    </div>
+    <div class="site-footer__col">
+      <h2>Comunas</h2>
+      {SITE.comunas.map((c) => <span>{c}</span>)}
+    </div>
+  </div>
+  <div class="wrap site-footer__legal">© {year} {SITE.legalName}, Santiago de Chile</div>
+</footer>
+
+<style>
+  .site-footer {
+    background: var(--white);
+  }
+  .site-footer__cols {
+    display: flex;
+    gap: 40px 48px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding-block: 56px 40px;
+  }
+  .site-footer__brand {
+    flex: 0 1 260px;
+  }
+  .site-footer__brand img {
+    width: 200px;
+  }
+  .site-footer__col {
+    flex: 1 1 200px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-size: 15px;
+    color: var(--text-2);
+  }
+  .site-footer__col h2 {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .site-footer__col a {
+    text-decoration: none;
+    overflow-wrap: anywhere;
+  }
+  .site-footer__col a:hover {
+    text-decoration: underline;
+  }
+  .site-footer__legal {
+    padding-block: 20px 32px;
+    border-top: 1px solid var(--line);
+    font-size: 13px;
+    color: var(--text-3);
+  }
+</style>

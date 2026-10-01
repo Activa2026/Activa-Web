@@ -1,0 +1,17 @@
+---
+interface Props {
+  items: { title: string; text: string }[];
+}
+const { items } = Astro.props;
+---
+
+<div class="features stagger">
+  {
+    items.map((item) => (
+      <div class="features__item">
+        <h3>{item.title}</h3>
+        <p>{item.text}</p>
+      </div>
+    ))
+  }
+</div>
