@@ -29,14 +29,14 @@ push a main ─▶ GitHub Actions (npm ci, astro check, build) ─▶ rama "depl
 
 ### Configuración inicial (una sola vez)
 
-1. **GitHub**: crear un repositorio privado (por ejemplo `activa-web`) y subir este proyecto a la rama `main`.
-   El primer push ejecuta la acción y crea la rama `deploy`.
+1. **GitHub**: repositorio `Activa2026/Activa-Web`, rama `main` (listo). Cada push ejecuta la acción y
+   actualiza la rama `deploy`.
 2. **Endpoint de leads** (cuando esté): en GitHub, *Settings › Secrets and variables › Actions › Variables*,
    crear `PUBLIC_LEADS_ENDPOINT` con la URL. Volver a ejecutar la acción.
 3. **Hostinger** (hPanel › Sitios web › activacorredores.cl › Avanzado › **Git**):
-   - Si el repositorio es privado, copiar la **clave SSH** que muestra hPanel y agregarla en GitHub en
-     *Settings › Deploy keys* (solo lectura).
-   - Repositorio: `git@github.com:<usuario>/activa-web.git` · Rama: **`deploy`** · Directorio: vacío (= `public_html`).
+   - Repositorio: `https://github.com/Activa2026/Activa-Web.git` · Rama: **`deploy`** · Directorio: vacío (= `public_html`).
+   - Si algún día el repositorio pasa a privado: usar `git@github.com:Activa2026/Activa-Web.git` y agregar la
+     **clave SSH** que muestra hPanel en GitHub, *Settings › Deploy keys* (solo lectura).
      `public_html` debe estar vacío la primera vez.
    - Pulsar **Implementar** y luego activar **Implementación automática**: hPanel entrega una URL de webhook.
 4. **Webhook**: en GitHub, *Settings › Webhooks › Add webhook*, pegar esa URL (tipo `application/json`, evento *push*).
