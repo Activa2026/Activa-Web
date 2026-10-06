@@ -1,10 +1,14 @@
 # Compila el sitio y publica dist/ en la rama "deploy".
-# Hostinger (hPanel › Git) trae esa rama a public_html mediante su webhook.
+# Hostinger (hPanel › Git) trae esa rama a public_html.
+# Además, una vez al día importa las propiedades desde la tienda de Dataprop.
 name: Compilar y publicar
 
 on:
   push:
     branches: [main]
+  schedule:
+    # Todos los días a las 10:00 UTC (6:00 o 7:00 en Chile)
+    - cron: '0 10 * * *'
   workflow_dispatch:
 
 permissions:
@@ -12,7 +16,7 @@ permissions:
 
 concurrency:
   group: deploy
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   build:
@@ -26,6 +30,32 @@ jobs:
           cache: npm
 
       - run: npm ci
+
+      - name: Importar propiedades desde Dataprop
+        if: github.event_name != 'push'
+        id: importar
+        continue-on-error: true
+        run: node tools/importar-dataprop.mjs
+
+      - name: Guardar cambios de propiedades
+        if: github.event_name != 'push' && steps.importar.outcome == 'success'
+        run: |
+          git add src/content/propiedades
+          if git diff --cached --quiet; then
+            echo "Sin cambios en Dataprop."
+          else
+            git config user.name "github-actions[bot]"
+            git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
+            git commit -m "Propiedades: sincronización con Dataprop"
+            git push
+          fi
+
+      # Fotos ya optimizadas de compilaciones anteriores
+      - uses: actions/cache@v6
+        with:
+          path: node_modules/.astro
+          key: astro-assets-${{ hashFiles('src/content/propiedades/**/*.jpg', 'src/assets/**') }}
+          restore-keys: astro-assets-
 
       - run: npx astro check
 

@@ -53,6 +53,7 @@ export function superficiePrincipal(d: Propiedad['data']): string | null {
   if (s.construida) return `${formatNumero(s.construida)} m² const.`;
   if (s.util) return `${formatNumero(s.util)} m² útiles`;
   if (s.terreno) return `${formatNumero(s.terreno)} m² terreno`;
+  if (s.total) return `${formatNumero(s.total)} m² totales`;
   return null;
 }
 

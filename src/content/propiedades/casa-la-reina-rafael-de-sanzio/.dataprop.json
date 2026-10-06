@@ -1,0 +1,92 @@
+{
+  "data": {
+    "codigo": "Casa La Reina · Rafael de Sanzio",
+    "titulo": "Casa de 4 dormitorios en La Reina",
+    "bajada": "Casa familiar amplia en La Reina, lista para personalizar",
+    "operacion": "venta",
+    "tipo": "casa",
+    "comuna": "La Reina",
+    "sector": "Rafael de Sanzio",
+    "precio": {
+      "moneda": "UF",
+      "valor": 7750
+    },
+    "superficie": {
+      "util": 137,
+      "total": 516
+    },
+    "dormitorios": 4,
+    "banos": 3,
+    "estacionamientos": 3,
+    "bodegas": 0,
+    "antiguedad": 31,
+    "orientacion": "Suroriente",
+    "caracteristicas": [
+      "Living/Comedor independiente",
+      "Comedor de diario",
+      "Escritorio",
+      "Living/sala de estar",
+      "Antejardín",
+      "Cocina cerrada",
+      "Un piso",
+      "Cerca de parque",
+      "Cerca de transporte público",
+      "Cerca de zona comercial",
+      "Cerca de zona de entretenimiento",
+      "Cerca de centro de salud",
+      "Cerca de universidad o colegio"
+    ],
+    "estado": "disponible",
+    "destacada": false,
+    "publicada": "2026-01-06",
+    "dataprop": {
+      "id": "1767732426",
+      "url": "https://app.dataprop.cl/propiedades/1767732426-venta-casa-4hab-3ba-la-reina"
+    },
+    "descripcion": "Esta casa en La Reina es una invitación a proyectar, crear y vivir con espacio real. Pensada para familias que buscan algo más que una casa lista: buscan un hogar con carácter, terreno y la libertad de adaptarlo a su propio estilo de vida.\n\nEmplazada en un barrio residencial consolidado, tranquilo y familiar, la propiedad cuenta con 516 m² de terreno, de los cuales aproximadamente 300 m corresponden a jardín utilizable. Un privilegio cada vez más escaso, ideal para niños, mascotas, huerta, quincho, ampliaciones o simplemente disfrutar del aire libre sin salir de casa.\n\nLa vivienda ofrece 137 m² construidos, distribuidos en 4 dormitorios y 3 baños, con espacios amplios, bien definidos y una orientación sur-oriente que asegura buena luz natural durante gran parte del día, especialmente en áreas comunes y dormitorios.\n\nLa cocina original representa una ventaja clara para quienes valoran decidir cómo y cuándo renovar, sin pagar por remodelaciones ajenas. Es una casa que se entrega como base sólida y honesta, lista para ser reinterpretada según las necesidades de cada familia.\n\nAdemás, cuenta con capacidad para estacionar hasta 5 vehículos, un atributo poco común en el sector y muy valorado para familias numerosas, visitas frecuentes o quienes combinan vida familiar y trabajo desde casa.\n\nUna propiedad que destaca por lo que realmente importa: ubicación, terreno, estructura y potencial. Aquí no compras promesas; compras una base real para construir tu próximo hogar en uno de los sectores más valorados de La Reina."
+  },
+  "fotos": [
+    "./01.jpg",
+    "./02.jpg",
+    "./03.jpg",
+    "./04.jpg",
+    "./05.jpg",
+    "./06.jpg",
+    "./07.jpg",
+    "./08.jpg",
+    "./09.jpg",
+    "./10.jpg",
+    "./11.jpg",
+    "./12.jpg",
+    "./13.jpg",
+    "./14.jpg",
+    "./15.jpg",
+    "./16.jpg",
+    "./17.jpg",
+    "./18.jpg",
+    "./19.jpg",
+    "./20.jpg"
+  ],
+  "fotosOrigen": [
+    "https://cdn.dataprop.cl/photos/images/000/702/424/original/IMG_7056.jpeg?1775173474",
+    "https://cdn.dataprop.cl/photos/images/000/702/423/original/IMG_7057.jpeg?1775173472",
+    "https://cdn.dataprop.cl/photos/images/000/702/419/original/IMG_7061.jpeg?1775173466",
+    "https://cdn.dataprop.cl/photos/images/000/702/420/original/IMG_7060.jpeg?1775173467",
+    "https://cdn.dataprop.cl/photos/images/000/702/421/original/IMG_7059.jpeg?1775173469",
+    "https://cdn.dataprop.cl/photos/images/000/702/422/original/IMG_7058.jpeg?1775173471",
+    "https://cdn.dataprop.cl/photos/images/000/702/444/original/IMG_7035.jpeg?1775173503",
+    "https://cdn.dataprop.cl/photos/images/000/702/443/original/IMG_7036.jpeg?1775173501",
+    "https://cdn.dataprop.cl/photos/images/000/702/434/original/IMG_7045.jpeg?1775173488",
+    "https://cdn.dataprop.cl/photos/images/000/702/442/original/IMG_7037.jpeg?1775173499",
+    "https://cdn.dataprop.cl/photos/images/000/702/429/original/IMG_7051.jpeg?1775173480",
+    "https://cdn.dataprop.cl/photos/images/000/702/427/original/IMG_7053.jpeg?1775173477",
+    "https://cdn.dataprop.cl/photos/images/000/702/428/original/IMG_7052.jpeg?1775173479",
+    "https://cdn.dataprop.cl/photos/images/000/702/430/original/IMG_7049.jpeg?1775173482",
+    "https://cdn.dataprop.cl/photos/images/000/702/431/original/IMG_7048.jpeg?1775173483",
+    "https://cdn.dataprop.cl/photos/images/000/702/432/original/IMG_7047.jpeg?1775173485",
+    "https://cdn.dataprop.cl/photos/images/000/702/433/original/IMG_7046.jpeg?1775173486",
+    "https://cdn.dataprop.cl/photos/images/000/702/440/original/IMG_7039.jpeg?1775173496",
+    "https://cdn.dataprop.cl/photos/images/000/702/441/original/IMG_7038.jpeg?1775173498",
+    "https://cdn.dataprop.cl/photos/images/000/702/436/original/IMG_7043.jpeg?1775173489"
+  ]
+}

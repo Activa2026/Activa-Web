@@ -1,4 +1,27 @@
-# Cómo agregar una propiedad
+# Propiedades del sitio
+
+## Importación automática desde Dataprop (lo habitual)
+
+Las propiedades se importan desde la tienda pública de Dataprop
+(https://app.dataprop.cl/tienda-oficial/activa-corredores-1869) con `node tools/importar-dataprop.mjs`.
+GitHub lo ejecuta **todos los días** y publica los cambios; también se puede lanzar a mano en
+GitHub › Actions › "Compilar y publicar" › *Run workflow*.
+
+- Propiedad nueva o modificada en Dataprop → se crea o actualiza aquí.
+- Propiedad que desaparece de Dataprop → queda publicada con el cartel **Vendida** o **Arrendada**.
+  Para sacarla del sitio, borra su carpeta.
+- Se muestra la calle **sin número** y la comuna; la referencia es legible, p. ej. "Casa La Reina · Francisco de Villagra".
+- Párrafos que parecen notas internas ("A verificar con…") se omiten y se avisa en el registro.
+- **No edites a mano** las carpetas importadas (tienen un archivo `.dataprop.json`): se sobrescriben.
+  Para corregir algo de forma permanente usa `tools/dataprop-ajustes.json`, por id de Dataprop:
+
+```json
+{
+  "1782489201": { "bajada": "Casa de un piso a pasos de Plaza Egaña", "destacada": true }
+}
+```
+
+## Propiedades cargadas a mano
 
 1. Crea una carpeta con un nombre corto, en minúsculas y con guiones: por ejemplo `casa-la-reina-act-012`.
    Ese nombre será la dirección: `activacorredores.cl/propiedades/casa-la-reina-act-012`.

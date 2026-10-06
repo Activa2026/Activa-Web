@@ -1,0 +1,84 @@
+{
+  "data": {
+    "codigo": "Departamento La Cisterna · Padre Hurtado",
+    "titulo": "Departamento de 2 dormitorios en La Cisterna",
+    "operacion": "venta",
+    "tipo": "departamento",
+    "comuna": "La Cisterna",
+    "sector": "Padre Hurtado",
+    "precio": {
+      "moneda": "UF",
+      "valor": 2100
+    },
+    "superficie": {
+      "util": 40,
+      "total": 42
+    },
+    "dormitorios": 2,
+    "banos": 1,
+    "estacionamientos": 1,
+    "antiguedad": 14,
+    "orientacion": "Oriente",
+    "caracteristicas": [
+      "Cocina cerrada",
+      "Admite mascotas",
+      "Lavandería",
+      "Zona de niños",
+      "Citófono",
+      "Portón eléctrico",
+      "Cerca de transporte público",
+      "Cerca de zona comercial",
+      "Cerca de zona de entretenimiento",
+      "Cerca de centro de salud",
+      "Cerca de universidad o colegio"
+    ],
+    "estado": "disponible",
+    "destacada": false,
+    "publicada": "2026-06-03",
+    "dataprop": {
+      "id": "1780503842",
+      "url": "https://app.dataprop.cl/propiedades/1780503842-venta-departamento-2hab-1ba-la-cisterna"
+    },
+    "descripcion": "¿Buscas un lugar tranquilo y bien conectado para tu familia?\n\nActiva Corredores vende este acogedor departamento en condominio con áreas verdes y ambiente familiar.\n\nIdeal para matrimonio joven, con o sin hijos, que busca paz, seguridad y accesibilidad.\n\n2 Dormitorios 1 Baño 1 +Estacionamiento\n\nEspacios comunes, jardines y entorno seguro para vivir con calma.\n\nDistribución cómoda y funcional:\n\nCocina semi cerrada con loggia\n\nLiving comedor con terraza (orientación oriente)\n\nDormitorio principal amplio\n\nSegundo dormitorio ideal para hijo pequeño o home office\n\n1 baño completo\n\nEstacionamiento propio\n\n- Excelente conectividad: Metro Intermodal, colegios, comercio y servicios cercanos.\n\n- Perfecto para comenzar una nueva etapa con calidad de vida.\n\n- Agenda tu visita con nosotros. ¡Este puede ser tu hogar!"
+  },
+  "fotos": [
+    "./01.jpg",
+    "./02.jpg",
+    "./03.jpg",
+    "./04.jpg",
+    "./05.jpg",
+    "./06.jpg",
+    "./07.jpg",
+    "./08.jpg",
+    "./09.jpg",
+    "./10.jpg",
+    "./11.jpg",
+    "./12.jpg",
+    "./13.jpg",
+    "./14.jpg",
+    "./15.jpg",
+    "./16.jpg",
+    "./17.jpg",
+    "./18.jpg"
+  ],
+  "fotosOrigen": [
+    "https://cdn.dataprop.cl/photos/images/001/074/717/original/IMG4601.jpeg?1780503830",
+    "https://cdn.dataprop.cl/photos/images/001/074/718/original/IMG4604.jpeg?1780503832",
+    "https://cdn.dataprop.cl/photos/images/001/074/719/original/4.jpeg?1780503834",
+    "https://cdn.dataprop.cl/photos/images/001/074/720/original/10.jpeg?1780503834",
+    "https://cdn.dataprop.cl/photos/images/001/074/721/original/5.jpeg?1780503834",
+    "https://cdn.dataprop.cl/photos/images/001/074/722/original/13.jpeg?1780503834",
+    "https://cdn.dataprop.cl/photos/images/001/074/723/original/WhatsAppImage20250131at14.43.13.jpeg?1780503835",
+    "https://cdn.dataprop.cl/photos/images/001/074/724/original/6.jpeg?1780503835",
+    "https://cdn.dataprop.cl/photos/images/001/074/725/original/IMG4605.jpeg?1780503835",
+    "https://cdn.dataprop.cl/photos/images/001/074/726/original/2.jpeg?1780503837",
+    "https://cdn.dataprop.cl/photos/images/001/074/727/original/9.jpeg?1780503838",
+    "https://cdn.dataprop.cl/photos/images/001/074/728/original/14.jpeg?1780503838",
+    "https://cdn.dataprop.cl/photos/images/001/074/729/original/12.jpeg?1780503838",
+    "https://cdn.dataprop.cl/photos/images/001/074/730/original/8.jpeg?1780503838",
+    "https://cdn.dataprop.cl/photos/images/001/074/731/original/7.jpeg?1780503839",
+    "https://cdn.dataprop.cl/photos/images/001/074/732/original/3.jpeg?1780503839",
+    "https://cdn.dataprop.cl/photos/images/001/074/733/original/11.jpeg?1780503839",
+    "https://cdn.dataprop.cl/photos/images/001/074/734/original/IMG4603.jpeg?1780503839"
+  ]
+}

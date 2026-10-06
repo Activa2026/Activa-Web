@@ -45,16 +45,18 @@ const datos = [
   s.util && ['Superficie útil', `${formatNumero(s.util)} m²`],
   s.terraza && ['Terraza', `${formatNumero(s.terraza)} m²`],
   s.terreno && ['Terreno', `${formatNumero(s.terreno)} m²`],
+  s.total && !s.terreno && ['Superficie total', `${formatNumero(s.total)} m²`],
   d.dormitorios != null && ['Dormitorios', String(d.dormitorios)],
   d.banos != null && ['Baños', String(d.banos)],
   d.estacionamientos != null && ['Estacionamientos', String(d.estacionamientos)],
   d.bodegas != null && ['Bodegas', String(d.bodegas)],
   d.gastosComunes != null && ['Gastos comunes', `$${formatNumero(d.gastosComunes)} aprox.`],
-  ['Código', d.codigo],
+  d.antiguedad != null && ['Antigüedad', `${d.antiguedad} ${d.antiguedad === 1 ? 'año' : 'años'}`],
+  d.orientacion && ['Orientación', d.orientacion],
 ].filter(Boolean) as [string, string][];
 
-const msgInteres = `Hola, me interesa la propiedad ${d.codigo}: ${d.titulo}. ${url}`;
-const msgVisita = `Hola, quiero agendar una visita a la propiedad ${d.codigo}: ${d.titulo}. ${url}`;
+const msgInteres = `Hola, me interesa la propiedad ${d.codigo}. ${url}`;
+const msgVisita = `Hola, quiero agendar una visita a la propiedad ${d.codigo}. ${url}`;
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -84,7 +86,7 @@ const jsonLd = {
 ---
 
 <Base
-  title={`${d.titulo}, ${d.comuna} · ${precio} | Activa Corredores`}
+  title={`${d.titulo.includes(d.comuna) ? d.titulo : `${d.titulo}, ${d.comuna}`} · ${precio} | Activa Corredores`}
   description={`${lugar}. ${OPERACION_LABEL[d.operacion]} por ${precio}${d.operacion === 'arriendo' ? ' al mes' : ''}. ${d.dormitorios != null ? `${d.dormitorios} dormitorios, ` : ''}${d.banos != null ? `${d.banos} baños. ` : ''}Activa Corredores.`}
   current="/propiedades"
   image={og.src}
@@ -109,6 +111,7 @@ const jsonLd = {
     <header class="ficha__head in">
       <p class="eyebrow">{terminada ? (d.operacion === 'venta' ? 'Venta' : 'Arriendo') : OPERACION_LABEL[d.operacion]} · {lugar}</p>
       <h1 class="title ficha__titulo">{d.titulo}</h1>
+      {d.bajada && <p class="ficha__bajada">{d.bajada}</p>}
       <p class="ficha__precio">
         {precio}{d.operacion === 'arriendo' && <span> / mes</span>}
         {sello && <span class:list={['ficha__sello', `ficha__sello--${d.estado}`]}>{sello}</span>}
@@ -195,7 +198,7 @@ const jsonLd = {
               <a href={whatsappWithText(msgVisita)} class="btn btn--ghost">
                 Agendar una visita
               </a>
-              <p class="contacto__codigo">Código {d.codigo}</p>
+              <p class="contacto__codigo">Referencia: {d.codigo}</p>
             </>
           )
         }
@@ -292,6 +295,11 @@ const jsonLd = {
   .ficha__titulo {
     font-size: clamp(32px, 4vw, 48px);
     line-height: 1.12;
+  }
+  .ficha__bajada {
+    font-size: 19px;
+    color: var(--text-2);
+    max-width: 720px;
   }
   .ficha__precio {
     display: flex;

@@ -80,7 +80,8 @@ const hayFiltros = operaciones.length > 1 || comunas.length > 1 || tipos.length 
             </p>
           </form>
 
-          <div class="catalogo__grid stagger" data-grid>
+          <h2 class="sr-only">Listado de propiedades</h2>
+          <div class="catalogo__grid" data-grid>
             {propiedades.map((p) => (
               <PropertyCard propiedad={p} />
             ))}

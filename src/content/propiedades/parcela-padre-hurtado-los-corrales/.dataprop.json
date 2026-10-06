@@ -1,0 +1,63 @@
+{
+  "data": {
+    "codigo": "Parcela Padre Hurtado · Los Corrales",
+    "titulo": "Parcela de 7.000 m² en Padre Hurtado",
+    "operacion": "venta",
+    "tipo": "parcela",
+    "comuna": "Padre Hurtado",
+    "sector": "Los Corrales",
+    "precio": {
+      "moneda": "UF",
+      "valor": 3550
+    },
+    "superficie": {
+      "terreno": 7000
+    },
+    "caracteristicas": [
+      "Cerca de parque",
+      "Cerca de transporte público",
+      "Cerca de zona comercial",
+      "Cerca de centro de salud"
+    ],
+    "estado": "disponible",
+    "destacada": false,
+    "publicada": "2026-08-10",
+    "dataprop": {
+      "id": "1786392069",
+      "url": "https://app.dataprop.cl/propiedades/1786392069-venta-parcela-7000mts-padre-hurtado"
+    },
+    "descripcion": "Oportunidad única para vivir en un entorno natural, tranquilo y libre de contaminación, ideal para familias que buscan calidad de vida. Esta parcela se encuentra en la comuna de Padre Hurtado, rodeada de naturaleza y a solo minutos de la ciudad.\n\nCuenta con excelente conectividad, a solo 15 minutos del Peaje Padre Hurtado y de la futura estación de Metro Tren. Rápido acceso a Santiago por Autopista del Sol y Camino a Melipilla, además de estar a solo 5 minutos de Cuesta Barriga, que conecta con la V Región.\n\nDisfrute de la tranquilidad del campo con la comodidad de estar cerca de todo: colegios, supermercados, centros médicos, bancos y más.\n\nCaracterísticas del proyecto:\n\nConserjería\n\nPortón automático y acceso peatonal controlado\n\nZona de recolección de basura\n\nElectricidad subterránea (con remarcador en la parcela)\n\nParcela plana de 7.000 m\n\nROL individual\n\nAbastecimiento de agua mediante noria o pozo (a cargo de cada propietario)\n\nParcelas cercada\n\nReglamento interno del proyecto\n\nValor: UF 3.550.-"
+  },
+  "fotos": [
+    "./01.jpg",
+    "./02.jpg",
+    "./03.jpg",
+    "./04.jpg",
+    "./05.jpg",
+    "./06.jpg",
+    "./07.jpg",
+    "./08.jpg",
+    "./09.jpg",
+    "./10.jpg",
+    "./11.jpg",
+    "./12.jpg",
+    "./13.jpg",
+    "./14.jpg"
+  ],
+  "fotosOrigen": [
+    "https://cdn.dataprop.cl/photos/images/001/304/708/original/9.jpg?1786392332",
+    "https://cdn.dataprop.cl/photos/images/001/304/700/original/1.jpg?1786392320",
+    "https://cdn.dataprop.cl/photos/images/001/304/701/original/2.jpg?1786392322",
+    "https://cdn.dataprop.cl/photos/images/001/304/702/original/3.jpg?1786392323",
+    "https://cdn.dataprop.cl/photos/images/001/304/703/original/4.jpg?1786392325",
+    "https://cdn.dataprop.cl/photos/images/001/304/704/original/5.jpg?1786392326",
+    "https://cdn.dataprop.cl/photos/images/001/304/705/original/6.jpg?1786392328",
+    "https://cdn.dataprop.cl/photos/images/001/304/706/original/7.jpg?1786392329",
+    "https://cdn.dataprop.cl/photos/images/001/304/707/original/8.jpg?1786392330",
+    "https://cdn.dataprop.cl/photos/images/001/304/709/original/10.jpg?1786392333",
+    "https://cdn.dataprop.cl/photos/images/001/304/710/original/11.jpg?1786392335",
+    "https://cdn.dataprop.cl/photos/images/001/304/711/original/13.jpg?1786392336",
+    "https://cdn.dataprop.cl/photos/images/001/304/712/original/14.jpg?1786392337",
+    "https://cdn.dataprop.cl/photos/images/001/304/713/original/15.jpg?1786392338"
+  ]
+}

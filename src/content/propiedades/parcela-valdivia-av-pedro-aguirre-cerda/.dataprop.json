@@ -1,0 +1,58 @@
+{
+  "data": {
+    "codigo": "Parcela Valdivia · Av. Pedro Aguirre Cerda",
+    "titulo": "Parcela de 5.007 m² en Valdivia",
+    "operacion": "venta",
+    "tipo": "parcela",
+    "comuna": "Valdivia",
+    "sector": "Av. Pedro Aguirre Cerda",
+    "precio": {
+      "moneda": "UF",
+      "valor": 2900
+    },
+    "superficie": {
+      "terreno": 5007
+    },
+    "caracteristicas": [
+      "Cerca de transporte público"
+    ],
+    "estado": "disponible",
+    "destacada": false,
+    "publicada": "2025-11-22",
+    "dataprop": {
+      "id": "1763776293",
+      "url": "https://app.dataprop.cl/propiedades/1763776293-venta-parcela-5007mts-valdivia"
+    },
+    "descripcion": "Gran oportunidad !!! se ofrece en venta bellísima Parcela de 5007mts, en Condominio Alto Rebellin. Se ubica entre el Aeropuerto y la entrada Norte de Valdivia.\n\nSe ubica en Condominio pequeño que cuenta con Agua, y luz, con cableado soterrados. Precioso lugar con vistas al Rio Coyancura.\n\nConsulte y visite!!"
+  },
+  "fotos": [
+    "./01.jpg",
+    "./02.jpg",
+    "./03.jpg",
+    "./04.jpg",
+    "./05.jpg",
+    "./06.jpg",
+    "./07.jpg",
+    "./08.jpg",
+    "./09.jpg",
+    "./10.jpg",
+    "./11.jpg",
+    "./12.jpg",
+    "./13.jpg"
+  ],
+  "fotosOrigen": [
+    "https://cdn.dataprop.cl/photos/images/000/643/544/original/WhatsApp_Image_2025-08-30_at_14.56.00.jpeg?1775173416",
+    "https://cdn.dataprop.cl/photos/images/000/643/521/original/WhatsApp_Image_2025-08-30_at_11.13.01_1.jpeg?1775173411",
+    "https://cdn.dataprop.cl/photos/images/000/643/517/original/IMG_1413.JPG?1775173405",
+    "https://cdn.dataprop.cl/photos/images/000/643/518/original/IMG_1410.JPG?1775173406",
+    "https://cdn.dataprop.cl/photos/images/000/643/519/original/IMG_1407_1.JPG?1775173408",
+    "https://cdn.dataprop.cl/photos/images/000/643/520/original/IMG_1407.JPG?1775173409",
+    "https://cdn.dataprop.cl/photos/images/000/643/522/original/WhatsApp_Image_2025-08-30_at_11.13.01.jpeg?1775173411",
+    "https://cdn.dataprop.cl/photos/images/000/643/543/original/IMG_1425_1.JPG?1775173412",
+    "https://cdn.dataprop.cl/photos/images/000/643/545/original/WhatsApp_Image_2025-11-21_at_22.45.06.jpeg?1775173416",
+    "https://cdn.dataprop.cl/photos/images/000/643/546/original/WhatsApp_Image_2025-11-21_at_22.43.57.jpeg?1775173417",
+    "https://cdn.dataprop.cl/photos/images/000/643/547/original/WhatsApp_Image_2025-11-21_at_22.43.15.jpeg?1775173417",
+    "https://cdn.dataprop.cl/photos/images/000/643/548/original/WhatsApp_Image_2025-11-21_at_22.42.27.jpeg?1775173418",
+    "https://cdn.dataprop.cl/photos/images/000/643/549/original/WhatsApp_Image_2025-11-21_at_22.41.07.jpeg?1775173418"
+  ]
+}
