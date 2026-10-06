@@ -1,0 +1,573 @@
+---
+import { Picture, getImage } from 'astro:assets';
+import { render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import WhatsAppIcon from '../../components/WhatsAppIcon.astro';
+import {
+  getPropiedades,
+  type Propiedad,
+  formatPrecio,
+  formatNumero,
+  cartel,
+  cerrada,
+  TIPO_LABEL,
+  OPERACION_LABEL,
+} from '../../lib/propiedades';
+import { SITE, whatsappWithText } from '../../site';
+
+export async function getStaticPaths() {
+  const propiedades = await getPropiedades();
+  return propiedades.map((propiedad) => ({ params: { slug: propiedad.id }, props: { propiedad } }));
+}
+
+interface Props {
+  propiedad: Propiedad;
+}
+const { propiedad } = Astro.props;
+const d = propiedad.data;
+const { Content } = await render(propiedad);
+
+const url = new URL(`/propiedades/${propiedad.id}`, SITE.url).href;
+const precio = formatPrecio(d.precio);
+const sello = cartel(d.estado);
+const terminada = cerrada(d.estado);
+const lugar = `${TIPO_LABEL[d.tipo]} en ${d.comuna}${d.sector ? `, ${d.sector}` : ''}`;
+
+const og = await getImage({ src: d.fotos[0], width: 1200, height: 630, fit: 'cover', format: 'jpg' });
+
+const s = d.superficie;
+const datos = [
+  ['Operación', d.operacion === 'venta' ? 'Venta' : 'Arriendo'],
+  ['Tipo', TIPO_LABEL[d.tipo]],
+  ['Comuna', d.comuna],
+  s.construida && ['Superficie construida', `${formatNumero(s.construida)} m²`],
+  s.util && ['Superficie útil', `${formatNumero(s.util)} m²`],
+  s.terraza && ['Terraza', `${formatNumero(s.terraza)} m²`],
+  s.terreno && ['Terreno', `${formatNumero(s.terreno)} m²`],
+  d.dormitorios != null && ['Dormitorios', String(d.dormitorios)],
+  d.banos != null && ['Baños', String(d.banos)],
+  d.estacionamientos != null && ['Estacionamientos', String(d.estacionamientos)],
+  d.bodegas != null && ['Bodegas', String(d.bodegas)],
+  d.gastosComunes != null && ['Gastos comunes', `$${formatNumero(d.gastosComunes)} aprox.`],
+  ['Código', d.codigo],
+].filter(Boolean) as [string, string][];
+
+const msgInteres = `Hola, me interesa la propiedad ${d.codigo}: ${d.titulo}. ${url}`;
+const msgVisita = `Hola, quiero agendar una visita a la propiedad ${d.codigo}: ${d.titulo}. ${url}`;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'RealEstateListing',
+  name: d.titulo,
+  url,
+  image: new URL(og.src, SITE.url).href,
+  datePosted: d.publicada.toISOString().slice(0, 10),
+  about: {
+    '@type': d.tipo === 'departamento' ? 'Apartment' : d.tipo === 'casa' ? 'SingleFamilyResidence' : 'Place',
+    address: { '@type': 'PostalAddress', addressLocality: d.comuna, addressRegion: 'Región Metropolitana', addressCountry: 'CL' },
+    ...(d.dormitorios != null && { numberOfBedrooms: d.dormitorios }),
+    ...(d.banos != null && { numberOfBathroomsTotal: d.banos }),
+    ...((s.construida || s.util) && {
+      floorSize: { '@type': 'QuantitativeValue', value: s.construida ?? s.util, unitCode: 'MTK' },
+    }),
+  },
+  offers: {
+    '@type': 'Offer',
+    price: d.precio.valor,
+    priceCurrency: d.precio.moneda === 'UF' ? 'CLF' : 'CLP',
+    businessFunction: d.operacion === 'venta' ? 'http://purl.org/goodrelations/v1#Sell' : 'http://purl.org/goodrelations/v1#LeaseOut',
+    availability: terminada ? 'https://schema.org/SoldOut' : 'https://schema.org/InStock',
+    seller: { '@type': 'RealEstateAgent', name: SITE.name, url: SITE.url },
+  },
+};
+---
+
+<Base
+  title={`${d.titulo}, ${d.comuna} · ${precio} | Activa Corredores`}
+  description={`${lugar}. ${OPERACION_LABEL[d.operacion]} por ${precio}${d.operacion === 'arriendo' ? ' al mes' : ''}. ${d.dormitorios != null ? `${d.dormitorios} dormitorios, ` : ''}${d.banos != null ? `${d.banos} baños. ` : ''}Activa Corredores.`}
+  current="/propiedades"
+  image={og.src}
+>
+  <article class="wrap ficha">
+    <nav class="ficha__migas" aria-label="Ruta">
+      <a href="/propiedades">Propiedades</a>
+      <span aria-hidden="true">/</span>
+      <span>{d.codigo}</span>
+    </nav>
+
+    {
+      sello && (
+        <p class:list={['ficha__aviso', `ficha__aviso--${d.estado}`]}>
+          {terminada
+            ? `Esta propiedad ya fue ${d.estado}. La mantenemos publicada como referencia.`
+            : 'Esta propiedad está reservada. Si te interesa, escríbenos para quedar en lista de espera.'}
+        </p>
+      )
+    }
+
+    <header class="ficha__head in">
+      <p class="eyebrow">{terminada ? (d.operacion === 'venta' ? 'Venta' : 'Arriendo') : OPERACION_LABEL[d.operacion]} · {lugar}</p>
+      <h1 class="title ficha__titulo">{d.titulo}</h1>
+      <p class="ficha__precio">
+        {precio}{d.operacion === 'arriendo' && <span> / mes</span>}
+        {sello && <span class:list={['ficha__sello', `ficha__sello--${d.estado}`]}>{sello}</span>}
+      </p>
+    </header>
+
+    <div class="galeria in in-2">
+      {
+        d.fotos.slice(0, 3).map((foto, i) => (
+          <button type="button" class:list={['galeria__item', { 'galeria__item--principal': i === 0 }]} data-foto={i}>
+            <Picture
+              src={foto}
+              alt={i === 0 ? lugar : ''}
+              formats={['avif', 'webp']}
+              widths={i === 0 ? [600, 900, 1200] : [300, 500]}
+              sizes={i === 0 ? '(max-width: 900px) 100vw, 760px' : '(max-width: 900px) 50vw, 380px'}
+              loading={i === 0 ? 'eager' : 'lazy'}
+              fetchpriority={i === 0 ? 'high' : undefined}
+              decoding="async"
+            />
+            <span class="sr-only">Ver foto {i + 1} de {d.fotos.length}</span>
+          </button>
+        ))
+      }
+      {
+        d.fotos.length > 1 && (
+          <button type="button" class="galeria__todas" data-foto="0">
+            Ver las {d.fotos.length} fotos
+          </button>
+        )
+      }
+    </div>
+
+    <div class="ficha__cuerpo">
+      <div class="ficha__info">
+        <section aria-labelledby="t-datos">
+          <h2 id="t-datos" class="ficha__subtitulo">Características</h2>
+          <dl class="datos">
+            {
+              datos.map(([k, v]) => (
+                <div>
+                  <dt>{k}</dt>
+                  <dd>{v}</dd>
+                </div>
+              ))
+            }
+          </dl>
+          {
+            d.caracteristicas.length > 0 && (
+              <ul class="extras">
+                {d.caracteristicas.map((c) => (
+                  <li>{c}</li>
+                ))}
+              </ul>
+            )
+          }
+        </section>
+
+        <section aria-labelledby="t-desc" class="descripcion">
+          <h2 id="t-desc" class="ficha__subtitulo">Descripción</h2>
+          <Content />
+        </section>
+      </div>
+
+      <aside class="contacto" aria-label="Contacto">
+        {
+          terminada ? (
+            <>
+              <p class="contacto__titulo">Esta propiedad ya fue {d.estado}.</p>
+              <p>Revisa las que tenemos disponibles o cuéntanos qué buscas.</p>
+              <a href="/propiedades" class="btn btn--primary">Ver propiedades disponibles</a>
+              <a href={whatsappWithText(`Hola, vi la propiedad ${d.codigo} y busco algo similar.`)} class="btn btn--ghost">
+                Busco algo similar
+              </a>
+            </>
+          ) : (
+            <>
+              <p class="contacto__titulo">¿Te interesa?</p>
+              <p>Escríbenos y te respondemos por WhatsApp. Lunes a sábado, de 9:00 a 19:00 hrs.</p>
+              <a href={whatsappWithText(msgInteres)} class="btn btn--primary">
+                <WhatsAppIcon />
+                Consultar por WhatsApp
+              </a>
+              <a href={whatsappWithText(msgVisita)} class="btn btn--ghost">
+                Agendar una visita
+              </a>
+              <p class="contacto__codigo">Código {d.codigo}</p>
+            </>
+          )
+        }
+      </aside>
+    </div>
+  </article>
+
+  <dialog class="visor" aria-label="Fotos de la propiedad" data-visor>
+    <div class="visor__barra">
+      <p>{d.titulo}</p>
+      <button type="button" class="visor__cerrar" data-cerrar aria-label="Cerrar fotos">×</button>
+    </div>
+    <div class="visor__fotos">
+      {
+        d.fotos.map((foto, i) => (
+          <figure id={`foto-${i}`}>
+            <Picture
+              src={foto}
+              alt={`Foto ${i + 1} de ${d.fotos.length}`}
+              formats={['avif', 'webp']}
+              widths={[600, 1000, 1400]}
+              sizes="(max-width: 1100px) 100vw, 1000px"
+              loading="lazy"
+              decoding="async"
+            />
+          </figure>
+        ))
+      }
+    </div>
+  </dialog>
+
+  <CtaBand
+    title="¿Tienes una propiedad"
+    accent="parecida a esta?"
+    text="Te decimos cuánto vale con una Valorización 360° sin costo."
+    ctaLabel="Valorizar mi propiedad"
+    ctaHref={`/contacto?op=${d.operacion === 'venta' ? 'vender' : 'arrendar'}`}
+  />
+
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+</Base>
+
+<script>
+  const visor = document.querySelector<HTMLDialogElement>('[data-visor]');
+  document.querySelectorAll<HTMLElement>('[data-foto]').forEach((btn) =>
+    btn.addEventListener('click', () => {
+      if (!visor) return;
+      visor.showModal();
+      document.body.style.overflow = 'hidden';
+      visor.querySelector(`#foto-${btn.dataset.foto}`)?.scrollIntoView({ block: 'start' });
+    }),
+  );
+  visor?.querySelector('[data-cerrar]')?.addEventListener('click', () => visor.close());
+  visor?.addEventListener('close', () => (document.body.style.overflow = ''));
+  // Cerrar al hacer clic fuera de las fotos
+  visor?.addEventListener('click', (e) => {
+    if (e.target === visor) visor.close();
+  });
+</script>
+
+<style>
+  .ficha {
+    padding-block: 32px 96px;
+  }
+  .ficha__migas {
+    display: flex;
+    gap: 8px;
+    font-size: 14px;
+    color: var(--text-3);
+    margin-bottom: 24px;
+  }
+  .ficha__aviso {
+    margin-bottom: 24px;
+    padding: 14px 18px;
+    border-radius: var(--radius);
+    font-weight: 500;
+  }
+  .ficha__aviso--vendida,
+  .ficha__aviso--arrendada {
+    background: var(--blue);
+    color: var(--white);
+  }
+  .ficha__aviso--reservada {
+    background: #f4ead3;
+    color: var(--ink);
+  }
+
+  .ficha__head {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 28px;
+  }
+  .ficha__titulo {
+    font-size: clamp(32px, 4vw, 48px);
+    line-height: 1.12;
+  }
+  .ficha__precio {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 16px;
+    font-family: var(--font-serif);
+    font-size: 30px;
+    color: var(--blue);
+  }
+  .ficha__precio > span:not(.ficha__sello) {
+    font-family: var(--font-sans);
+    font-size: 17px;
+    color: var(--text-3);
+    margin-left: -10px;
+  }
+  .ficha__sello {
+    padding: 4px 14px;
+    border-radius: 999px;
+    font-family: var(--font-sans);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .ficha__sello--vendida,
+  .ficha__sello--arrendada {
+    background: var(--blue);
+    color: var(--white);
+  }
+  .ficha__sello--reservada {
+    background: var(--gold);
+    color: var(--ink);
+  }
+
+  /* Galería: una foto grande y hasta dos chicas apiladas */
+  .galeria {
+    position: relative;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: repeat(2, 230px);
+    gap: 10px;
+    margin-bottom: 48px;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+  .galeria__item {
+    position: relative;
+    padding: 0;
+    border: 0;
+    background: var(--track);
+    cursor: zoom-in;
+    overflow: hidden;
+  }
+  .galeria__item--principal {
+    grid-row: span 2;
+  }
+  .galeria__item :global(picture),
+  .galeria__item :global(img) {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .galeria__item :global(img) {
+    transition: transform 0.5s var(--ease);
+  }
+  .galeria__item:hover :global(img) {
+    transform: scale(1.03);
+  }
+  .galeria__item:focus-visible {
+    outline-offset: -3px;
+  }
+  .galeria__todas {
+    position: absolute;
+    right: 16px;
+    bottom: 16px;
+    padding: 10px 16px;
+    border: 0;
+    border-radius: var(--radius-sm);
+    background: var(--white);
+    color: var(--ink);
+    font: inherit;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    box-shadow: 0 4px 14px -6px rgb(0 0 0 / 0.35);
+  }
+  /* Con pocas fotos */
+  .galeria:has(.galeria__item:only-of-type) {
+    grid-template-columns: 1fr;
+    grid-template-rows: 460px;
+  }
+  .galeria:has(.galeria__item:nth-of-type(2):last-of-type) .galeria__item:nth-of-type(2) {
+    grid-row: span 2;
+  }
+
+  @media (max-width: 900px) {
+    .galeria {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 260px 140px;
+    }
+    .galeria__item--principal {
+      grid-row: auto;
+      grid-column: span 2;
+    }
+    .galeria:has(.galeria__item:nth-of-type(2):last-of-type) .galeria__item:nth-of-type(2) {
+      grid-row: auto;
+      grid-column: span 2;
+    }
+    .galeria:has(.galeria__item:only-of-type) {
+      grid-template-rows: 300px;
+    }
+  }
+
+  .ficha__cuerpo {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 340px;
+    gap: 48px 56px;
+    align-items: start;
+  }
+  .ficha__info {
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+  }
+  .ficha__subtitulo {
+    margin-bottom: 18px;
+    font-family: var(--font-serif);
+    font-weight: 500;
+    font-size: 26px;
+    color: var(--blue);
+  }
+  .datos {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 0 24px;
+    margin: 0;
+  }
+  .datos div {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .datos dt {
+    color: var(--text-3);
+    font-size: 15px;
+  }
+  .datos dd {
+    margin: 0;
+    font-weight: 500;
+    text-align: right;
+  }
+  .extras {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+    padding: 0;
+    list-style: none;
+  }
+  .extras li {
+    padding: 6px 14px;
+    border-radius: 999px;
+    background: var(--white);
+    border: 1px solid var(--line);
+    font-size: 14px;
+    color: var(--text-2);
+  }
+  .descripcion :global(p) {
+    color: var(--text-2);
+    font-size: 17px;
+    max-width: 720px;
+  }
+  .descripcion :global(p + p) {
+    margin-top: 14px;
+  }
+
+  .contacto {
+    position: sticky;
+    top: calc(var(--header-h) + 24px);
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: 28px;
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    color: var(--text-2);
+    font-size: 15px;
+  }
+  .contacto__titulo {
+    font-family: var(--font-serif);
+    font-size: 24px;
+    color: var(--ink);
+  }
+  .contacto .btn {
+    width: 100%;
+  }
+  .contacto__codigo {
+    font-size: 13px;
+    color: var(--text-3);
+    text-align: center;
+  }
+
+  @media (max-width: 900px) {
+    .ficha__cuerpo {
+      grid-template-columns: 1fr;
+    }
+    .contacto {
+      position: static;
+      order: -1;
+    }
+  }
+  @media (max-width: 640px) {
+    .ficha {
+      padding-block: 20px 64px;
+    }
+    .ficha__precio {
+      font-size: 26px;
+    }
+  }
+
+  /* Visor de fotos */
+  .visor {
+    width: min(1100px, 100vw);
+    max-width: 100vw;
+    height: 100dvh;
+    max-height: 100dvh;
+    margin: 0 auto;
+    padding: 0;
+    border: 0;
+    background: var(--ink);
+    color: var(--white);
+  }
+  .visor::backdrop {
+    background: rgb(15 25 40 / 0.85);
+  }
+  .visor__barra {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    padding: 12px 20px;
+    background: var(--ink);
+  }
+  .visor__cerrar {
+    width: 44px;
+    height: 44px;
+    border: 1px solid rgb(255 255 255 / 0.4);
+    border-radius: 50%;
+    background: transparent;
+    color: var(--white);
+    font-size: 26px;
+    line-height: 1;
+    cursor: pointer;
+  }
+  .visor__fotos {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 0 12px 24px;
+  }
+  .visor__fotos figure {
+    margin: 0;
+    scroll-margin-top: 72px;
+  }
+  .visor__fotos :global(img) {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+  }
+</style>

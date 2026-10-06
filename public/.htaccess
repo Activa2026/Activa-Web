@@ -2,6 +2,8 @@
 
 Options -Indexes -MultiViews
 DirectoryIndex index.html
+# /propiedades es a la vez página (propiedades.html) y carpeta (fichas): sin barra final automática
+DirectorySlash Off
 ErrorDocument 404 /404.html
 
 <IfModule mod_rewrite.c>
@@ -17,11 +19,14 @@ ErrorDocument 404 /404.html
   RewriteRule ^ /%1 [L,R=301]
   RewriteRule ^index$ / [L,R=301]
 
-  # /pagina → pagina.html
+  # /pagina/ → /pagina (si existe pagina.html)
+  RewriteCond %{DOCUMENT_ROOT}/$1.html -f
+  RewriteRule ^(.+)/$ /$1 [L,R=301]
+
+  # /pagina → pagina.html (también cuando existe una carpeta con el mismo nombre)
   RewriteCond %{REQUEST_FILENAME} !-f
-  RewriteCond %{REQUEST_FILENAME} !-d
-  RewriteCond %{REQUEST_FILENAME}.html -f
-  RewriteRule ^(.+?)/?$ $1.html [L]
+  RewriteCond %{DOCUMENT_ROOT}/$1.html -f
+  RewriteRule ^(.+)$ $1.html [L]
 </IfModule>
 
 <IfModule mod_headers.c>

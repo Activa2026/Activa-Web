@@ -1,5 +1,6 @@
 ---
-import { NAV, PROPERTIES_URL, PROPERTIES_EXTERNAL } from '../site';
+import { NAV } from '../site';
+import { enlacePropiedades } from '../lib/propiedades';
 
 interface Props {
   current?: string;
@@ -7,7 +8,7 @@ interface Props {
 const { current } = Astro.props;
 const isHome = current === '/';
 const ctaHref = isHome ? '#valorizacion' : '/contacto';
-const extAttrs = PROPERTIES_EXTERNAL ? { target: '_blank', rel: 'noopener' } : {};
+const propiedadesHref = await enlacePropiedades();
 ---
 
 <header class="site-header">
@@ -30,7 +31,11 @@ const extAttrs = PROPERTIES_EXTERNAL ? { target: '_blank', rel: 'noopener' } : {
           </a>
         ))
       }
-      <a href={PROPERTIES_URL} class="site-nav__secondary" {...extAttrs}>Propiedades</a>
+      <a
+        href={propiedadesHref}
+        class="site-nav__secondary"
+        aria-current={current === '/propiedades' ? 'page' : undefined}>Propiedades</a
+      >
       <a href={ctaHref} class="btn btn--primary site-nav__cta">Valoriza tu propiedad</a>
     </nav>
   </div>
@@ -102,7 +107,7 @@ const extAttrs = PROPERTIES_EXTERNAL ? { target: '_blank', rel: 'noopener' } : {
     display: none;
   }
 
-  @media (max-width: 1140px) {
+  @media (max-width: 1240px) {
     .menu-toggle {
       display: inline-flex;
       align-items: center;

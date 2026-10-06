@@ -5,9 +5,9 @@ import SectionHead from '../components/SectionHead.astro';
 import Photo from '../components/Photo.astro';
 import ValuationForm from '../components/ValuationForm.astro';
 import CtaBand from '../components/CtaBand.astro';
-import { PROPERTIES_URL, PROPERTIES_EXTERNAL } from '../site';
+import { enlacePropiedades } from '../lib/propiedades';
 
-const extAttrs = PROPERTIES_EXTERNAL ? { target: '_blank', rel: 'noopener' } : {};
+const PROPERTIES_URL = await enlacePropiedades();
 
 const pillars = [
   {
@@ -124,7 +124,7 @@ const comunas = [
         <a href="#sistema" class="link">Cómo funciona el Sistema Activa</a>
       </div>
       <p class="hero__aside">
-        ¿Buscas dónde vivir? <a href={PROPERTIES_URL} {...extAttrs}>Revisa nuestras propiedades disponibles</a>
+        ¿Buscas dónde vivir? <a href={PROPERTIES_URL}>Revisa nuestras propiedades disponibles</a>
       </p>
     </div>
     <div class="hero__panel in in-2">
@@ -284,7 +284,7 @@ const comunas = [
       <div class="cards stagger">
         {
           profiles.map((p) => (
-            <a href={p.href} class="card" {...(p.href.startsWith('http') ? extAttrs : {})}>
+            <a href={p.href} class="card">
               <Photo
                 name={p.image}
                 alt=""
@@ -340,7 +340,7 @@ const comunas = [
         <h2 class="title properties__title">¿Buscas dónde vivir?</h2>
         <p>Revisa las propiedades que tenemos disponibles para venta y arriendo.</p>
       </div>
-      <a href={PROPERTIES_URL} class="btn btn--outline-dark" {...extAttrs}>Ver propiedades disponibles</a>
+      <a href={PROPERTIES_URL} class="btn btn--outline-dark">Ver propiedades disponibles</a>
     </div>
   </section>
 

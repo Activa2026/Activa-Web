@@ -19,9 +19,7 @@ export function whatsappWithText(text: string): string {
   return `${WHATSAPP_URL}?text=${encodeURIComponent(text)}`;
 }
 
-// Listado de propiedades en Dataprop. Pendiente: reemplazar por la URL pública real.
-export const PROPERTIES_URL = '/#propiedades';
-export const PROPERTIES_EXTERNAL = PROPERTIES_URL.startsWith('http');
+// El enlace a "Propiedades" se calcula en lib/propiedades.ts (enlacePropiedades).
 
 // Destino del formulario. Por defecto, public/api/lead.php (correo + registro en Hostinger).
 // Para el agente futuro (n8n), definir PUBLIC_LEADS_ENDPOINT con la URL del webhook.

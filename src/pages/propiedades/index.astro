@@ -1,0 +1,239 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import PropertyCard from '../../components/PropertyCard.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { getPropiedades, TIPO_LABEL } from '../../lib/propiedades';
+import { whatsappWithText } from '../../site';
+
+const propiedades = await getPropiedades();
+const comunas = [...new Set(propiedades.map((p) => p.data.comuna))].sort((a, b) => a.localeCompare(b, 'es'));
+const tipos = [...new Set(propiedades.map((p) => p.data.tipo))];
+const operaciones = [...new Set(propiedades.map((p) => p.data.operacion))];
+const vacio = propiedades.length === 0;
+const hayFiltros = operaciones.length > 1 || comunas.length > 1 || tipos.length > 1;
+---
+
+<Base
+  title="Propiedades en venta y arriendo | Activa Corredores"
+  description="Casas y departamentos en venta y arriendo en La Florida, Macul, Peñalolén y La Reina. Revisa las propiedades disponibles de Activa Corredores."
+  current="/propiedades"
+  noindex={vacio}
+>
+  <PageHero
+    eyebrow="Propiedades"
+    title="Encuentra dónde vivir,"
+    accent="en barrios que conocemos."
+    lead="Casas y departamentos en venta y arriendo en La Florida, Macul, Peñalolén y La Reina. Si una te interesa, escríbenos y coordinamos la visita."
+  />
+
+  <section class="wrap catalogo">
+    {
+      vacio ? (
+        <div class="catalogo__vacio">
+          <p class="title catalogo__vacio-titulo">Estamos preparando nuevas propiedades.</p>
+          <p>Cuéntanos qué buscas y te avisamos apenas tengamos algo para ti.</p>
+          <a
+            class="btn btn--primary"
+            href={whatsappWithText('Hola, estoy buscando una propiedad y me gustaría que me avisen cuando tengan opciones.')}
+          >
+            Escribir por WhatsApp
+          </a>
+        </div>
+      ) : (
+        <>
+          <form class:list={['filtros', { 'filtros--simple': !hayFiltros }]} aria-label="Filtrar propiedades" data-filtros>
+            {operaciones.length > 1 && (
+              <div class="field">
+                <label for="f-op">Operación</label>
+                <select id="f-op" name="operacion">
+                  <option value="">Venta y arriendo</option>
+                  <option value="venta">Venta</option>
+                  <option value="arriendo">Arriendo</option>
+                </select>
+              </div>
+            )}
+            {comunas.length > 1 && (
+              <div class="field">
+                <label for="f-comuna">Comuna</label>
+                <select id="f-comuna" name="comuna">
+                  <option value="">Todas</option>
+                  {comunas.map((c) => (
+                    <option>{c}</option>
+                  ))}
+                </select>
+              </div>
+            )}
+            {tipos.length > 1 && (
+              <div class="field">
+                <label for="f-tipo">Tipo</label>
+                <select id="f-tipo" name="tipo">
+                  <option value="">Todos</option>
+                  {tipos.map((t) => (
+                    <option value={t}>{TIPO_LABEL[t]}</option>
+                  ))}
+                </select>
+              </div>
+            )}
+            <p class="filtros__total" aria-live="polite" data-total>
+              {propiedades.length} {propiedades.length === 1 ? 'propiedad' : 'propiedades'}
+            </p>
+          </form>
+
+          <div class="catalogo__grid stagger" data-grid>
+            {propiedades.map((p) => (
+              <PropertyCard propiedad={p} />
+            ))}
+          </div>
+          <p class="catalogo__sin-resultados" data-sin-resultados hidden>
+            No hay propiedades con esos filtros.{' '}
+            <button type="button" class="link catalogo__limpiar" data-limpiar>
+              Ver todas
+            </button>
+          </p>
+        </>
+      )
+    }
+  </section>
+
+  <CtaBand
+    title="¿Quieres vender o arrendar"
+    accent="tu propiedad?"
+    text="Te entregamos una Valorización 360° sin costo y te explicamos cómo trabajamos."
+    ctaLabel="Solicitar valorización"
+  />
+</Base>
+
+<script>
+  const form = document.querySelector<HTMLFormElement>('[data-filtros]');
+  const cards = document.querySelectorAll<HTMLElement>('[data-grid] > .pcard');
+  const total = document.querySelector<HTMLElement>('[data-total]');
+  const sinResultados = document.querySelector<HTMLElement>('[data-sin-resultados]');
+
+  function aplicar() {
+    if (!form) return;
+    const f = new FormData(form);
+    const op = (f.get('operacion') as string) || '';
+    const comuna = (f.get('comuna') as string) || '';
+    const tipo = (f.get('tipo') as string) || '';
+    let visibles = 0;
+    cards.forEach((card) => {
+      const ok =
+        (!op || card.dataset.operacion === op) &&
+        (!comuna || card.dataset.comuna === comuna) &&
+        (!tipo || card.dataset.tipo === tipo);
+      card.hidden = !ok;
+      if (ok) visibles++;
+    });
+    if (total) total.textContent = `${visibles} ${visibles === 1 ? 'propiedad' : 'propiedades'}`;
+    if (sinResultados) sinResultados.hidden = visibles > 0;
+  }
+
+  form?.addEventListener('change', aplicar);
+  document.querySelector('[data-limpiar]')?.addEventListener('click', () => {
+    form?.reset();
+    aplicar();
+  });
+</script>
+
+<style>
+  .catalogo {
+    padding-bottom: 96px;
+  }
+  .filtros {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: 16px 20px;
+    padding: 20px 24px;
+    margin-bottom: 32px;
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+  }
+  .filtros--simple {
+    padding: 0;
+    background: none;
+    border: 0;
+  }
+  .filtros--simple .filtros__total {
+    margin-left: 0;
+    padding-bottom: 0;
+  }
+  .filtros .field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    flex: 1 1 180px;
+  }
+  .filtros label {
+    font-size: 14px;
+    font-weight: 500;
+  }
+  .filtros select {
+    height: 46px;
+    padding: 0 10px;
+    border: 1px solid var(--field-border);
+    border-radius: var(--radius-sm);
+    background: var(--white);
+    color: var(--ink);
+    font-size: 16px;
+  }
+  .filtros__total {
+    margin-left: auto;
+    padding-bottom: 12px;
+    font-size: 15px;
+    color: var(--text-3);
+  }
+  .catalogo__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 28px;
+  }
+  .catalogo__grid > [hidden] {
+    display: none;
+  }
+  .catalogo__sin-resultados {
+    padding: 32px 0;
+    color: var(--text-2);
+  }
+  .catalogo__limpiar {
+    background: none;
+    border: 0;
+    padding: 0;
+    font: inherit;
+    font-weight: 500;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  .catalogo__vacio {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 40px;
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    color: var(--text-2);
+  }
+  .catalogo__vacio-titulo {
+    font-size: 28px;
+  }
+  @media (max-width: 640px) {
+    .catalogo {
+      padding-bottom: 64px;
+    }
+    .catalogo__grid {
+      grid-template-columns: 1fr;
+    }
+    .filtros__total {
+      margin-left: 0;
+      padding-bottom: 0;
+      flex-basis: 100%;
+    }
+    .catalogo__vacio {
+      padding: 28px 22px;
+    }
+  }
+</style>
