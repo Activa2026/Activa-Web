@@ -8,7 +8,7 @@ Conviene subir las fotos al tamaño de la tabla o mayor; no hace falta comprimir
 
 | Archivo | Dónde va | Origen recomendado | Formato |
 |---|---|---|---|
-| hero.webp (video hero.mp4: pendiente) | Inicio, detrás del formulario | Real o IA ambiental (calle residencial, luz de tarde) | 1600×1200 / video 10–15 s horizontal |
+| hero.jpg + video `public/video/hero.mp4` (solo escritorio) | Inicio, detrás del formulario | Real o IA ambiental (calle residencial, luz de tarde) | 1600×1200 / video 10–15 s horizontal |
 | comuna-la-florida.webp | Inicio › Comunas | REAL | 800×1000 |
 | comuna-macul.webp | Inicio › Comunas | REAL | 800×1000 |
 | comuna-penalolen.webp | Inicio › Comunas | REAL | 800×1000 |
