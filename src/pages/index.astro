@@ -98,6 +98,38 @@ const profiles = [
   },
 ] as const;
 
+// Fotos de comunas: Wikimedia Commons, licencias libres con atribución obligatoria.
+const creditosComunas = [
+  {
+    comuna: 'La Florida',
+    autor: 'Antoine',
+    fuente: 'https://commons.wikimedia.org/wiki/File:Barrio_tipico_La_Florida.jpg',
+    licencia: 'CC BY-SA 3.0',
+    licenciaUrl: 'https://creativecommons.org/licenses/by-sa/3.0/deed.es',
+  },
+  {
+    comuna: 'Macul',
+    autor: 'Gonzalo Orellana Hidalgo',
+    fuente: 'https://commons.wikimedia.org/wiki/File:Casas_Villa_Nueva_Quilin.jpg',
+    licencia: 'CC BY-SA 2.0',
+    licenciaUrl: 'https://creativecommons.org/licenses/by-sa/2.0/deed.es',
+  },
+  {
+    comuna: 'Peñalolén',
+    autor: 'Gillermo Adolfo',
+    fuente: 'https://commons.wikimedia.org/wiki/File:Quilin_Norte_-_panoramio.jpg',
+    licencia: 'CC BY 3.0',
+    licenciaUrl: 'https://creativecommons.org/licenses/by/3.0/deed.es',
+  },
+  {
+    comuna: 'La Reina',
+    autor: 'Tommy Boy',
+    fuente: 'https://commons.wikimedia.org/wiki/File:La_Reina_5.jpg',
+    licencia: 'CC BY-SA 4.0',
+    licenciaUrl: 'https://creativecommons.org/licenses/by-sa/4.0/deed.es',
+  },
+];
+
 const comunas = [
   { name: 'La Florida', image: 'comuna-la-florida', tone: 1, text: 'Casas y departamentos familiares con buena conexión.' },
   { name: 'Macul', image: 'comuna-macul', tone: 2, text: 'Barrios consolidados, cerca de todo.' },
@@ -331,6 +363,20 @@ const comunas = [
         ))
       }
     </div>
+    <p class="creditos">
+      Fotos vía Wikimedia Commons:{' '}
+      {
+        creditosComunas.map((f, i) => (
+          <>
+            {f.comuna},{' '}
+            <a href={f.fuente} rel="noopener">
+              {f.autor}
+            </a>{' '}
+            (<a href={f.licenciaUrl} rel="license noopener">{f.licencia}</a>){i < creditosComunas.length - 1 ? '; ' : '.'}
+          </>
+        ))
+      }
+    </p>
   </section>
 
   <!-- Propiedades (secundario) -->
@@ -896,6 +942,15 @@ const comunas = [
     }
   }
 
+  .creditos {
+    margin-top: -24px;
+    font-size: 12px;
+    color: var(--text-3);
+    line-height: 1.5;
+  }
+  .creditos a {
+    color: inherit;
+  }
   .comunas__intro {
     font-size: 17px;
   }
