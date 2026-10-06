@@ -1,5 +1,5 @@
 ---
-// Ejemplo de informe (reporte semanal, resumen mensual). Los valores son marcadores.
+// Ejemplo de informe (reporte semanal, resumen mensual) con cifras ilustrativas aprobadas.
 interface Props {
   label: string;
   title: string;
@@ -12,6 +12,7 @@ const { label, title, meta, stats, noteLabel, note } = Astro.props;
 ---
 
 <figure class="report report--compact rv-r" aria-label={label}>
+  <p class="report__tag">Ejemplo ilustrativo</p>
   <div class="report__head">
     <p class="report__title">{title}</p>
     <p class="report__meta">{meta}</p>
@@ -40,12 +41,23 @@ const { label, title, meta, stats, noteLabel, note } = Astro.props;
     font-size: 30px;
     color: var(--blue);
   }
+  /* En pantallas angostas, cada cifra en su propia fila */
   @media (max-width: 480px) {
     .report--compact .report__stats {
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+    .report--compact .report__stat {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: baseline;
       gap: 12px;
+      padding-block: 8px;
     }
     .report--compact .report__stat + .report__stat {
-      padding-left: 12px;
+      padding-left: 0;
+      border-left: 0;
+      border-top: 1px solid var(--line);
     }
     .report--compact .report__value {
       font-size: 24px;

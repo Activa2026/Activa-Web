@@ -329,6 +329,17 @@ input, select, button, textarea {
   flex-direction: column;
   gap: 24px;
 }
+.report__tag {
+  align-self: flex-start;
+  margin-bottom: -8px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: var(--sand);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--text-3);
+}
 .report__head {
   display: flex;
   justify-content: space-between;
@@ -378,6 +389,11 @@ input, select, button, textarea {
 }
 .report__note strong {
   font-weight: 600;
+}
+@media (max-width: 360px) {
+  .report .report__value {
+    font-size: 19px;
+  }
 }
 @media (max-width: 480px) {
   .report {
