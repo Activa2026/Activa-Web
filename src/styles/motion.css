@@ -4,6 +4,9 @@
   - Resto (Firefox): reveal.ts agrega .reveal-fallback a <html> y .is-visible a cada
     elemento cuando entra en pantalla. Sin JS, todo queda visible.
   - prefers-reduced-motion: reduce → sin animación.
+  - animation-timeline va como var(--scroll-tl, view()) a propósito: si se escribe view() directo,
+    el minificador lo fusiona en el shorthand `animation: … view()`, que Chrome y Safari rechazan,
+    y en producción no se anima nada.
 */
 
 @keyframes rise {
@@ -56,7 +59,7 @@
     .stagger > *,
     .steps > li {
       animation: rise linear both;
-      animation-timeline: view();
+      animation-timeline: var(--scroll-tl, view());
       animation-range: entry 5% cover 28%;
     }
     .stagger > :nth-child(2), .steps > li:nth-child(2) { animation-range: entry 12% cover 32%; }
@@ -67,22 +70,22 @@
 
     .rv-l {
       animation: fromL linear both;
-      animation-timeline: view();
+      animation-timeline: var(--scroll-tl, view());
       animation-range: entry 5% cover 30%;
     }
     .rv-r {
       animation: fromR linear both;
-      animation-timeline: view();
+      animation-timeline: var(--scroll-tl, view());
       animation-range: entry 10% cover 34%;
     }
     .grow {
       animation: grow linear both;
-      animation-timeline: view();
+      animation-timeline: var(--scroll-tl, view());
       animation-range: entry 40% cover 45%;
     }
     .px {
       animation: drift linear both;
-      animation-timeline: view();
+      animation-timeline: var(--scroll-tl, view());
       animation-range: cover 0% cover 100%;
     }
   }
