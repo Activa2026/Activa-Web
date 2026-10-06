@@ -102,10 +102,10 @@ const profiles = [
 const creditosComunas = [
   {
     comuna: 'La Florida',
-    autor: 'Antoine',
-    fuente: 'https://commons.wikimedia.org/wiki/File:Barrio_tipico_La_Florida.jpg',
-    licencia: 'CC BY-SA 3.0',
-    licenciaUrl: 'https://creativecommons.org/licenses/by-sa/3.0/deed.es',
+    autor: 'Carlos Figueroa Rojas',
+    fuente: 'https://commons.wikimedia.org/wiki/File:Parque_en_Quebrada_de_Macul,_La_Florida,_Santiago_20260207_01.jpg',
+    licencia: 'CC BY-SA 4.0',
+    licenciaUrl: 'https://creativecommons.org/licenses/by-sa/4.0/deed.es',
   },
   {
     comuna: 'Macul',
@@ -363,20 +363,19 @@ const comunas = [
         ))
       }
     </div>
-    <p class="creditos">
-      Fotos vía Wikimedia Commons:{' '}
-      {
-        creditosComunas.map((f, i) => (
-          <>
-            {f.comuna},{' '}
-            <a href={f.fuente} rel="noopener">
-              {f.autor}
-            </a>{' '}
-            (<a href={f.licenciaUrl} rel="license noopener">{f.licencia}</a>){i < creditosComunas.length - 1 ? '; ' : '.'}
-          </>
-        ))
-      }
-    </p>
+    <details class="creditos">
+      <summary>Créditos de fotos</summary>
+      <p>
+        Wikimedia Commons:{' '}
+        {
+          creditosComunas.map((f, i) => (
+            <>
+              {f.comuna}, <a href={f.fuente} rel="noopener">{f.autor}</a> (<a href={f.licenciaUrl} rel="license noopener">{f.licencia}</a>){i < creditosComunas.length - 1 ? '; ' : '.'}
+            </>
+          ))
+        }
+      </p>
+    </details>
   </section>
 
   <!-- Propiedades (secundario) -->
@@ -943,10 +942,25 @@ const comunas = [
   }
 
   .creditos {
-    margin-top: -24px;
-    font-size: 12px;
-    color: var(--text-3);
+    margin-top: -32px;
+    font-size: 11px;
     line-height: 1.5;
+    color: var(--text-3);
+  }
+  .creditos summary {
+    width: fit-content;
+    padding-block: 4px;
+    cursor: pointer;
+    list-style: none;
+  }
+  .creditos summary::-webkit-details-marker {
+    display: none;
+  }
+  .creditos summary:hover {
+    text-decoration: underline;
+  }
+  .creditos p {
+    margin-top: 4px;
   }
   .creditos a {
     color: inherit;
