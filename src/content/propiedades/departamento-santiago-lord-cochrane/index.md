@@ -1,0 +1,75 @@
+---
+# Generado por tools/importar-dataprop.mjs desde Dataprop. No editar a mano:
+# se sobrescribe en cada importación. Para corregir algo, usa tools/dataprop-ajustes.json.
+codigo: "Departamento Santiago · Lord Cochrane"
+titulo: "Departamento de 2 dormitorios en Santiago"
+bajada: "Depto mariposa 2D/2B en piso 10, a pasos de la Alameda"
+operacion: "venta"
+tipo: "departamento"
+comuna: "Santiago"
+sector: "Lord Cochrane"
+precio:
+  moneda: "UF"
+  valor: 2500
+superficie:
+  util: 50
+  total: 52
+dormitorios: 2
+banos: 2
+antiguedad: 15
+orientacion: "Poniente"
+caracteristicas:
+  - "Living/sala de estar"
+  - "Cocina office"
+  - "Quincho"
+  - "Admite mascotas"
+  - "Lavandería"
+  - "Sala de eventos"
+  - "Citófono"
+  - "Portón eléctrico"
+  - "Cerca de parque"
+  - "Cerca de transporte público"
+  - "Cerca de zona comercial"
+  - "Cerca de zona de entretenimiento"
+  - "Cerca de centro de salud"
+  - "Cerca de universidad o colegio"
+estado: "disponible"
+destacada: false
+publicada: "2026-09-29"
+dataprop:
+  id: "1790712391"
+  url: "https://app.dataprop.cl/propiedades/1790712391-venta-departamento-2hab-2ba-santiago"
+fotos:
+  - "./01.jpg"
+  - "./02.jpg"
+  - "./03.jpg"
+  - "./04.jpg"
+  - "./05.jpg"
+  - "./06.jpg"
+  - "./07.jpg"
+  - "./08.jpg"
+  - "./09.jpg"
+  - "./10.jpg"
+  - "./11.jpg"
+  - "./12.jpg"
+  - "./13.jpg"
+  - "./14.jpg"
+  - "./15.jpg"
+  - "./16.jpg"
+  - "./17.jpg"
+  - "./18.jpg"
+  - "./19.jpg"
+  - "./20.jpg"
+---
+
+En el corazón de Santiago, a pocos pasos de la Alameda, este departamento de 52 m en el piso 10 de Lord Cochrane 173 combina una distribución inteligente con una ubicación de gran demanda. Sirve tanto para quien busca su primera vivienda como para quien quiere invertir en una zona con arriendo constante y liquidez comprobada.
+
+La planta es de tipo mariposa. Los dos dormitorios están en extremos opuestos y el living-comedor queda al centro. El dormitorio principal tiene baño en suite con vanitorio en tono madera. El segundo baño está junto al dormitorio secundario, por lo que cada dormitorio funciona prácticamente con su propio baño. Esta configuración es muy valorada por parejas, profesionales que comparten vivienda y arrendatarios.
+
+La cocina se integra al espacio social. Tiene muebles altos y bajos en melamina clara, cubierta de granito negro y salpicadero de vidrio. Incluye horno empotrado, encimera eléctrica y campana, con espacio definido para refrigerador. Todo el departamento tiene piso laminado en tono madera, que da continuidad visual y es fácil de mantener.
+
+La orientación poniente, sumada a la altura del piso 10, asegura luz natural durante la tarde y atardeceres sobre la ciudad. El dormitorio principal tiene un amplio ventanal con salida al exterior, y el secundario ofrece vista abierta sobre los techos del centro. Se entrega sin muebles, así que el nuevo propietario puede habilitarlo a su gusto.
+
+El edificio fue construido en 2011. Sus espacios comunes están en la azotea: quinchos con parrilla bajo pérgola rodeados de jardineras, y un salón de uso común con ventanales de piso a techo, barra con lavaplatos y una vista privilegiada hacia la cordillera de los Andes. Además tiene una lavandería comunitaria de autoservicio.
+
+El entorno concentra servicios, comercio, universidades, organismos públicos y oficinas, con conectividad inmediata al Metro Línea 1 y a los principales ejes de transporte. Es una propiedad bien ubicada y con buena rentabilidad potencial, en un edificio con áreas comunes de alto estándar.

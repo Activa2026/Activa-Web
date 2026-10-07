@@ -105,6 +105,9 @@ function oracion(titulo, propios) {
     const cap = (w) => w.charAt(0).toUpperCase() + w.slice(1);
     return `${cap(a)} ${cap(b)}`;
   });
+  // "2 d2 b", "2 d/2 b" → "2D/2B"; nombres propios frecuentes
+  t = t.replace(/\b(\d+)\s*d\s*\/?\s*(\d+)\s*b\b/gi, '$1D/$2B');
+  t = t.replace(/\b(alameda|costanera|providencia|ñuñoa|santiago)\b/gi, (w) => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase());
   return t.replace(/[.\s]+$/, '');
 }
 
@@ -139,7 +142,15 @@ async function leerListado() {
     const href = t.match(/href="(\/propiedades\/[^"]+)"/)?.[1];
     const txt = lineas(t);
     const ubic = txt.find((l) => / - /.test(l)) ?? '';
-    const estado = (txt.find((l) => /^(DISPONIBLE|RESERVADA|VENDIDA|ARRENDADA)$/i.test(l)) ?? 'DISPONIBLE').toLowerCase();
+    // Dataprop usa "VENDIDO", "ARRENDADO", "RESERVADO" (o en femenino)
+    const etiqueta = (txt.find((l) => /^(DISPONIBLE|RESERVAD[AO]|VENDID[AO]|ARRENDAD[AO])$/i.test(l)) ?? 'DISPONIBLE').toLowerCase();
+    const estado = etiqueta.startsWith('vendid')
+      ? 'vendida'
+      : etiqueta.startsWith('arrendad')
+        ? 'arrendada'
+        : etiqueta.startsWith('reservad')
+          ? 'reservada'
+          : 'disponible';
     return {
       href,
       slugDataprop: href?.split('/').pop(),
@@ -223,7 +234,13 @@ async function leerFicha(item) {
 
   // Fotos (galería pública)
   const galeria = desescaparJs(await obtener(`${BASE}/mis-propiedades/${item.slugDataprop}/photos/gallery`, true));
-  const fotos = [...new Set([...galeria.matchAll(/src="(https:\/\/cdn\.dataprop\.cl\/photos\/images\/[^"]+\/original\/[^"]+)"/g)].map((m) => m[1]))];
+  // Imágenes principales de la galería. Dataprop usa dos formatos de dirección:
+  // cdn.dataprop.cl/photos/images/…/original/foto.jpg y cdn.dataprop.cl/<clave>
+  const fotos = [
+    ...new Set(
+      [...galeria.matchAll(/<img class="d-block w-100" src="(https:\/\/cdn\.dataprop\.cl\/[^"]+)"/g)].map((m) => m[1]),
+    ),
+  ];
 
   return {
     ogTitulo, tipoTxt, operacion, precioTxt, direccion, carac, parrafos, adic, cercanias, condominio, fotos,

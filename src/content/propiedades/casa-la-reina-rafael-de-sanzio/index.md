@@ -34,7 +34,7 @@ caracteristicas:
   - "Cerca de zona de entretenimiento"
   - "Cerca de centro de salud"
   - "Cerca de universidad o colegio"
-estado: "disponible"
+estado: "vendida"
 destacada: false
 publicada: "2026-01-06"
 dataprop:
