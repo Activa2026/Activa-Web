@@ -9,7 +9,7 @@ comuna: "Padre Hurtado"
 sector: "Los Corrales"
 precio:
   moneda: "UF"
-  valor: 3550
+  valor: 3200
 superficie:
   terreno: 7000
 caracteristicas:
