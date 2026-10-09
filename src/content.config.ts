@@ -52,7 +52,7 @@ const propiedades = defineCollection({
       dataprop: z
         .object({
           id: z.string(),
-          url: z.string().url(),
+          url: z.url(),
           // Fecha en que dejó de aparecer en Dataprop (se marca vendida/arrendada)
           retirada: z.coerce.date().optional(),
         })

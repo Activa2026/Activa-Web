@@ -1,15 +1,14 @@
 // Lógica del formulario de valorización (components/ValuationForm.astro).
 // Valida, protege contra spam (campo trampa, tiempo mínimo y límite de envíos por
-// navegador) y envía al destino de leads (public/api/lead.php o el webhook definido
-// en PUBLIC_LEADS_ENDPOINT). Si el envío falla, ofrece continuar por WhatsApp con el
-// mensaje ya escrito.
+// navegador), registra el lead en segundo plano (public/api/lead.php o el webhook de
+// PUBLIC_LEADS_ENDPOINT: correo + respaldo) y termina siempre abriendo WhatsApp con el
+// mensaje ya escrito hacia el número de Activa.
 
-const STEP_NAMES = ['Tu propiedad', 'Tus datos', 'Listo'];
+const STEP_NAMES = ['Tu propiedad', 'Tus datos', 'Enviar por WhatsApp'];
 const MIN_FILL_MS = 3000;
 const RATE_KEY = 'activa-leads';
 const RATE_MAX = 3;
 const RATE_WINDOW_MS = 60 * 60 * 1000;
-const REQUEST_TIMEOUT_MS = 12000;
 
 const OPERATION_LABEL: Record<string, string> = {
   vender: 'vender',
@@ -57,24 +56,20 @@ export function initValuationForm(form: HTMLFormElement): void {
   const status = form.querySelector<HTMLElement>('[data-status]')!;
   const bars = form.querySelectorAll<HTMLElement>('.vform__bars span');
   const steps = form.querySelectorAll<HTMLElement>('[data-step]');
-  const sendError = form.querySelector<HTMLElement>('[data-send-error]')!;
-  const waFallback = form.querySelector<HTMLAnchorElement>('[data-wa-fallback]')!;
-  const submitBtn = form.querySelector<HTMLButtonElement>('button[type="submit"]')!;
+  const waLink = form.querySelector<HTMLAnchorElement>('[data-wa-link]')!;
   const field = (name: string) => form.elements.namedItem(name) as HTMLInputElement | HTMLSelectElement;
 
   const startedAt = Date.now();
-  let sending = false;
 
   // Preselecciona la operación desde ?op=vender|arrendar|administrar
   const op = new URLSearchParams(location.search).get('op');
   if (op && op in OPERATION_LABEL) field('operacion').value = op;
 
-  function show(step: '1' | '2' | '3' | 'fallback', focus = true): void {
+  function show(step: '1' | '2' | '3', focus = true): void {
     steps.forEach((el) => (el.hidden = el.dataset.step !== step));
-    const n = step === 'fallback' ? 3 : Number(step);
+    const n = Number(step);
     bars.forEach((bar, i) => bar.classList.toggle('is-on', i < n));
-    status.textContent =
-      step === 'fallback' ? 'Paso 3 de 3: Enviar por WhatsApp' : `Paso ${n} de 3: ${STEP_NAMES[n - 1]}`;
+    status.textContent = `Paso ${n} de 3: ${STEP_NAMES[n - 1]}`;
     if (!focus) return;
     const target = form.querySelector<HTMLElement>(`[data-step="${step}"]`)!;
     const first =
@@ -123,15 +118,6 @@ export function initValuationForm(form: HTMLFormElement): void {
     return `Hola, soy ${nombre}. Quiero una Valorización 360° de mi ${tipo} en ${comuna} para ${opLabel}.`;
   }
 
-  function fallback(failed = false): void {
-    if (failed) {
-      form.querySelector<HTMLElement>('[data-fallback-text]')!.textContent =
-        'No pudimos registrar tu solicitud desde la página. Envíanos el mensaje ya escrito por WhatsApp y te respondemos ahí mismo.';
-    }
-    waFallback.href = `https://wa.me/${waNumber}?text=${encodeURIComponent(whatsappMessage())}`;
-    show('fallback');
-  }
-
   // Valida a medida que se corrige un campo marcado con error
   form.addEventListener('input', (e) => {
     const input = e.target as HTMLInputElement;
@@ -147,41 +133,13 @@ export function initValuationForm(form: HTMLFormElement): void {
   form.querySelectorAll('[data-reset]').forEach((btn) =>
     btn.addEventListener('click', () => {
       form.reset();
-      sendError.hidden = true;
       show('1');
     }),
   );
 
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    if (sending) return;
-    sendError.hidden = true;
-
-    // Paso 1 con Enter: avanzar en vez de enviar
-    if (form.querySelector<HTMLElement>('[data-step="2"]')!.hidden) {
-      show('2');
-      return;
-    }
-    if (!validate()) return;
-
-    // Robots: campo trampa lleno o envío demasiado rápido → fingir éxito sin enviar
-    if ((field('empresa') as HTMLInputElement).value || Date.now() - startedAt < MIN_FILL_MS) {
-      show('3');
-      return;
-    }
-
-    if (recentSubmissions().length >= RATE_MAX) {
-      sendError.textContent =
-        'Ya recibimos varias solicitudes desde este equipo. Si necesitas algo más, escríbenos por WhatsApp.';
-      sendError.hidden = false;
-      return;
-    }
-
-    if (!endpoint) {
-      fallback();
-      return;
-    }
-
+  /** Registra el lead (correo + respaldo) sin bloquear la apertura de WhatsApp. */
+  function registrar(): void {
+    if (!endpoint || recentSubmissions().length >= RATE_MAX) return;
     const payload = {
       comuna: field('comuna').value,
       tipo: field('tipo').value,
@@ -192,33 +150,48 @@ export function initValuationForm(form: HTMLFormElement): void {
       origen: location.pathname,
       ...utmParams(),
     };
-
-    sending = true;
-    submitBtn.setAttribute('aria-busy', 'true');
-    submitBtn.textContent = 'Enviando…';
-    const controller = new AbortController();
-    const timer = window.setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
-
-    try {
-      const res = await fetch(endpoint, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
-        signal: controller.signal,
+    // keepalive: el envío termina aunque el navegador pase a WhatsApp
+    fetch(endpoint, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+      keepalive: true,
+    })
+      .then((res) => {
+        if (res.ok) recordSubmission();
+      })
+      .catch(() => {
+        /* el lead igual llega por WhatsApp */
       });
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      recordSubmission();
-      form.querySelector<HTMLAnchorElement>('[data-wa-done]')!.href =
-        `https://wa.me/${waNumber}?text=${encodeURIComponent(whatsappMessage())}`;
-      show('3');
-    } catch {
-      fallback(true);
-    } finally {
-      window.clearTimeout(timer);
-      sending = false;
-      submitBtn.removeAttribute('aria-busy');
-      submitBtn.textContent = 'Solicitar valorización';
+  }
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    // Paso 1 con Enter: avanzar en vez de enviar
+    if (form.querySelector<HTMLElement>('[data-step="2"]')!.hidden) {
+      show('2');
+      return;
     }
+    if (!validate()) return;
+
+    const waUrl = `https://wa.me/${waNumber}?text=${encodeURIComponent(whatsappMessage())}`;
+    waLink.href = waUrl;
+
+    // Robots: campo trampa lleno o envío demasiado rápido → no registrar ni abrir nada
+    if ((field('empresa') as HTMLInputElement).value || Date.now() - startedAt < MIN_FILL_MS) {
+      show('3');
+      return;
+    }
+
+    registrar();
+    show('3');
+    // Se abre en el mismo gesto del clic para que el navegador no lo bloquee.
+    // En el celular abre la app de WhatsApp; en computador, WhatsApp Web o la app de escritorio.
+    // (sin 'noopener' en las opciones: con él window.open devuelve null siempre)
+    const ventana = window.open(waUrl, '_blank');
+    if (ventana) ventana.opener = null;
+    else window.location.href = waUrl;
   });
 
   show('1', false);

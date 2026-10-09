@@ -1,5 +1,6 @@
 ---
 // Formulario de valorización en 3 pasos. Lógica en scripts/valuation-form.ts.
+import WhatsAppIcon from './WhatsAppIcon.astro';
 import { SITE, LEADS_ENDPOINT, WHATSAPP_URL } from '../site';
 
 interface Props {
@@ -86,28 +87,21 @@ const { variant = 'card' } = Astro.props;
       <input id="vf-mail" name="email" type="email" autocomplete="email" maxlength="120" aria-describedby="vf-mail-err" />
       <p class="field__error" id="vf-mail-err" hidden></p>
     </div>
-    <p class="field__error vform__send-error" data-send-error hidden></p>
     <div class="vform__row vform__row--actions">
       <button type="button" class="btn btn--ghost" data-back>Volver</button>
-      <button type="submit" class="btn btn--gold vform__submit">Solicitar valorización</button>
+      <button type="submit" class="btn btn--gold vform__submit"><WhatsAppIcon />Enviar por WhatsApp</button>
     </div>
   </fieldset>
 
   <div class="vform__step vform__done" data-step="3" hidden tabindex="-1">
-    <p class="vform__done-title">Recibimos tu solicitud.</p>
-    <p>Te escribiremos por WhatsApp para coordinar tu Valorización 360°.</p>
-    <p>¿Prefieres adelantarte? <a href={WHATSAPP_URL} class="link" data-wa-done>Escríbenos ahora por WhatsApp</a></p>
-    <a href="/sistema" class="link">Mientras tanto, conoce el Sistema Activa</a>
-    <button type="button" class="btn btn--ghost vform__reset" data-reset>Enviar otra solicitud</button>
-  </div>
-
-  <div class="vform__step vform__done" data-step="fallback" hidden tabindex="-1">
-    <p class="vform__done-title">Último paso: envíanos tu solicitud.</p>
-    <p data-fallback-text>
-      Te dejamos el mensaje ya escrito con tus datos. Envíalo por WhatsApp y coordinamos tu Valorización 360° ahí mismo.
+    <p class="vform__done-title">Último paso: envía el mensaje en WhatsApp.</p>
+    <p>
+      Abrimos WhatsApp con tu solicitud ya escrita. Solo presiona <strong>enviar</strong> y seguimos la conversación
+      por ahí.
     </p>
-    <a href={WHATSAPP_URL} class="btn btn--primary" data-wa-fallback>Enviar por WhatsApp</a>
-    <button type="button" class="btn btn--ghost vform__reset" data-reset>Volver al formulario</button>
+    <a href={WHATSAPP_URL} class="btn btn--whatsapp" data-wa-link><WhatsAppIcon />Abrir WhatsApp</a>
+    <p class="vform__nota">¿No se abrió? Toca el botón. Respondemos de lunes a sábado, de 9:00 a 19:00 hrs.</p>
+    <button type="button" class="btn btn--ghost vform__reset" data-reset>Enviar otra solicitud</button>
   </div>
 
   <noscript>
@@ -263,8 +257,18 @@ const { variant = 'card' } = Astro.props;
     font-size: 22px;
     color: var(--ink);
   }
-  .vform__done .btn--primary {
-    align-self: flex-start;
+  .btn--whatsapp {
+    align-self: stretch;
+    background: var(--blue);
+    color: var(--white);
+  }
+  .btn--whatsapp:hover {
+    background: var(--ink);
+    color: var(--white);
+  }
+  .vform__nota {
+    font-size: 13px;
+    color: var(--text-3);
   }
   .vform__reset {
     align-self: flex-start;
