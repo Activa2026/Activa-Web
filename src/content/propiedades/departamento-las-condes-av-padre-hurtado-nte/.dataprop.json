@@ -1,0 +1,80 @@
+{
+  "data": {
+    "codigo": "Departamento Las Condes · Av. Padre Hurtado Nte",
+    "titulo": "Departamento de 3 dormitorios en Las Condes",
+    "bajada": "Vive frente a alto Las Condes, ubicación que se siente",
+    "operacion": "venta",
+    "tipo": "departamento",
+    "comuna": "Las Condes",
+    "sector": "Av. Padre Hurtado Nte",
+    "precio": {
+      "moneda": "UF",
+      "valor": 5600
+    },
+    "superficie": {
+      "util": 83
+    },
+    "dormitorios": 3,
+    "banos": 2,
+    "antiguedad": 45,
+    "orientacion": "Oriente",
+    "caracteristicas": [
+      "Living/sala de estar",
+      "Cocina cerrada",
+      "Admite mascotas",
+      "Lavandería",
+      "Cerca de parque",
+      "Cerca de transporte público",
+      "Cerca de zona comercial",
+      "Cerca de zona de entretenimiento",
+      "Cerca de centro de salud",
+      "Cerca de universidad o colegio"
+    ],
+    "estado": "disponible",
+    "destacada": false,
+    "publicada": "2026-10-01",
+    "dataprop": {
+      "id": "1790867756",
+      "url": "https://app.dataprop.cl/propiedades/1790867756-venta-departamento-3hab-2ba-las-condes"
+    },
+    "descripcion": "Este departamento es ideal para quienes están en una etapa de consolidación y saben que la ubicación marca la diferencia a largo plazo. Está literalmente frente al Mall Alto Las Condes, con acceso inmediato a comercio, servicios, restaurantes, clínicas y excelente conectividad, todo sin renunciar a un entorno residencial y tranquilo.\n\nSe ubica en un edificio de solo 3 pisos, en el piso 3, lo que entrega mayor privacidad, mejor iluminación y una vista más despejada. Al no contar con ascensor, el edificio mantiene una escala más baja, gastos comunes contenidos y una vida más tranquila, muy valorada por quienes priorizan barrio por sobre grandes torres.\n\nCon 83 m² totales, el departamento ofrece una distribución cómoda y bien pensada: 3 dormitorios, 2 baños completos, living comedor amplio, terraza y orientación oriente, que asegura luz natural durante la mañana y ambientes agradables todo el día.\n\nLa propiedad se encuentra bien mantenida y, al mismo tiempo, ofrece un excelente potencial de modernización: una base sólida para actualizar terminaciones, cocina o baños según tu propio estilo y ritmo, transformándola en un hogar alineado a tu proyecto de vida, sin urgencias ni intervenciones obligatorias.\n\nAdicionalmente, cuenta con estacionamiento mediante tarjeta de la Municipalidad de Las Condes, una solución práctica y habitual en el sector, especialmente valorada por su ubicación estratégica.\n\nUna oportunidad para quienes buscan vivir hoy en una ubicación privilegiada y proyectar su hogar a futuro, en uno de los puntos más demandados de Las Condes."
+  },
+  "fotos": [
+    "./01.jpg",
+    "./02.jpg",
+    "./03.jpg",
+    "./04.jpg",
+    "./05.jpg",
+    "./06.jpg",
+    "./07.jpg",
+    "./08.jpg",
+    "./09.jpg",
+    "./10.jpg",
+    "./11.jpg",
+    "./12.jpg",
+    "./13.jpg",
+    "./14.jpg",
+    "./15.jpg",
+    "./16.jpg",
+    "./17.jpg"
+  ],
+  "fotosOrigen": [
+    "https://cdn.dataprop.cl/photos/images/000/720/937/original/IMG_7244.jpeg?1775173527",
+    "https://cdn.dataprop.cl/photos/images/000/720/936/original/IMG_7245.jpeg?1775173526",
+    "https://cdn.dataprop.cl/photos/images/000/720/939/original/IMG_7242.jpeg?1775173531",
+    "https://cdn.dataprop.cl/photos/images/000/720/940/original/IMG_7241.jpeg?1775173533",
+    "https://cdn.dataprop.cl/photos/images/000/720/941/original/IMG_7240.jpeg?1775173535",
+    "https://cdn.dataprop.cl/gt10etcgy99wpbpogpdvoqjqgtux",
+    "https://cdn.dataprop.cl/cz8irut9hk1sel3u9b1aj2qd84kp",
+    "https://cdn.dataprop.cl/i65og3ghdeusi4naiyjcnshha744",
+    "https://cdn.dataprop.cl/6ejlwxbq49tl9d427jj688qr36rk",
+    "https://cdn.dataprop.cl/wy88m2wd6m8ds6bur3xhs9tg3cp7",
+    "https://cdn.dataprop.cl/xdsg4ozabx9gvumfqv7g2n18sliv",
+    "https://cdn.dataprop.cl/93nf62hjunf8ms2szjg3j7qxfw10",
+    "https://cdn.dataprop.cl/qvn8mx6g1wpy52p1fh4bbsuan7q1",
+    "https://cdn.dataprop.cl/io5vannunvp1phrlc1cbvc5ke9rv",
+    "https://cdn.dataprop.cl/h0tfnbl85nrn2xui6blkuyfl32w4",
+    "https://cdn.dataprop.cl/enh5i7fipkgkd8h5lcuybzdr1soe",
+    "https://cdn.dataprop.cl/kvl1wcqice4ebl0vngyvn6hlllf9"
+  ]
+}
