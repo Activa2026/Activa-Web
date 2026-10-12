@@ -3,7 +3,7 @@
 # se sobrescribe en cada importación. Para corregir algo, usa tools/dataprop-ajustes.json.
 codigo: "Departamento Las Condes · Av. Padre Hurtado Nte"
 titulo: "Departamento de 3 dormitorios en Las Condes"
-bajada: "Vive frente a alto Las Condes, ubicación que se siente"
+bajada: "Espacio, luz y conectividad frente al mall"
 operacion: "venta"
 tipo: "departamento"
 comuna: "Las Condes"
