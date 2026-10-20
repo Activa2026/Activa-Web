@@ -108,6 +108,7 @@ function oracion(titulo, propios) {
   // "2 d2 b", "2 d/2 b" → "2D/2B"; nombres propios frecuentes
   t = t.replace(/\b(\d+)\s*d\s*\/?\s*(\d+)\s*b\b/gi, '$1D/$2B');
   t = t.replace(/\b(alameda|costanera|providencia|ñuñoa|santiago)\b/gi, (w) => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase());
+  t = t.replace(/\s+,/g, ',').replace(/\s{2,}/g, ' ');
   return t.replace(/[.\s]+$/, '');
 }
 
@@ -281,7 +282,17 @@ function transformar(item, f, ajuste = {}) {
     valor: numero(f.precioTxt),
   };
 
-  const parrafos = f.parrafos.filter((p) => {
+  // La dirección se muestra sin número: también en la descripción ("Eleuterio Ramírez 740" → "Eleuterio Ramírez")
+  const sinNumero = (txt) => {
+    if (!calle) return txt;
+    const nombre = calle.replace(/^(av\.?|avenida|pasaje|psje\.?|calle)\s+/i, '');
+    const re = new RegExp(
+      `(${nombre.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})\\s*(?:n[°º.]?\\s*)?\\d+[a-z]?(?:\\s*,?\\s*(?:depto\\.?|dpto\\.?|departamento|oficina|of\\.?|casa|#)\\s*[\\w-]+)?`,
+      'gi',
+    );
+    return txt.replace(re, '$1');
+  };
+  const parrafos = f.parrafos.map(sinNumero).filter((p) => {
     if (NOTA_INTERNA.test(p)) {
       aviso(`"${calle}, ${comuna}": se omitió un párrafo que parece una nota interna (revísalo en Dataprop): «${p.slice(0, 90)}…»`);
       return false;

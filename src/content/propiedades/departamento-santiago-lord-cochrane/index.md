@@ -62,7 +62,7 @@ fotos:
   - "./20.jpg"
 ---
 
-En el corazón de Santiago, a pocos pasos de la Alameda, este departamento de 52 m en el piso 10 de Lord Cochrane 173 combina una distribución inteligente con una ubicación de gran demanda. Sirve tanto para quien busca su primera vivienda como para quien quiere invertir en una zona con arriendo constante y liquidez comprobada.
+En el corazón de Santiago, a pocos pasos de la Alameda, este departamento de 52 m en el piso 10 de Lord Cochrane combina una distribución inteligente con una ubicación de gran demanda. Sirve tanto para quien busca su primera vivienda como para quien quiere invertir en una zona con arriendo constante y liquidez comprobada.
 
 La planta es de tipo mariposa. Los dos dormitorios están en extremos opuestos y el living-comedor queda al centro. El dormitorio principal tiene baño en suite con vanitorio en tono madera. El segundo baño está junto al dormitorio secundario, por lo que cada dormitorio funciona prácticamente con su propio baño. Esta configuración es muy valorada por parejas, profesionales que comparten vivienda y arrendatarios.
 
