@@ -10,7 +10,7 @@ comuna: "Santiago"
 sector: "Lord Cochrane"
 precio:
   moneda: "UF"
-  valor: 2500
+  valor: 2250
 superficie:
   util: 50
   total: 52
