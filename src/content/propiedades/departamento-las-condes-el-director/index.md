@@ -10,7 +10,7 @@ comuna: "Las Condes"
 sector: "El Director"
 precio:
   moneda: "UF"
-  valor: 7600
+  valor: 7000
 superficie:
   util: 75
   total: 78
