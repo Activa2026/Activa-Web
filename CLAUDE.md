@@ -34,7 +34,8 @@ barras que se llenan, leve parallax en la foto de "Nosotros", franja "Las reglas
 Firefox. Respetar `prefers-reduced-motion` (sin animación).
 
 ## Datos del negocio (no inventar otros)
-- Valorización 360°: comparables CBR 70%, HousePricing 15%, Propiteq 15%. Entrega 3 precios (competitivo, mercado, aspiracional) y líquido estimado.
+- Valorización 360°: base en ventas reales inscritas en el CBR, "complementadas con modelos de tasación del mercado". Entrega 3 precios (competitivo, mercado, aspiracional) y líquido estimado.
+  NO publicar en el sitio los nombres de las fuentes de tasación ni los pesos de cada fuente (decisión del 22 oct 2026).
 - Comisión de venta: 2% sobre el precio de venta, sin IVA (confirmado).
 - Orden de venta exclusiva por 120 días.
 - Comisión de arriendo: 50% de un mes de arriendo + IVA.
