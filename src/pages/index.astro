@@ -30,7 +30,7 @@ const pillars = [
 const stages = [
   {
     name: 'Valorización 360°',
-    text: 'Cruzamos ventas reales inscritas en el CBR con dos modelos de tasación y te entregamos tres precios posibles.',
+    text: 'Cruzamos ventas reales inscritas en el CBR con modelos de tasación del mercado y te entregamos tres precios posibles.',
   },
   {
     name: 'Preparación',
@@ -229,7 +229,7 @@ const comunas = [
       </p>
       <ul class="sources">
         <li><span class="swatch swatch--blue" aria-hidden="true"></span>Ventas reales de propiedades similares inscritas en el Conservador de Bienes Raíces</li>
-        <li><span class="swatch swatch--olive" aria-hidden="true"></span>Dos modelos de tasación automatizada, HousePricing y Propiteq</li>
+        <li><span class="swatch swatch--olive" aria-hidden="true"></span>Modelos de tasación del mercado que complementan las ventas reales</li>
         <li><span class="swatch swatch--gold" aria-hidden="true"></span>El análisis de un corredor que conoce tu barrio</li>
       </ul>
       <div>
@@ -261,19 +261,6 @@ const comunas = [
             <span class="report__value">UF 7.650</span>
             <span class="report__hint">Requiere más tiempo</span>
           </div>
-        </div>
-      </div>
-      <div class="stack weights">
-        <p class="weights__title">Peso de cada fuente</p>
-        <div class="weights__bar grow" role="img" aria-label="Ventas CBR 70%, HousePricing 15%, Propiteq 15%">
-          <span style="flex: 70" class="weights__seg weights__seg--blue">CBR 70%</span>
-          <span style="flex: 15" class="weights__seg weights__seg--olive"></span>
-          <span style="flex: 15" class="weights__seg weights__seg--gold"></span>
-        </div>
-        <div class="weights__legend" aria-hidden="true">
-          <span><span class="swatch swatch--blue"></span>Ventas CBR 70%</span>
-          <span><span class="swatch swatch--olive"></span>HousePricing 15%</span>
-          <span><span class="swatch swatch--gold"></span>Propiteq 15%</span>
         </div>
       </div>
       <div class="report__note net">
@@ -698,42 +685,6 @@ const comunas = [
   .report__value--strong {
     color: var(--blue);
     font-weight: 500;
-  }
-  .weights {
-    gap: 10px;
-  }
-  .weights__title {
-    font-size: 14px;
-    font-weight: 500;
-  }
-  .weights__bar {
-    display: flex;
-    height: 28px;
-    border-radius: var(--radius-sm);
-    overflow: hidden;
-    font-size: 13px;
-    font-weight: 500;
-  }
-  .weights__seg {
-    display: flex;
-    align-items: center;
-    padding-left: 10px;
-    color: var(--white);
-  }
-  .weights__seg--blue { background: var(--blue); }
-  .weights__seg--olive { background: var(--olive); }
-  .weights__seg--gold { background: var(--gold); }
-  .weights__legend {
-    display: flex;
-    gap: 8px 20px;
-    flex-wrap: wrap;
-    font-size: 13px;
-    color: var(--text-2);
-  }
-  .weights__legend > span {
-    display: flex;
-    align-items: center;
-    gap: 8px;
   }
   .net {
     display: flex;
