@@ -3,7 +3,7 @@
 # se sobrescribe en cada importación. Para corregir algo, usa tools/dataprop-ajustes.json.
 codigo: "Departamento Santiago · Eleuterio Ramírez"
 titulo: "Departamento de 1 dormitorio en Santiago"
-bajada: "Moderno depto con est y bodega, stgo centro"
+bajada: "1D/1B full equipado con estac y bodega, Santiago"
 operacion: "arriendo"
 tipo: "departamento"
 comuna: "Santiago"
