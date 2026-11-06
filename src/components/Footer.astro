@@ -1,5 +1,5 @@
 ---
-import { SITE, WHATSAPP_URL, INSTAGRAM_URL } from '../site';
+import { SITE, WHATSAPP_URL, INSTAGRAM_URL, INTRANET_URL } from '../site';
 const year = new Date().getFullYear();
 ---
 
@@ -34,7 +34,16 @@ const year = new Date().getFullYear();
       {SITE.comunas.map((c) => <span>{c}</span>)}
     </div>
   </div>
-  <div class="wrap site-footer__legal">© {year} {SITE.legalName}, Santiago de Chile</div>
+  <div class="wrap site-footer__legal">
+    <span>© {year} {SITE.legalName}, Santiago de Chile</span>
+    <a href={INTRANET_URL} class="site-footer__intranet" rel="nofollow">
+      <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+        ><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg
+      >
+      Intranet
+    </a>
+  </div>
 </footer>
 
 <style>
@@ -75,9 +84,26 @@ const year = new Date().getFullYear();
     text-decoration: underline;
   }
   .site-footer__legal {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px 24px;
     padding-block: 20px 32px;
     border-top: 1px solid var(--line);
     font-size: 13px;
     color: var(--text-3);
+  }
+  .site-footer__intranet {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    min-height: 24px;
+    color: var(--text-3);
+    text-decoration: none;
+  }
+  .site-footer__intranet:hover {
+    color: var(--ink);
+    text-decoration: underline;
   }
 </style>
