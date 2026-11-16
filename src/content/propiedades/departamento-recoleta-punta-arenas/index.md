@@ -9,7 +9,7 @@ comuna: "Recoleta"
 sector: "Punta Arenas"
 precio:
   moneda: "CLP"
-  valor: 415000
+  valor: 390000
 superficie:
   util: 55
 dormitorios: 2
