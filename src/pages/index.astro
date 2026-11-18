@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import Heading from '../components/Heading.astro';
 import FormulaActiva from '../components/FormulaActiva.astro';
+import SelloFormulaActiva from '../components/SelloFormulaActiva.astro';
 import SectionHead from '../components/SectionHead.astro';
 import Photo from '../components/Photo.astro';
 import ValuationForm from '../components/ValuationForm.astro';
@@ -237,6 +238,7 @@ const comunas = [
     </div>
 
     <figure class="report rv-r" aria-label="Ejemplo de informe Fórmula Activa">
+      <SelloFormulaActiva size={112} class="report__sello" />
       <p class="report__tag">Ejemplo ilustrativo</p>
       <div class="report__head">
         <p class="report__title">Informe Fórmula Activa</p>
@@ -638,6 +640,24 @@ const comunas = [
   .valuation .report {
     flex-basis: 440px;
     gap: 28px;
+  }
+  .valuation .report {
+    position: relative;
+  }
+  .valuation :global(.report__sello) {
+    position: absolute;
+    top: -38px;
+    right: -26px;
+    transform: rotate(-10deg);
+    filter: drop-shadow(0 8px 14px rgb(15 69 107 / 0.25));
+  }
+  @media (max-width: 640px) {
+    .valuation :global(.report__sello) {
+      width: 84px;
+      height: 84px;
+      top: -30px;
+      right: -8px;
+    }
   }
   .range {
     gap: 14px;

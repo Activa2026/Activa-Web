@@ -1,0 +1,17 @@
+---
+// Sello oficial de la Fórmula Activa (versión azul). Archivos: public/brand/sello-formula-activa-azul.*
+interface Props { size?: number; class?: string }
+const { size = 140, class: cls } = Astro.props;
+const id = `anillo-${Math.random().toString(36).slice(2, 8)}`;
+---
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width={size} height={size} class={cls} role="img" aria-label="Sello Fórmula Activa: ventas reales, mercado y corredor, igual a 3 precios">
+<defs><path id={id} d="M100,100 m-74,0 a74,74 0 1,1 148,0 a74,74 0 1,1 -148,0"/></defs>
+<circle cx="100" cy="100" r="97" fill="#0F456B"/>
+<circle cx="100" cy="100" r="92" fill="none" stroke="#C8A050" stroke-width="2"/>
+<circle cx="100" cy="100" r="58" fill="none" stroke="#C8A050" stroke-width="1.2" stroke-dasharray="2 4"/>
+<text font-family="Poppins, sans-serif" font-weight="600" font-size="12.5" letter-spacing="3.2" fill="#C8A050"><textPath href={`#${id}`} textLength="458" lengthAdjust="spacing">VENTAS REALES · MERCADO · CORREDOR ·</textPath></text>
+<text x="100" y="94" text-anchor="middle" font-family="Lora, serif" font-weight="500" font-size="25" fill="#FFFFFF">Fórmula</text>
+<text x="100" y="121" text-anchor="middle" font-family="Lora, serif" font-style="italic" font-weight="600" font-size="27" fill="#C8A050">Activa</text>
+<text x="100" y="142" text-anchor="middle" font-family="Poppins, sans-serif" font-weight="500" font-size="8.5" letter-spacing="1.8" fill="#FFFFFF" opacity=".85">= 3 PRECIOS</text>
+</svg>
