@@ -179,7 +179,7 @@ if ($fh = @fopen($csv, 'a')) {
 
 $subject = "Nuevo lead: {$opLabel} {$tipoLabel} en {$comuna} – {$nombre}";
 $lines = [
-    "Nueva solicitud de Valorización 360° desde el sitio web.",
+    "Nueva solicitud de valorización (Fórmula Activa) desde el sitio web.",
     '',
     "Operación: {$opLabel}",
     "Propiedad: {$tipoLabel} en {$comuna}",

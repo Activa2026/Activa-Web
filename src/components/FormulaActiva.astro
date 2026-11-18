@@ -1,0 +1,136 @@
+---
+// Sello de la Fórmula Activa: la ecuación de marca (ingredientes, nunca fuentes ni pesos).
+interface Props {
+  /** "light" sobre arena/blanco, "dark" sobre azul o tinta. */
+  tone?: 'light' | 'dark';
+  /** Muestra el nombre "Fórmula Activa" arriba de la ecuación. */
+  label?: boolean;
+}
+const { tone = 'light', label = true } = Astro.props;
+
+const ingredientes = [
+  { texto: 'Ventas reales del CBR', color: 'blue' },
+  { texto: 'Modelos de mercado', color: 'olive' },
+  { texto: 'Un corredor de tu barrio', color: 'gold' },
+];
+---
+
+<figure class:list={['formula', `formula--${tone}`]} aria-label="Fórmula Activa: ventas reales del CBR, más modelos de mercado, más un corredor de tu barrio, da tus tres precios">
+  {label && <figcaption class="formula__label">Fórmula Activa</figcaption>}
+  <div class="formula__eq" aria-hidden="true">
+    {
+      ingredientes.map((ing, i) => (
+        <span class="formula__group">
+          {i > 0 && <span class="formula__op">+</span>}
+          <span class:list={['formula__term', `formula__term--${ing.color}`]}>{ing.texto}</span>
+        </span>
+      ))
+    }
+    <span class="formula__group">
+      <span class="formula__op">=</span>
+      <span class="formula__result">Tus 3 precios</span>
+    </span>
+  </div>
+</figure>
+
+<style>
+  .formula {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .formula__label {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--olive-ink);
+  }
+  .formula__eq {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px 12px;
+  }
+  .formula__group {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .formula__term {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 14px;
+    border-radius: 999px;
+    background: var(--white);
+    border: 1px solid var(--line);
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--ink);
+    white-space: nowrap;
+  }
+  .formula__term::before {
+    content: '';
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex: none;
+  }
+  .formula__term--blue::before {
+    background: var(--blue);
+  }
+  .formula__term--olive::before {
+    background: var(--olive);
+  }
+  .formula__term--gold::before {
+    background: var(--gold);
+  }
+  .formula__op {
+    font-family: var(--font-serif);
+    font-size: 30px;
+    line-height: 1;
+    color: var(--gold-deep);
+  }
+  .formula__result {
+    padding: 9px 16px;
+    border-radius: 999px;
+    background: var(--blue);
+    color: var(--white);
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 18px;
+    white-space: nowrap;
+  }
+
+  /* Sobre fondo oscuro */
+  .formula--dark .formula__label {
+    color: var(--gold-ink);
+  }
+  .formula--dark .formula__term {
+    background: rgb(255 255 255 / 0.08);
+    border-color: rgb(255 255 255 / 0.25);
+    color: var(--white);
+  }
+  .formula--dark .formula__op {
+    color: var(--gold);
+  }
+  .formula--dark .formula__result {
+    background: var(--gold);
+    color: var(--ink);
+  }
+
+  @media (max-width: 640px) {
+    .formula__eq {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 6px;
+    }
+    .formula__op {
+      font-size: 24px;
+      width: 18px;
+      text-align: center;
+    }
+  }
+</style>

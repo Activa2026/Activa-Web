@@ -115,7 +115,11 @@ export function initValuationForm(form: HTMLFormElement): void {
     const tipo = field('tipo').value;
     const opLabel = OPERATION_LABEL[field('operacion').value] ?? field('operacion').value;
     const nombre = field('nombre').value.trim();
-    return `Hola, soy ${nombre}. Quiero una Valorización 360° de mi ${tipo} en ${comuna} para ${opLabel}.`;
+    // Venta: Fórmula Activa (marca). Arriendo y administración: valorización simple.
+    if (field('operacion').value === 'vender') {
+      return `Hola, soy ${nombre}. Quiero aplicar la Fórmula Activa a mi ${tipo} en ${comuna} para vender.`;
+    }
+    return `Hola, soy ${nombre}. Quiero una valorización de mi ${tipo} en ${comuna} para ${opLabel}.`;
   }
 
   // Valida a medida que se corrige un campo marcado con error

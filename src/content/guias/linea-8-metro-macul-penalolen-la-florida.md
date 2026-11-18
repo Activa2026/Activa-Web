@@ -70,6 +70,6 @@ No hay una respuesta única sobre si conviene vender ahora o esperar. Depende de
 
 ## Cómo te ayudamos
 
-En Activa Corredores trabajamos en Macul, Peñalolén, La Florida y La Reina. Con la **Valorización 360°** te entregamos el valor de tu propiedad basado en ventas reales inscritas en el CBR, complementadas con modelos de tasación del mercado. Recibes tres precios (competitivo, de mercado y aspiracional) y una estimación de lo que te queda después de los gastos de la venta.
+En Activa Corredores trabajamos en Macul, Peñalolén, La Florida y La Reina. Con la **Fórmula Activa** te entregamos el valor de tu propiedad basado en ventas reales inscritas en el CBR, complementadas con modelos de tasación del mercado. Recibes tres precios (competitivo, de mercado y aspiracional) y una estimación de lo que te queda después de los gastos de la venta.
 
 Si tienes dudas sobre cómo puede afectar la Línea 8 a tu propiedad, escríbenos por WhatsApp y lo conversamos con datos.

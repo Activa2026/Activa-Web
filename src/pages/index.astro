@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import Heading from '../components/Heading.astro';
+import FormulaActiva from '../components/FormulaActiva.astro';
 import SectionHead from '../components/SectionHead.astro';
 import Photo from '../components/Photo.astro';
 import ValuationForm from '../components/ValuationForm.astro';
@@ -29,7 +30,7 @@ const pillars = [
 
 const stages = [
   {
-    name: 'Valorización 360°',
+    name: 'Fórmula Activa',
     text: 'Cruzamos ventas reales inscritas en el CBR con modelos de tasación del mercado y te entregamos tres precios posibles.',
   },
   {
@@ -213,34 +214,32 @@ const comunas = [
         }
       </ol>
       <div>
-        <a href="#valorizacion" class="btn btn--gold">Empezar por la valorización</a>
+        <a href="#valorizacion" class="btn btn--gold">Empezar por la Fórmula Activa</a>
       </div>
     </div>
   </section>
 
-  <!-- Valorización 360° -->
+  <!-- Fórmula Activa -->
   <section class="wrap section--lg split valuation">
     <div class="split__text rv-l">
-      <p class="eyebrow">02 / Valorización 360°</p>
+      <p class="eyebrow">02 / Fórmula Activa</p>
       <Heading size="lg" text="Antes de publicar," accent="ya sabes cuánto vale." />
       <p class="body-lg">
-        La Valorización 360° combina tres fuentes independientes para que el precio no dependa de una opinión.
-        Recibes un informe con tres escenarios y lo que te quedaría líquido en cada uno.
+        La Fórmula Activa es nuestro método para que el precio no dependa de una opinión: combina ventas reales
+        inscritas en el Conservador de Bienes Raíces, modelos de tasación del mercado y el análisis de un corredor que
+        conoce tu barrio. La aplicamos nosotros, propiedad por propiedad. Recibes un informe con tres escenarios y lo
+        que te quedaría líquido en cada uno.
       </p>
-      <ul class="sources">
-        <li><span class="swatch swatch--blue" aria-hidden="true"></span>Ventas reales de propiedades similares inscritas en el Conservador de Bienes Raíces</li>
-        <li><span class="swatch swatch--olive" aria-hidden="true"></span>Modelos de tasación del mercado que complementan las ventas reales</li>
-        <li><span class="swatch swatch--gold" aria-hidden="true"></span>El análisis de un corredor que conoce tu barrio</li>
-      </ul>
+      <FormulaActiva />
       <div>
-        <a href="#valorizacion" class="btn btn--primary">Pedir mi valorización</a>
+        <a href="#valorizacion" class="btn btn--primary">Aplicar la Fórmula Activa</a>
       </div>
     </div>
 
-    <figure class="report rv-r" aria-label="Ejemplo de informe de valorización">
+    <figure class="report rv-r" aria-label="Ejemplo de informe Fórmula Activa">
       <p class="report__tag">Ejemplo ilustrativo</p>
       <div class="report__head">
-        <p class="report__title">Informe de valorización</p>
+        <p class="report__title">Informe Fórmula Activa</p>
         <p class="report__meta">Casa en La Florida, 120 m² construidos</p>
       </div>
       <div class="stack range">
@@ -404,8 +403,8 @@ const comunas = [
   <CtaBand
     title="Conversemos sobre"
     accent="tu propiedad."
-    text="Sin compromiso: te explicamos el Sistema Activa y te entregamos una primera valorización."
-    ctaLabel="Solicitar valorización"
+    text="Sin compromiso: te explicamos el Sistema Activa y aplicamos la Fórmula Activa a tu propiedad."
+    ctaLabel="Aplicar la Fórmula Activa"
     ctaHref="#valorizacion"
   />
 </Base>
@@ -632,7 +631,7 @@ const comunas = [
     }
   }
 
-  /* Valorización */
+  /* Fórmula Activa */
   .valuation .split__text {
     flex-basis: 420px;
   }
@@ -640,29 +639,6 @@ const comunas = [
     flex-basis: 440px;
     gap: 28px;
   }
-  .sources {
-    list-style: none;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-  .sources li {
-    display: flex;
-    gap: 12px;
-    align-items: baseline;
-  }
-  .swatch {
-    display: inline-block;
-    flex: none;
-    width: 10px;
-    height: 10px;
-    border-radius: 2px;
-  }
-  .swatch--blue { background: var(--blue); }
-  .swatch--olive { background: var(--olive); }
-  .swatch--gold { background: var(--gold); }
-
   .range {
     gap: 14px;
   }

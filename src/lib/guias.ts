@@ -24,8 +24,8 @@ export const CTA: Record<Guia['data']['cta'], { titulo: string; acento: string; 
   vender: {
     titulo: '¿Estás pensando en vender?',
     acento: 'Parte por el precio correcto.',
-    texto: 'Te entregamos una Valorización 360° sin costo, con ventas reales inscritas en el CBR y tres precios para decidir.',
-    label: 'Solicitar Valorización 360°',
+    texto: 'Aplicamos la Fórmula Activa a tu propiedad, sin costo: ventas reales inscritas en el CBR y tres precios para decidir.',
+    label: 'Aplicar la Fórmula Activa',
     op: 'vender',
   },
   arrendar: {
