@@ -34,5 +34,5 @@ export const NAV = [
   { href: '/vender', label: 'Vender' },
   { href: '/arrendar', label: 'Arrendar' },
   { href: '/administracion', label: 'Administración' },
-  { href: '/#nosotros', label: 'Nosotros' },
 ] as const;
+// "Nosotros" (/#nosotros) va en el pie de página: el menú no tiene espacio para más enlaces.

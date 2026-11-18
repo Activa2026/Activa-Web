@@ -1,6 +1,7 @@
 ---
 import { NAV } from '../site';
 import { enlacePropiedades } from '../lib/propiedades';
+import { getGuias } from '../lib/guias';
 
 interface Props {
   current?: string;
@@ -9,6 +10,7 @@ const { current } = Astro.props;
 const isHome = current === '/';
 const ctaHref = isHome ? '#valorizacion' : '/contacto';
 const propiedadesHref = await enlacePropiedades();
+const hayGuias = (await getGuias()).length > 0;
 ---
 
 <header class="site-header">
@@ -36,6 +38,13 @@ const propiedadesHref = await enlacePropiedades();
         class="site-nav__secondary"
         aria-current={current === '/propiedades' ? 'page' : undefined}>Propiedades</a
       >
+      {
+        hayGuias && (
+          <a href="/guias" class="site-nav__secondary" aria-current={current === '/guias' ? 'page' : undefined}>
+            Guías
+          </a>
+        )
+      }
       <a href={ctaHref} class="btn btn--primary site-nav__cta">Valoriza tu propiedad</a>
     </nav>
   </div>
