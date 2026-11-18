@@ -1,5 +1,6 @@
 ---
-// Sello de la Fórmula Activa: la ecuación de marca (ingredientes, nunca fuentes ni pesos).
+// Ecuación de la Fórmula Activa en formato "receta" (ingredientes, nunca fuentes ni pesos).
+// Versión vertical: cada ingrediente en su línea, una regla dorada y el resultado.
 interface Props {
   /** "light" sobre arena/blanco, "dark" sobre azul o tinta. */
   tone?: 'light' | 'dark';
@@ -9,128 +10,110 @@ interface Props {
 const { tone = 'light', label = true } = Astro.props;
 
 const ingredientes = [
-  { texto: 'Ventas reales del CBR', color: 'blue' },
-  { texto: 'Modelos de mercado', color: 'olive' },
-  { texto: 'Un corredor de tu barrio', color: 'gold' },
+  { texto: 'Ventas reales inscritas en el CBR', color: 'blue' },
+  { texto: 'Modelos de tasación del mercado', color: 'olive' },
+  { texto: 'Un corredor que conoce tu barrio', color: 'gold' },
 ];
 ---
 
-<figure class:list={['formula', `formula--${tone}`]} aria-label="Fórmula Activa: ventas reales del CBR, más modelos de mercado, más un corredor de tu barrio, da tus tres precios">
+<figure
+  class:list={['formula', `formula--${tone}`]}
+  aria-label="Fórmula Activa: ventas reales inscritas en el CBR, más modelos de tasación del mercado, más un corredor que conoce tu barrio, da tus tres precios"
+>
   {label && <figcaption class="formula__label">Fórmula Activa</figcaption>}
-  <div class="formula__eq" aria-hidden="true">
+  <ol class="formula__lista" aria-hidden="true">
     {
       ingredientes.map((ing, i) => (
-        <span class="formula__group">
-          {i > 0 && <span class="formula__op">+</span>}
-          <span class:list={['formula__term', `formula__term--${ing.color}`]}>{ing.texto}</span>
-        </span>
+        <li>
+          <span class="formula__op">{i > 0 ? '+' : ''}</span>
+          <span class:list={['formula__dot', `formula__dot--${ing.color}`]} />
+          <span class="formula__texto">{ing.texto}</span>
+        </li>
       ))
     }
-    <span class="formula__group">
-      <span class="formula__op">=</span>
-      <span class="formula__result">Tus 3 precios</span>
-    </span>
-  </div>
+  </ol>
+  <p class="formula__resultado" aria-hidden="true">
+    <span class="formula__op">=</span>
+    <span class="formula__res">Tus 3 precios</span>
+  </p>
 </figure>
 
 <style>
   .formula {
     margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
+    max-width: 420px;
   }
   .formula__label {
+    margin-bottom: 14px;
     font-size: 13px;
     font-weight: 600;
     letter-spacing: 0.14em;
     text-transform: uppercase;
     color: var(--olive-ink);
   }
-  .formula__eq {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 10px 12px;
+  .formula__lista {
+    margin: 0;
+    padding: 0;
+    list-style: none;
   }
-  .formula__group {
-    display: inline-flex;
+  .formula__lista li,
+  .formula__resultado {
+    display: grid;
+    grid-template-columns: 22px 12px 1fr;
     align-items: center;
-    gap: 12px;
+    column-gap: 12px;
   }
-  .formula__term {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 9px 14px;
-    border-radius: 999px;
-    background: var(--white);
-    border: 1px solid var(--line);
-    font-size: 15px;
-    font-weight: 500;
+  .formula__lista li {
+    padding: 9px 0;
+    font-size: 16px;
     color: var(--ink);
-    white-space: nowrap;
-  }
-  .formula__term::before {
-    content: '';
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    flex: none;
-  }
-  .formula__term--blue::before {
-    background: var(--blue);
-  }
-  .formula__term--olive::before {
-    background: var(--olive);
-  }
-  .formula__term--gold::before {
-    background: var(--gold);
   }
   .formula__op {
     font-family: var(--font-serif);
-    font-size: 30px;
+    font-size: 22px;
     line-height: 1;
     color: var(--gold-deep);
+    text-align: center;
   }
-  .formula__result {
-    padding: 9px 16px;
-    border-radius: 999px;
+  .formula__dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+  }
+  .formula__dot--blue {
     background: var(--blue);
-    color: var(--white);
+  }
+  .formula__dot--olive {
+    background: var(--olive);
+  }
+  .formula__dot--gold {
+    background: var(--gold);
+  }
+  .formula__resultado {
+    margin: 6px 0 0;
+    padding-top: 12px;
+    border-top: 1px solid var(--gold);
+  }
+  .formula__res {
+    grid-column: 2 / 4;
     font-family: var(--font-serif);
     font-style: italic;
-    font-size: 18px;
-    white-space: nowrap;
+    font-size: 24px;
+    line-height: 1.2;
+    color: var(--olive);
   }
 
   /* Sobre fondo oscuro */
   .formula--dark .formula__label {
     color: var(--gold-ink);
   }
-  .formula--dark .formula__term {
-    background: rgb(255 255 255 / 0.08);
-    border-color: rgb(255 255 255 / 0.25);
+  .formula--dark .formula__lista li {
     color: var(--white);
   }
   .formula--dark .formula__op {
     color: var(--gold);
   }
-  .formula--dark .formula__result {
-    background: var(--gold);
-    color: var(--ink);
-  }
-
-  @media (max-width: 640px) {
-    .formula__eq {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 6px;
-    }
-    .formula__op {
-      font-size: 24px;
-      width: 18px;
-      text-align: center;
-    }
+  .formula--dark .formula__res {
+    color: var(--gold);
   }
 </style>
