@@ -1,6 +1,8 @@
 ---
 import { SITE, WHATSAPP_URL, INSTAGRAM_URL, INTRANET_URL } from '../site';
+import { getGuias } from '../lib/guias';
 const year = new Date().getFullYear();
+const hayGuias = (await getGuias()).length > 0;
 ---
 
 <footer class="site-footer">
@@ -21,6 +23,7 @@ const year = new Date().getFullYear();
       <a href="/administracion">Administración</a>
       <a href="/sistema">Sistema Activa</a>
       <a href="/contacto">Valorización 360°</a>
+      {hayGuias && <a href="/guias">Guías para propietarios</a>}
     </div>
     <div class="site-footer__col">
       <h2>Contacto</h2>

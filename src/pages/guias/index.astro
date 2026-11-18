@@ -1,0 +1,149 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { getGuias, formatFecha } from '../../lib/guias';
+
+const guias = await getGuias();
+---
+
+<Base
+  title="Guías para propietarios en La Florida, Macul, Peñalolén y La Reina | Activa Corredores"
+  description="Artículos claros sobre el mercado de viviendas, los cambios en tu comuna y consejos para vender o arrendar tu propiedad en el sector oriente y suroriente de Santiago."
+  current="/guias"
+  noindex={guias.length === 0}
+>
+  <PageHero
+    eyebrow="Guías"
+    title="Lo que pasa en tu barrio,"
+    accent="explicado con datos."
+    lead="Mercado, cambios en las comunas y consejos para vender o arrendar en La Florida, Macul, Peñalolén y La Reina. Cada dato con su fuente."
+  />
+
+  <section class="wrap guias">
+    {
+      guias.length === 0 ? (
+        <p class="muted">Pronto publicaremos las primeras guías.</p>
+      ) : (
+        <ul class="guias__lista">
+          {guias.map((g) => (
+            <li class="gcard rv">
+              <p class="gcard__meta">
+                <span class="gcard__tema">{g.data.tema}</span>
+                <time datetime={g.data.fecha.toISOString().slice(0, 10)}>{formatFecha(g.data.fecha)}</time>
+                {g.data.borrador && <span class="gcard__borrador">Borrador</span>}
+              </p>
+              <h2 class="title gcard__titulo">
+                <a href={`/guias/${g.id}`}>
+                  {g.data.titulo}
+                  {g.data.acento && ' '}
+                  {g.data.acento && <em>{g.data.acento}</em>}
+                </a>
+              </h2>
+              <p class="gcard__resumen">{g.data.resumen}</p>
+              <span class="gcard__leer" aria-hidden="true">Leer guía →</span>
+            </li>
+          ))}
+        </ul>
+      )
+    }
+  </section>
+
+  <CtaBand
+    title="¿Quieres saber cuánto vale"
+    accent="tu propiedad?"
+    text="Te entregamos una Valorización 360° sin costo y te explicamos cómo trabajamos."
+    ctaLabel="Solicitar valorización"
+  />
+</Base>
+
+<style>
+  .guias {
+    padding-bottom: 96px;
+  }
+  .guias__lista {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 28px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .gcard {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: 28px;
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .gcard:hover {
+    border-color: var(--field-border);
+    box-shadow: 0 10px 30px -18px rgb(15 69 107 / 0.35);
+  }
+  .gcard:focus-within {
+    outline: 2px solid var(--blue);
+    outline-offset: 2px;
+  }
+  .gcard__meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 14px;
+    font-size: 14px;
+    color: var(--text-3);
+  }
+  .gcard__tema {
+    font-weight: 500;
+    color: var(--olive-ink);
+    letter-spacing: 0.04em;
+  }
+  .gcard__borrador {
+    padding: 2px 10px;
+    border-radius: 999px;
+    background: var(--gold);
+    color: var(--ink);
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .gcard__titulo {
+    font-size: 26px;
+    line-height: 1.2;
+  }
+  .gcard__titulo a {
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .gcard__titulo a:focus-visible {
+    outline: none;
+  }
+  /* Toda la tarjeta es clicable */
+  .gcard__titulo a::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+  }
+  .gcard__resumen {
+    color: var(--text-2);
+    font-size: 16px;
+  }
+  .gcard__leer {
+    margin-top: auto;
+    font-weight: 500;
+    color: var(--blue);
+  }
+  @media (max-width: 640px) {
+    .guias {
+      padding-bottom: 64px;
+    }
+    .guias__lista {
+      grid-template-columns: 1fr;
+    }
+    .gcard {
+      padding: 22px;
+    }
+  }
+</style>

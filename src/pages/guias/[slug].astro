@@ -1,0 +1,296 @@
+---
+import { render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import WhatsAppIcon from '../../components/WhatsAppIcon.astro';
+import { getGuias, type Guia, formatFecha, minutosLectura, CTA } from '../../lib/guias';
+import { SITE, whatsappWithText } from '../../site';
+
+export async function getStaticPaths() {
+  const guias = await getGuias();
+  return guias.map((guia) => ({ params: { slug: guia.id }, props: { guia } }));
+}
+
+interface Props {
+  guia: Guia;
+}
+const { guia } = Astro.props;
+const d = guia.data;
+const { Content } = await render(guia);
+
+const url = new URL(`/guias/${guia.id}`, SITE.url).href;
+const tituloCompleto = d.acento ? `${d.titulo} ${d.acento}` : d.titulo;
+const minutos = minutosLectura(guia.body);
+const cta = CTA[d.cta];
+const iso = (x: Date) => x.toISOString().slice(0, 10);
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: tituloCompleto,
+  description: d.resumen,
+  url,
+  mainEntityOfPage: url,
+  inLanguage: 'es-CL',
+  datePublished: iso(d.fecha),
+  dateModified: iso(d.actualizada ?? d.fecha),
+  image: new URL('/images/og-image.jpg', SITE.url).href,
+  author: { '@type': 'Organization', name: SITE.name, url: SITE.url },
+  publisher: {
+    '@type': 'Organization',
+    name: SITE.name,
+    url: SITE.url,
+    logo: { '@type': 'ImageObject', url: new URL('/brand/logo-activa.png', SITE.url).href },
+  },
+  ...(d.comunas.length > 0 && { about: d.comunas.map((name) => ({ '@type': 'City', name })) }),
+};
+---
+
+<Base title={`${tituloCompleto} | Activa Corredores`} description={d.resumen} current="/guias" noindex={d.borrador}>
+  <article class="guia">
+    <header class="wrap">
+      <div class="guia__head in">
+      <nav class="guia__migas" aria-label="Ruta">
+        <a href="/guias">Guías</a>
+        <span aria-hidden="true">/</span>
+        <span>{d.tema}</span>
+      </nav>
+      {d.borrador && <p class="guia__borrador">Borrador: solo visible en la vista previa.</p>}
+      <h1 class="title guia__titulo">
+        {d.titulo}{d.acento && ' '}{d.acento && <em>{d.acento}</em>}
+      </h1>
+      <p class="guia__resumen">{d.resumen}</p>
+      <p class="guia__meta">
+        <time datetime={iso(d.fecha)}>{formatFecha(d.fecha)}</time>
+        <span aria-hidden="true">·</span>
+        <span>{minutos} min de lectura</span>
+        {
+          d.actualizada && (
+            <>
+              <span aria-hidden="true">·</span>
+              <span>Actualizada el {formatFecha(d.actualizada)}</span>
+            </>
+          )
+        }
+      </p>
+      </div>
+    </header>
+
+    <div class="wrap guia__cuerpo">
+      <div class="prosa">
+        <Content />
+      </div>
+
+      <aside class="guia__ayuda" aria-label="Contacto">
+        <p class="guia__ayuda-titulo">¿Tienes una propiedad en {d.comunas.length ? d.comunas.join(', ').replace(/, ([^,]*)$/, ' o $1') : 'el sector'}?</p>
+        <p>Te respondemos por WhatsApp, de lunes a sábado entre 9:00 y 19:00 hrs.</p>
+        <a href={whatsappWithText(`Hola, leí la guía "${tituloCompleto}" y quiero hacer una consulta.`)} class="btn btn--primary">
+          <WhatsAppIcon />
+          Escribir por WhatsApp
+        </a>
+      </aside>
+    </div>
+
+    {
+      d.fuentes.length > 0 && (
+        <footer class="wrap">
+          <div class="guia__fuentes">
+          <h2>Fuentes</h2>
+          <ul>
+            {d.fuentes.map((f) => (
+              <li>
+                <a href={f.url} rel="noopener" target="_blank">{f.nombre}</a>
+              </li>
+            ))}
+          </ul>
+          <p class="muted">
+            Las cifras de mercado corresponden a la fuente indicada y pueden referirse a toda la Región Metropolitana o al
+            país. No son una proyección de precios de Activa Corredores.
+          </p>
+          </div>
+        </footer>
+      )
+    }
+  </article>
+
+  <CtaBand title={cta.titulo} accent={cta.acento} text={cta.texto} ctaLabel={cta.label} ctaHref={`/contacto?op=${cta.op}`} />
+
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+</Base>
+
+<style>
+  .guia {
+    padding-block: 32px 80px;
+  }
+  .guia__head {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-width: 760px;
+    margin-bottom: 40px;
+  }
+  .guia__migas {
+    display: flex;
+    gap: 8px;
+    font-size: 14px;
+    color: var(--text-3);
+  }
+  .guia__borrador {
+    align-self: flex-start;
+    padding: 6px 14px;
+    border-radius: var(--radius-sm);
+    background: var(--gold);
+    color: var(--ink);
+    font-size: 14px;
+    font-weight: 600;
+  }
+  .guia__titulo {
+    font-size: clamp(34px, 4.4vw, 52px);
+    line-height: 1.12;
+  }
+  .guia__resumen {
+    font-size: 20px;
+    line-height: 1.55;
+    color: var(--text-2);
+  }
+  .guia__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 10px;
+    font-size: 14px;
+    color: var(--text-3);
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .guia__cuerpo {
+    display: grid;
+    grid-template-columns: minmax(0, 760px) 300px;
+    gap: 48px 64px;
+    align-items: start;
+  }
+
+  /* Texto del artículo */
+  .prosa {
+    font-size: 18px;
+    line-height: 1.75;
+    color: var(--text-2);
+  }
+  .prosa :global(> * + *) {
+    margin-top: 1.1em;
+  }
+  .prosa :global(h2) {
+    margin-top: 1.8em;
+    font-family: var(--font-serif);
+    font-weight: 500;
+    font-size: 28px;
+    line-height: 1.25;
+    color: var(--blue);
+  }
+  .prosa :global(h3) {
+    margin-top: 1.5em;
+    font-size: 19px;
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .prosa :global(strong) {
+    color: var(--ink);
+    font-weight: 600;
+  }
+  .prosa :global(a) {
+    color: var(--blue);
+    text-underline-offset: 3px;
+  }
+  .prosa :global(ul),
+  .prosa :global(ol) {
+    padding-left: 1.3em;
+  }
+  .prosa :global(li + li) {
+    margin-top: 0.4em;
+  }
+  .prosa :global(li::marker) {
+    color: var(--olive);
+  }
+  .prosa :global(blockquote) {
+    margin-inline: 0;
+    padding: 18px 24px;
+    border-left: 4px solid var(--gold);
+    background: var(--white);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    color: var(--ink);
+  }
+  .prosa :global(blockquote > * + *) {
+    margin-top: 0.6em;
+  }
+
+  .guia__ayuda {
+    position: sticky;
+    top: calc(var(--header-h) + 24px);
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: 26px;
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    font-size: 15px;
+    color: var(--text-2);
+  }
+  .guia__ayuda-titulo {
+    font-family: var(--font-serif);
+    font-size: 22px;
+    line-height: 1.3;
+    color: var(--ink);
+  }
+  .guia__ayuda .btn {
+    width: 100%;
+  }
+
+  .guia__fuentes {
+    max-width: 760px;
+    margin-top: 56px;
+    padding-top: 28px;
+    border-top: 1px solid var(--line);
+    font-size: 15px;
+    color: var(--text-2);
+  }
+  .guia__fuentes h2 {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 10px;
+  }
+  .guia__fuentes ul {
+    padding-left: 1.2em;
+    margin-bottom: 14px;
+  }
+  .guia__fuentes li + li {
+    margin-top: 4px;
+  }
+  .guia__fuentes a {
+    overflow-wrap: anywhere;
+  }
+
+  @media (max-width: 960px) {
+    .guia__cuerpo {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .guia__ayuda {
+      position: static;
+    }
+  }
+  @media (max-width: 640px) {
+    .guia {
+      padding-block: 20px 56px;
+    }
+    .prosa {
+      font-size: 17px;
+    }
+    .prosa :global(h2) {
+      font-size: 24px;
+    }
+    .guia__resumen {
+      font-size: 18px;
+    }
+  }
+</style>

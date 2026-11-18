@@ -62,4 +62,26 @@ const propiedades = defineCollection({
     }),
 });
 
-export const collections = { propiedades };
+// Guías: artículos del blog. Cada guía es un archivo src/content/guias/<nombre>.md (ver LEEME.md ahí).
+const guias = defineCollection({
+  loader: glob({ pattern: '*.md', base: './src/content/guias' }),
+  schema: z.object({
+    // Título en dos partes: la segunda va en cursiva oliva (como en todo el sitio)
+    titulo: z.string(),
+    acento: z.string().optional(),
+    // Resumen de 1 o 2 frases: se usa en la lista, en Google y al compartir
+    resumen: z.string().max(200),
+    fecha: z.coerce.date(),
+    actualizada: z.coerce.date().optional(),
+    tema: z.enum(['Comunas', 'Mercado', 'Consejos', 'Sistema Activa']),
+    comunas: z.array(z.enum(['La Florida', 'Macul', 'Peñalolén', 'La Reina'])).default([]),
+    // Fuentes públicas citadas en el texto (nunca proveedores de datos)
+    fuentes: z.array(z.object({ nombre: z.string(), url: z.url() })).default([]),
+    // Botón final: qué servicio ofrecer
+    cta: z.enum(['vender', 'arrendar', 'administrar']).default('vender'),
+    // Solo se ve en el computador (vista previa), nunca en el sitio publicado
+    borrador: z.boolean().default(false),
+  }),
+});
+
+export const collections = { propiedades, guias };

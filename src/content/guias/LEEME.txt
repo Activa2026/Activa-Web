@@ -1,0 +1,17 @@
+Guías del sitio (activacorredores.cl/guias)
+
+Cada guía es un archivo .md en esta carpeta. El nombre del archivo es la dirección:
+  linea-8-metro-macul-penalolen-la-florida.md  ->  activacorredores.cl/guias/linea-8-metro-macul-penalolen-la-florida
+
+Arriba, entre las líneas ---, van los datos:
+  titulo, acento (segunda parte del título, en cursiva), resumen (máx. 200 letras), fecha,
+  tema (Comunas, Mercado, Consejos o Sistema Activa), comunas, cta (vender, arrendar o administrar),
+  fuentes (nombre y enlace) y borrador.
+
+borrador: true  -> solo se ve en la vista previa del computador.
+borrador: false -> se publica en el sitio al subir los cambios a GitHub.
+
+Reglas: todo dato con su fuente; no nombrar a los proveedores de datos (solo "CBR" y "portales");
+no prometer alzas de precio; nada se publica sin aprobación de Andrés.
+
+Este archivo es .txt a propósito: el sitio solo lee los .md.
