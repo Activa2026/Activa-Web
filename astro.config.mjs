@@ -15,7 +15,7 @@ export default defineConfig({
   build: { format: 'file' },
   integrations: [
     sitemap({
-      filter: (page) => !page.includes('/404') && (hayPropiedades || !page.endsWith('/propiedades')),
+      filter: (page) => !page.includes('/404') && !page.endsWith('/ig') && (hayPropiedades || !page.endsWith('/propiedades')),
     }),
   ],
 });

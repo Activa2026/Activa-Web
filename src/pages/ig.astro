@@ -1,0 +1,110 @@
+---
+// Página de enlaces para la biografía de Instagram (activacorredores.cl/ig).
+// El botón de WhatsApp lleva un mensaje propio para saber qué contactos llegan desde Instagram.
+import Base from '../layouts/Base.astro';
+import WhatsAppIcon from '../components/WhatsAppIcon.astro';
+import { WHATSAPP_IG_URL, SITE } from '../site';
+import { getGuias } from '../lib/guias';
+import { enlacePropiedades } from '../lib/propiedades';
+
+const ultimaGuia = (await getGuias())[0];
+const propiedadesHref = await enlacePropiedades();
+const guiaTitulo = ultimaGuia
+  ? `${ultimaGuia.data.titulo}${ultimaGuia.data.acento ? ` ${ultimaGuia.data.acento}` : ''}`
+  : '';
+---
+
+<Base
+  title="Activa Corredores en Instagram"
+  description="Enlaces de Activa Corredores: WhatsApp, Valorización 360°, guías para propietarios y propiedades."
+  noindex
+>
+  <section class="wrap ig">
+    <div class="ig__inner in">
+      <img src="/brand/logo-400.png" alt="Activa Corredores: transparencia, seguridad, proactividad" width="160" height="130" />
+      <p class="ig__lead">
+        Vendemos, arrendamos y administramos propiedades en La Florida, Macul, Peñalolén y La Reina.
+      </p>
+
+      <a href={WHATSAPP_IG_URL} class="btn btn--primary ig__btn"><WhatsAppIcon />Escríbenos por WhatsApp</a>
+      <a href="/contacto?op=vender" class="btn btn--ghost ig__btn">Pide tu Valorización 360° sin costo</a>
+      {
+        ultimaGuia && (
+          <a href={`/guias/${ultimaGuia.id}`} class="ig__guia">
+            <span class="ig__guia-eyebrow">Guía más reciente</span>
+            <span class="ig__guia-titulo">{guiaTitulo}</span>
+          </a>
+        )
+      }
+      <a href="/guias" class="btn btn--ghost ig__btn">Todas las guías para propietarios</a>
+      <a href={propiedadesHref} class="btn btn--ghost ig__btn">Propiedades disponibles</a>
+      <a href="/sistema" class="btn btn--ghost ig__btn">Cómo trabajamos: Sistema Activa</a>
+
+      <p class="ig__horario">{SITE.hours}</p>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .ig {
+    padding-block: 48px 80px;
+  }
+  .ig__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
+    max-width: 460px;
+    margin-inline: auto;
+    text-align: center;
+  }
+  .ig__inner img {
+    align-self: center;
+    width: 160px;
+    height: auto;
+    margin-bottom: 4px;
+  }
+  .ig__lead {
+    margin-bottom: 10px;
+    font-size: 17px;
+    color: var(--text-2);
+  }
+  .ig__btn {
+    width: 100%;
+    justify-content: center;
+  }
+  .ig__guia {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 18px 20px;
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--gold);
+    border-radius: var(--radius);
+    text-align: left;
+    text-decoration: none;
+    color: var(--ink);
+    transition: border-color 0.2s;
+  }
+  .ig__guia:hover {
+    border-color: var(--field-border);
+    border-left-color: var(--gold);
+  }
+  .ig__guia-eyebrow {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--olive-ink);
+    letter-spacing: 0.04em;
+  }
+  .ig__guia-titulo {
+    font-family: var(--font-serif);
+    font-size: 19px;
+    line-height: 1.3;
+  }
+  .ig__horario {
+    margin-top: 8px;
+    font-size: 14px;
+    color: var(--text-3);
+  }
+</style>

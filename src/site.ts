@@ -22,6 +22,11 @@ export function whatsappWithText(text: string): string {
   return `${WHATSAPP_URL}?text=${encodeURIComponent(text)}`;
 }
 
+// Mensajes iniciales por origen: permiten saber de dónde llega cada WhatsApp (medición mensual).
+// Guías y propiedades usan su propio texto; Instagram usa la página /ig.
+export const WHATSAPP_WEB_URL = whatsappWithText('Hola, vengo del sitio web de Activa Corredores y quiero hacer una consulta.');
+export const WHATSAPP_IG_URL = whatsappWithText('Hola, los vi en Instagram y quiero hacer una consulta.');
+
 // El enlace a "Propiedades" se calcula en lib/propiedades.ts (enlacePropiedades).
 
 // Destino del formulario. Por defecto, public/api/lead.php (correo + registro en Hostinger).

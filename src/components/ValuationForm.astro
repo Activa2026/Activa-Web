@@ -1,7 +1,7 @@
 ---
 // Formulario de valorización en 3 pasos. Lógica en scripts/valuation-form.ts.
 import WhatsAppIcon from './WhatsAppIcon.astro';
-import { SITE, LEADS_ENDPOINT, WHATSAPP_URL } from '../site';
+import { SITE, LEADS_ENDPOINT, WHATSAPP_WEB_URL } from '../site';
 
 interface Props {
   variant?: 'hero' | 'card';
@@ -99,7 +99,7 @@ const { variant = 'card' } = Astro.props;
       Abrimos WhatsApp con tu solicitud ya escrita. Solo presiona <strong>enviar</strong> y seguimos la conversación
       por ahí.
     </p>
-    <a href={WHATSAPP_URL} class="btn btn--whatsapp" data-wa-link><WhatsAppIcon />Abrir WhatsApp</a>
+    <a href={WHATSAPP_WEB_URL} class="btn btn--whatsapp" data-wa-link><WhatsAppIcon />Abrir WhatsApp</a>
     <p class="vform__nota">¿No se abrió? Toca el botón. Respondemos de lunes a sábado, de 9:00 a 19:00 hrs.</p>
     <button type="button" class="btn btn--ghost vform__reset" data-reset>Enviar otra solicitud</button>
   </div>
@@ -107,7 +107,7 @@ const { variant = 'card' } = Astro.props;
   <noscript>
     <p class="vform__noscript">
       Para usar el formulario necesitas JavaScript. También puedes escribirnos directo a
-      <a href={WHATSAPP_URL}>WhatsApp {SITE.whatsappDisplay}</a>.
+      <a href={WHATSAPP_WEB_URL}>WhatsApp {SITE.whatsappDisplay}</a>.
     </p>
   </noscript>
 </form>

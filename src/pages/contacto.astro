@@ -2,10 +2,10 @@
 import Base from '../layouts/Base.astro';
 import Heading from '../components/Heading.astro';
 import ValuationForm from '../components/ValuationForm.astro';
-import { SITE, WHATSAPP_URL, INSTAGRAM_URL } from '../site';
+import { SITE, WHATSAPP_WEB_URL, INSTAGRAM_URL } from '../site';
 
 const items = [
-  { label: 'WHATSAPP', value: SITE.whatsappDisplay, href: WHATSAPP_URL },
+  { label: 'WHATSAPP', value: SITE.whatsappDisplay, href: WHATSAPP_WEB_URL },
   { label: 'CORREO', value: SITE.email, href: `mailto:${SITE.email}` },
   { label: 'INSTAGRAM', value: `@${SITE.instagram}`, href: INSTAGRAM_URL },
   { label: 'HORARIO', value: SITE.hours },
