@@ -89,6 +89,18 @@ const jsonLd = {
 
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 
+    {/* Contador de visitas sin cookies (Cloudflare Web Analytics). Solo en el sitio publicado. */}
+    {
+      import.meta.env.PROD && (
+        <script
+          is:inline
+          defer
+          src="https://static.cloudflareinsights.com/beacon.min.js"
+          data-cf-beacon='{"token": "bc9749a3edce43bcb1e99df45adc74c0"}'
+        />
+      )
+    }
+
     <script is:inline>
       document.documentElement.classList.add('js');
       if (
