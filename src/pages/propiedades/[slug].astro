@@ -14,7 +14,7 @@ import {
   TIPO_LABEL,
   OPERACION_LABEL,
 } from '../../lib/propiedades';
-import { SITE, whatsappWithText } from '../../site';
+import { SITE, POSTULA_URL, whatsappWithText } from '../../site';
 
 export async function getStaticPaths() {
   const propiedades = await getPropiedades();
@@ -32,6 +32,7 @@ const url = new URL(`/propiedades/${propiedad.id}`, SITE.url).href;
 const precio = formatPrecio(d.precio);
 const sello = cartel(d.estado);
 const terminada = cerrada(d.estado);
+const postulaHref = d.operacion === 'arriendo' && !terminada ? `${POSTULA_URL}/p/${propiedad.id}` : null;
 const lugar = `${TIPO_LABEL[d.tipo]} en ${d.comuna}${d.sector ? `, ${d.sector}` : ''}`;
 
 const og = await getImage({ src: d.fotos[0], width: 1200, height: 630, fit: 'cover', format: 'jpg' });
@@ -190,8 +191,15 @@ const jsonLd = {
           ) : (
             <>
               <p class="contacto__titulo">¿Te interesa?</p>
-              <p>Escríbenos y te respondemos por WhatsApp. Lunes a sábado, de 9:00 a 19:00 hrs.</p>
-              <a href={whatsappWithText(msgInteres)} class="btn btn--primary">
+              {postulaHref ? (
+                <>
+                  <p>Postula en línea en unos minutos, o escríbenos por WhatsApp. Lunes a sábado, de 9:00 a 19:00 hrs.</p>
+                  <a href={postulaHref} class="btn btn--primary">Postula a esta propiedad</a>
+                </>
+              ) : (
+                <p>Escríbenos y te respondemos por WhatsApp. Lunes a sábado, de 9:00 a 19:00 hrs.</p>
+              )}
+              <a href={whatsappWithText(msgInteres)} class={postulaHref ? 'btn btn--ghost' : 'btn btn--primary'}>
                 <WhatsAppIcon />
                 Consultar por WhatsApp
               </a>
