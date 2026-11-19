@@ -17,6 +17,8 @@ export const INSTAGRAM_URL = `https://instagram.com/${SITE.instagram}`;
 
 // Acceso del equipo a la intranet (aplicación aparte, en su propio subdominio).
 export const INTRANET_URL = 'https://intranet.activacorredores.cl';
+// Portal de postulación en línea para arrendatarios (sistema de screening)
+export const POSTULA_URL = 'https://postula.activacorredores.cl';
 
 export function whatsappWithText(text: string): string {
   return `${WHATSAPP_URL}?text=${encodeURIComponent(text)}`;
