@@ -1,0 +1,31 @@
+{
+  "actualizado": "2026-11-21T17:13:30.355Z",
+  "arriendos": [
+    {
+      "id": "departamento-recoleta-punta-arenas",
+      "url": "https://activacorredores.cl/propiedades/departamento-recoleta-punta-arenas",
+      "titulo": "Departamento de 2 dormitorios en Recoleta",
+      "tipo": "departamento",
+      "comuna": "Recoleta",
+      "sector": "Punta Arenas",
+      "precio": {
+        "moneda": "CLP",
+        "valor": 390000
+      },
+      "gastosComunes": null
+    },
+    {
+      "id": "departamento-santiago-eleuterio-ramirez",
+      "url": "https://activacorredores.cl/propiedades/departamento-santiago-eleuterio-ramirez",
+      "titulo": "Departamento de 1 dormitorio en Santiago",
+      "tipo": "departamento",
+      "comuna": "Santiago",
+      "sector": "Eleuterio Ramírez",
+      "precio": {
+        "moneda": "CLP",
+        "valor": 350000
+      },
+      "gastosComunes": null
+    }
+  ]
+}
